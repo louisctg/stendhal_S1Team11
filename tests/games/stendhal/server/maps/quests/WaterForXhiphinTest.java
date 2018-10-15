@@ -14,12 +14,15 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import games.stendhal.server.entity.npc.condition.PlayerHasInfostringItemWithHimCondition;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.npc.SpeakerNPC;
 import games.stendhal.server.entity.npc.fsm.Engine;
@@ -156,25 +159,66 @@ public class WaterForXhiphinTest extends ZonePlayerAndNPCTestImpl {
 		assertEquals("Bye.", getReply(npc));
 	}
 
-		// 5.TRY WITH CLEAN WATER
+	// 5a.TRY WITH CLEAN AND DIRTY WATER - DIRTY WATER IN SECOND SLOT
 	@Test
-	public void testQuestWithCleanWater() {
-		SpeakerNPC npc = SingletonRepository.getNPCList().get("Xhiphin Zohos");
-		Engine en = npc.getEngine();
-		player.setQuest(QUEST_SLOT, "start");
-		PlayerTestHelper.equipWithItem(player, "water", "clean");
+	public void testQuestWithDirtyWaterAfterClean() {
+	  SpeakerNPC npc = SingletonRepository.getNPCList().get("Xhiphin Zohos");
+	  Engine en = npc.getEngine();
+	  player.setQuest(QUEST_SLOT, "start");
+	  PlayerTestHelper.equipWithItem(player, "water", "clean");
+	  PlayerTestHelper.equipWithItem(player, "water");
 
-		en.step(player, "HI");
-		assertEquals("Hello! Welcome to Fado City! You can #learn about Fado from me.", getReply(npc));
-		en.step(player, "quest");
-		// [19:05] krupi earns 100 experience points.
-		assertEquals("Thank you ever so much! That's just what I wanted! Here, take these potions that Sarzina gave me - I hardly have use for them here.", getReply(npc));
-		en.step(player, "thanks");
-		en.step(player, "task");
-		assertEquals("Thank you, I don't need anything right now.", getReply(npc));
-		en.step(player, "water");
-		assertEquals("Thank you, I don't need anything right now.", getReply(npc));
-		en.step(player, "bye");
-		assertEquals("Bye.", getReply(npc));
+	  // initial state -- player has one clean water
+	  boolean hasCleanWater = new PlayerHasInfostringItemWithHimCondition("water", "clean").fire(player, null, null);
+	  assertTrue("Player should begin WaterForXhiphin quest resolution with clean water.", hasCleanWater);
+
+	  // quest resolution
+	  en.step(player, "HI");
+	  assertEquals("Hello! Welcome to Fado City! You can #learn about Fado from me.", getReply(npc));
+	  en.step(player, "quest");  // [19:05] krupi earns 100 experience points.
+	  assertEquals("Thank you ever so much! That's just what I wanted! Here, take these potions that Sarzina gave me - I hardly have use for them here.", getReply(npc));
+	  en.step(player, "thanks");
+	  en.step(player, "task");
+	  assertEquals("Thank you, I don't need anything right now.", getReply(npc));
+	  en.step(player, "water");
+	  assertEquals("Thank you, I don't need anything right now.", getReply(npc));
+	  en.step(player, "bye");
+	  assertEquals("Bye.", getReply(npc));
+
+	  // closing state -- player no longer has clean water
+	  hasCleanWater = new PlayerHasInfostringItemWithHimCondition("water", "clean").fire(player, null, null);
+	  assertFalse("Player should end WaterForXhiphin quest without clean water.", hasCleanWater);
 	}
+
+	// 5b.TRY WITH CLEAN AND DIRTY WATER - DIRTY WATER IN FIRST SLOT
+	@Test
+	public void testQuestWithCleanWaterAfterDirty() {
+	  SpeakerNPC npc = SingletonRepository.getNPCList().get("Xhiphin Zohos");
+	  Engine en = npc.getEngine();
+	  player.setQuest(QUEST_SLOT, "start");
+	  PlayerTestHelper.equipWithItem(player, "water");
+	  PlayerTestHelper.equipWithItem(player, "water", "clean");
+
+	  // initial state -- player has one clean water
+	  boolean hasCleanWater = new PlayerHasInfostringItemWithHimCondition("water", "clean").fire(player, null, null);
+	  assertTrue("Player should begin WaterForXhiphin quest resolution with clean water.", hasCleanWater);
+
+	  // quest resolution
+	  en.step(player, "HI");
+	  assertEquals("Hello! Welcome to Fado City! You can #learn about Fado from me.", getReply(npc));
+	  en.step(player, "quest");  // [19:05] krupi earns 100 experience points.
+	  assertEquals("Thank you ever so much! That's just what I wanted! Here, take these potions that Sarzina gave me - I hardly have use for them here.", getReply(npc));
+	  en.step(player, "thanks");
+	  en.step(player, "task");
+	  assertEquals("Thank you, I don't need anything right now.", getReply(npc));
+	  en.step(player, "water");
+	  assertEquals("Thank you, I don't need anything right now.", getReply(npc));
+	  en.step(player, "bye");
+	  assertEquals("Bye.", getReply(npc));
+
+	  // closing state -- player no longer has clean water
+	  hasCleanWater = new PlayerHasInfostringItemWithHimCondition("water", "clean").fire(player, null, null);
+	  assertFalse("Player should end WaterForXhiphin quest without clean water.", hasCleanWater);
+	}
+
 }

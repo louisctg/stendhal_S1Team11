@@ -367,6 +367,19 @@ public class ObsidianKnife extends AbstractQuest {
 				ConversationStates.QUESTION_1,
 				"Hm, you better check who it's really for.",
 				null);
+		
+		final SpeakerNPC npcLibrarian = npcs.get("Wikipedian");
+		
+		npcLibrarian.add(ConversationStates.ATTENDING,
+				"gem book",
+				new QuestInStateCondition(QUEST_SLOT, "seeking_book"),
+				ConversationStates.ATTENDING,
+				"Unfortunately I don't have it, you should check the library in Semos, it has a good collection of books on mining related subjects.",
+				null);
+		npcLibrarian.add(ConversationStates.ATTENDING, ConversationPhrases.GOODBYE_MESSAGES,
+				null,
+				ConversationStates.IDLE,
+				"Bye.", null);
 	}
 
 	private void bringBookStep() {

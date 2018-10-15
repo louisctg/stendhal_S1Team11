@@ -75,7 +75,7 @@ public class DropInfostringItemAction implements ChatAction {
 		boolean res = false;
 		for (final Item item : items) {
 			if (infostring.equalsIgnoreCase(item.getInfoString())) {
-				res = player.drop(item.getName(), amount);
+				res = player.drop(item);
 				break;
 			}
 		}
