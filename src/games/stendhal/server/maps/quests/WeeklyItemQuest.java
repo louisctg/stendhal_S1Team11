@@ -203,6 +203,7 @@ public class WeeklyItemQuest extends AbstractQuest {
 		actions.add(new SetQuestToTimeStampAction(QUEST_SLOT, 1));
 
 		return new MultipleActions(actions);
+			
 	}
 
 	private void getQuest() {

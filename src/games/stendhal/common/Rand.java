@@ -20,13 +20,36 @@ import java.util.Set;
  * Helper functions to generate random numbers.
  */
 public class Rand {
-
+	// Variable to determine whether we are in testing mode. For use by testRand().
+	private static boolean testing = false;  
+	
+	// Seed for use by testRand(). Set to 0 by default, although it can be changed.
+	private static int testValue = 0;
+	
 	private static Random rand;
-
+	
 	static {
 		rand = new Random();
 	}
 
+	/**
+	 * Used to change the value of the 'testing' class variable.
+	 *
+	 * @param b Boolean to set 'testing' to.
+	 */
+	public static void isTest(boolean b) {
+		testing = b;
+	}
+	
+	/**
+	 * Used to change the value of the 'testValue' class variable.
+	 *
+	 * @param i Integer to set 'testValue' to.
+	 */
+	public static void setTestValue(int i) {
+		testValue = i;
+	}
+	
 	/**
 	 * Simulates flipping a coin.
 	 *
@@ -142,6 +165,51 @@ public class Rand {
 			i++;
 		}
 		// can't happen
+		return null;
+	}
+	
+	/**
+	 * Given a set of any type, returns an arbitrary element, using an equal
+	 * distribution if the class variable 'testing' is set to false. Generics 
+	 * are used so that the returned element will have the same type as the 
+	 * set's elements have.
+	 * 
+	 * If the class variable 'testing' is set to True, this method returns the
+	 * element at the position indicated by the class variable 'testValue'. If
+	 * said value exceeds the length of the set -1, it returns the last item.
+	 *
+	 * NOTE: This function is only here to avoid randomness during WeeklyItemQuest
+	 * testing.
+	 *
+	 * @param <T>
+	 *            Any type.
+	 * @param set
+	 *            The set from which an element should be chosen.
+	 * @return A random set element or the set element in the 'testValue' position.
+	 */
+	public static <T> T testRand(final Set<T> set) {
+		if (!testing) {
+			return rand(set);
+		} else {
+			int i = 0;
+			if (testValue < set.size() && testValue >= 0) {
+				for (final T element : set) {
+					if (i == testValue) {
+						return element;
+					}
+					i++;
+				}
+			} else {
+				for (final T element : set) {
+					if (i == set.size() - 1) {
+						return element;
+					}
+					i++;
+				}
+			}
+			
+		}
+		// following rand's example, can't happen
 		return null;
 	}
 

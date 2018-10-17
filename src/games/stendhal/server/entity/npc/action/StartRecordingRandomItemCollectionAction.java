@@ -85,20 +85,46 @@ public class StartRecordingRandomItemCollectionAction implements ChatAction {
 
 	@Override
 	public void fire(final Player player, final Sentence sentence, final EventRaiser raiser) {
-		final String itemname = Rand.rand(items.keySet());
-		final int quantity = items.get(itemname);
+		//// Cristian's code.
+		if (questname == "weekly_item") {
+			Map<String, Integer> copyMap = new HashMap<String, Integer>(items);
+			copyMap.remove(player.lastItemRequest);
+			
+			// Generate the item without the possibility of choosing the previous one.
+			String itemname = Rand.testRand(copyMap.keySet());
+			player.lastItemRequest = itemname;
+			final int quantity = copyMap.get(itemname);
+			
+			Map<String, String> substitutes = new HashMap<String, String>();
+			substitutes.put("item", Grammar.quantityplnoun(quantity, itemname, "a"));
+			substitutes.put("#item", Grammar.quantityplnounWithHash(quantity, itemname));
+			substitutes.put("the item", "the " + Grammar.plnoun(quantity, itemname));
 
-		Map<String, String> substitutes = new HashMap<String, String>();
-		substitutes.put("item", Grammar.quantityplnoun(quantity, itemname, "a"));
-		substitutes.put("#item", Grammar.quantityplnounWithHash(quantity, itemname));
-		substitutes.put("the item", "the " + Grammar.plnoun(quantity, itemname));
 
-
-		raiser.say(StringUtils.substitute(message,substitutes));
-		if (index > -1) {
-			player.setQuest(questname, index, itemname + "=" + quantity);
+			raiser.say(StringUtils.substitute(message,substitutes));
+			if (index > -1) {
+				player.setQuest(questname, index, itemname + "=" + quantity);
+			} else {
+				player.setQuest(questname, itemname + "=" + quantity);
+			}
+		
 		} else {
-			player.setQuest(questname, itemname + "=" + quantity);
+		//// End of code.
+			final String itemname = Rand.rand(items.keySet());
+			final int quantity = items.get(itemname);
+
+			Map<String, String> substitutes = new HashMap<String, String>();
+			substitutes.put("item", Grammar.quantityplnoun(quantity, itemname, "a"));
+			substitutes.put("#item", Grammar.quantityplnounWithHash(quantity, itemname));
+			substitutes.put("the item", "the " + Grammar.plnoun(quantity, itemname));
+
+
+			raiser.say(StringUtils.substitute(message,substitutes));
+			if (index > -1) {
+				player.setQuest(questname, index, itemname + "=" + quantity);
+			} else {
+				player.setQuest(questname, itemname + "=" + quantity);
+			}
 		}
 	}
 
