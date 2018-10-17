@@ -75,6 +75,8 @@ import marauroa.common.game.SyntaxException;
 
 public class Player extends RPEntity implements UseListener {
 
+	public String lastItemRequest = null; // Used for WeeklyItemQuest.
+	
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
 	private static final String[] RECOLORABLE_OUTFIT_PARTS = { "detail",
 			"dress", "hair", "body", "head", "eyes" };
