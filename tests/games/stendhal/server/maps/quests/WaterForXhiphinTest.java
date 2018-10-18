@@ -14,6 +14,7 @@
 package games.stendhal.server.maps.quests;
 
 import static org.junit.Assert.assertEquals;
+//import static org.junit.Assert.assertTrue;
 import static utilities.SpeakerNPCTestHelper.getReply;
 
 import org.junit.Before;
@@ -28,6 +29,8 @@ import games.stendhal.server.maps.fado.hotel.HotelChefNPC;
 import utilities.PlayerTestHelper;
 import utilities.QuestHelper;
 import utilities.ZonePlayerAndNPCTestImpl;
+//import java.util.List;
+//import games.stendhal.server.entity.item.Item;
 
 /**
  * Tests for WaterForXhiphin
@@ -177,4 +180,5 @@ public class WaterForXhiphinTest extends ZonePlayerAndNPCTestImpl {
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
 	}
+	
 }
