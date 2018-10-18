@@ -74,8 +74,6 @@ import marauroa.common.game.RPSlot;
 import marauroa.common.game.SyntaxException;
 
 public class Player extends RPEntity implements UseListener {
-
-	public String lastItemRequest = null; // Used for WeeklyItemQuest.
 	
 	private static final String LAST_PLAYER_KILL_TIME = "last_player_kill_time";
 	private static final String[] RECOLORABLE_OUTFIT_PARTS = { "detail",
@@ -116,6 +114,7 @@ public class Player extends RPEntity implements UseListener {
 	private final PlayerLootedItemsHandler itemCounter = new PlayerLootedItemsHandler(
 			this);
 
+	public String lastItemRequest = getRequiredItemName("weekly_item", 0); // Used for WeeklyItemQuest.
 	/**
 	 * The number of minutes that this player has been logged in on the server.
 	 */
