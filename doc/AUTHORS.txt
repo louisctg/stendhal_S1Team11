@@ -200,3 +200,15 @@ Notable contributors:
 - SnowFlake
   · Maps maker
   · NPCs
+ - Khesim Reid
+   · Fixed the soup quest bug
+ - Mark Paveszka
+   · Fixed the straw carts bug
+ - Evgeny Serebrenny
+   · Fixed the Ados librarian bug
+ - Louis Thurston-Gibson
+   · Fixed the teleporting hut bug
+ - Cristian Lopez Cano
+   · Fixed the museum item quest bug
+ - Zygimantas Koncius
+   · Fixed the mage gnome bug

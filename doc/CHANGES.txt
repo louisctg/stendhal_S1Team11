@@ -1,5 +1,13 @@
 Changelog
 ---------
+1.28uom
+*bugfixes*
+- fixed the soup quest bug which awarded karma for listing ingredients individually
+- fixed the mage gnome bug which made mage gnomes drop minor potions only, and less frequently than plain gnomes
+- fixed the museum item quest bug which allowed the same item to be requested twice in a row
+- fixed the teleporting huts bug which teleported players to the grass rather than at the hut entrance
+- fixed librarian in Ados bug which caused the Ados librarian to ignore requests about gem books
+- fixed disappearing straw carts bug which did not allow cart to be pushed away from zone boundary
 
 1.28
 *world*
