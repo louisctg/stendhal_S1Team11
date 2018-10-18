@@ -250,7 +250,8 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 
 	@Override
 	public void onEntered(ActiveEntity entity, StendhalRPZone zone, int newX, int newY) {
-		// do nothing
+	
+		//do nothing
 	}
 
 	@Override
@@ -269,6 +270,37 @@ public class Block extends ActiveEntity implements ZoneEnterExitListener,
 
 	@Override
 	public void onEntered(RPObject object, StendhalRPZone zone) {
+		if(object instanceof Player)
+		{
+		 Player player = (Player) object;
+		 Direction d = player.getDirection();
+		 int oldX = this.getX();
+		 int oldY = this.getY();
+		 
+		 switch(d)
+		 {
+		 case LEFT:
+			 this.setPosition(oldX-1, oldY);
+			 player.setPosition(oldX, oldY);
+			 break;
+		 case RIGHT:
+			 this.setPosition(oldX+1, oldY);
+			 player.setPosition(oldX, oldY);
+			 break;
+		 case DOWN:
+			 this.setPosition(oldX, oldY+1);
+			 player.setPosition(oldX, oldY);
+			 break;
+		 case UP:
+			 this.setPosition(oldX, oldY-1);
+			 player.setPosition(oldX, oldY);
+			 break;
+		 default:
+			 break;
+			 
+		 }
+		}
+		 
 		// do nothing
 	}
 
