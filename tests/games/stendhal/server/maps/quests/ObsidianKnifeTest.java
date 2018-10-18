@@ -56,7 +56,8 @@ public class ObsidianKnifeTest {
 
 		new BlacksmithNPC().configureZone(zone, null);
 		new LibrarianNPC().configureZone(zone, null);
-
+		new games.stendhal.server.maps.ados.library.LibrarianNPC().configureZone(zone, null);
+		
 		final AbstractQuest quest = new ObsidianKnife();
 		quest.addToWorld();
 
@@ -127,7 +128,16 @@ public class ObsidianKnifeTest {
 		assertEquals("Hello again. I hope you haven't forgotten about the gem book I wanted.", getReply(npc));
 		en.step(player, "bye");
 		assertEquals("Bye.", getReply(npc));
-
+		
+		npc = SingletonRepository.getNPCList().get("Wikipedian");
+		en = npc.getEngine();
+		en.step(player, "hi");
+		assertEquals("Greetings! How may I help you?", getReply(npc));
+		en.step(player, "gem book");
+		assertEquals("Unfortunately I don't have it, you should check the library in Semos, it has a good collection of books on mining related subjects.", getReply(npc));
+		en.step(player, "bye");
+		assertEquals("Bye.", getReply(npc));
+		
 		npc = SingletonRepository.getNPCList().get("Ceryl");
 		en = npc.getEngine();
 
