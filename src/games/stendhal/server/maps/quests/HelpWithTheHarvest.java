@@ -248,9 +248,12 @@ public class HelpWithTheHarvest extends AbstractQuest {
 		Block cartOne = new Block(true, "hay_cart");
 		cartOne.setPosition(87, 100);
 		cartOne.setDescription(cartDescription);
+		cartOne.setResetBlock(false);
 		Block cartTwo = new Block(true, "hay_cart");
-		cartOne.setPosition(79, 106);
+		cartTwo.setPosition(79, 106);
 		cartTwo.setDescription(cartDescription);
+		cartTwo.setResetBlock(false);
+		
 
         ChatAction a = new MultipleActions(new IncrementQuestAction(QUEST_SLOT, 1, -1), new ResetBlockChatAction(cartOne), new ResetBlockChatAction(cartTwo));
 
