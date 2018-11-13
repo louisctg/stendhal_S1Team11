@@ -6,7 +6,7 @@ import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.player.Player;
 
 /**
- * A ring that protects from XP loss.
+ * A ring that makes you invisible.
  */
 public class InvisibilityRing extends SlotActivatedItem {
 	public InvisibilityRing(final String name, final String clazz, final String subclass, final Map<String, String> attributes) {
@@ -46,13 +46,15 @@ public class InvisibilityRing extends SlotActivatedItem {
 			player.setVisibility(100);
 			player.sendPrivateText("You are no longer invisible!");
 
-		}
-		
+		}		
 		return true;
 	}
 	
 	@Override
 	public boolean onUnequipped() {
+		Player player = (Player) this.getContainerOwner();
+		player.setInvisible(false);
+		player.sendPrivateText("You are now visible");
 		return true;
 	}
 	

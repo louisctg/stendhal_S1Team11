@@ -3,6 +3,7 @@ package games.stendhal.server.entity.item;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -41,7 +42,13 @@ public class InvisibilityRingTest {
 		romeo.equipToInventoryOnly(ring);
 		assertTrue(ring.onEquipped(romeo, "finger"));
 		assertTrue(romeo.isInvisibleToCreatures());
-		
+		romeo.equip("bag", ring);
+		assertTrue(ring.onEquipped(romeo, "bag"));
+		assertFalse(romeo.isInvisibleToCreatures());
+		romeo.equipToInventoryOnly(ring);
+		romeo.drop(ring);
+		assertTrue(ring.onEquipped(romeo, "bag"));
+		assertFalse(romeo.isInvisibleToCreatures());		
 	}
 	
 }
