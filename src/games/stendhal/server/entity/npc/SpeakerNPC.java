@@ -727,7 +727,12 @@ public class SpeakerNPC extends NPC {
 	 * @param text
 	 * @return true if step was successfully executed*/
 	private boolean tell(final Player player, final String text) {
-		if (getRidOfPlayerIfAlreadySpeaking(player, text)) {
+		if (player.isEquipped("invisibility ring") /*|| player.isInvisibleToCreatures()*/)
+		{
+			say("WHAAAAAAAAAAAAAAAAAAAAAT?");
+			return true;
+		}
+		else if (getRidOfPlayerIfAlreadySpeaking(player, text)) {
 			return true;
 		}
 
@@ -756,6 +761,7 @@ public class SpeakerNPC extends NPC {
 	 */
 	public void addGreeting() {
 		addGreeting("Greetings! How may I help you?", null);
+		
 	}
 
 	/**
