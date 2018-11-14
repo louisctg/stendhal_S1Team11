@@ -15,6 +15,7 @@ package games.stendhal.server.entity.creature.impl.attack;
 import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.player.Player;
 
 class HandToHand implements AttackStrategy {
 
@@ -70,8 +71,17 @@ class HandToHand implements AttackStrategy {
 		}
 
 		final RPEntity victim = creature.getAttackTarget();
-		if (victim.isInvisibleToCreatures()) {
-			return false;
+		if (victim instanceof Player)
+		{
+			Player player = (Player)victim;
+			if (player.isInvisibleToCreatures(creature)) {
+				return false;
+			}
+		} else {
+			if (victim.isInvisibleToCreatures()) {
+				return false;
+			}
+
 		}
 		if (!victim.getZone().equals(creature.getZone())) {
 			return false;

@@ -30,9 +30,9 @@ public class InvisibilityRing extends SlotActivatedItem {
 	@Override
 	public boolean onEquipped(RPEntity equipper, String slot) {
 
-		// this.prevEntity = equipper;
-		// this.prevSlot   = slot;
+		//cast an entity into a player object
 		Player player = (Player) equipper;
+		//check where the item is being equipped, make player invisible if on the finger, visible othervise
 		if(slot =="finger")
 		{
 			
@@ -47,15 +47,20 @@ public class InvisibilityRing extends SlotActivatedItem {
 			player.sendPrivateText("You are no longer invisible!");
 
 		}		
-		return true;
+		return super.onEquipped(equipper, slot);
 	}
 	
 	@Override
 	public boolean onUnequipped() {
-		Player player = (Player) this.getContainerOwner();
-		player.setInvisible(false);
-		player.sendPrivateText("You are now visible");
-		return true;
+		//set player visible if the item is unequipped
+		Player player = (Player)getContainerOwner();
+		if (player != null)
+		{
+			player.setInvisible(false);
+			player.setVisibility(100);
+			player.sendPrivateText("You are now visible");
+		}		
+		return super.onUnequipped();
 	}
 	
 	@Override

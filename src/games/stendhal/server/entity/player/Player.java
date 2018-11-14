@@ -58,6 +58,7 @@ import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.Killer;
 import games.stendhal.server.entity.Outfit;
 import games.stendhal.server.entity.RPEntity;
+import games.stendhal.server.entity.creature.Creature;
 import games.stendhal.server.entity.creature.DomesticAnimal;
 import games.stendhal.server.entity.creature.Pet;
 import games.stendhal.server.entity.creature.Sheep;
@@ -999,6 +1000,19 @@ public class Player extends RPEntity implements UseListener {
 	 */
 	@Override
 	public boolean isInvisibleToCreatures() {
+		return has(INVISIBLE);
+	}
+	
+	/**
+	 * Determine if the entity is invisible to creatures or if a creature is magical and can see invisible targets.
+	 *
+	 * @return <code>true</code> if invisible.
+	 */
+	public boolean isInvisibleToCreatures(Creature creature) {
+		if ((creature.getDamageType() != Nature.CUT || creature.getRangedDamageType() != Nature.CUT) && this.isEquipped("invisibility ring"))
+		{
+			return false;
+		}
 		return has(INVISIBLE);
 	}
 

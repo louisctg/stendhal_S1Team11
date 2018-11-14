@@ -729,7 +729,7 @@ public class SpeakerNPC extends NPC {
 	private boolean tell(final Player player, final String text) {
 		if (player.isEquipped("invisibility ring") /*|| player.isInvisibleToCreatures()*/)
 		{
-			say("WHAAAAAAAAAAAAAAAAAAAAAT?");
+			say("Who is there? Who is speaking?");
 			return true;
 		}
 		else if (getRidOfPlayerIfAlreadySpeaking(player, text)) {
