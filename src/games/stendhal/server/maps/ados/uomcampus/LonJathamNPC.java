@@ -68,7 +68,7 @@ public class LonJathamNPC implements ZoneConfigurator {
 		npc.setEntityClass("lonjathamnpc");
 		npc.setPosition(10, 9);
 		npc.initHP(100);
-		npc.setDescription("Lon Jatham is the Ados Java Wizard. His looks deceive: He knows a lot.");
+		npc.setDescription("You see a lecturer with matching glasses and shirt.");
 		zone.add(npc);
 	}
 }

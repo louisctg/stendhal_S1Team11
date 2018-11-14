@@ -63,12 +63,12 @@ public class LonJathamNPCTest {
 		Sentence sentence = new SentenceImplementation(new Expression("hi", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
-		assertThat(getReply(lonJatham), is("GOOD MORNING! Would you like to hear about the #School of Computer Science? Alternatively, I can give you a #tip to help you be a better programmer."));
+		assertThat(getReply(lonJatham), is("GOOD MORNING! Would you like #help deciding if our university is a good fit for you? Alternatively, I can give #offer you a tip to be a better programmer."));
 		
 		sentence = new SentenceImplementation(new Expression("bye", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.IDLE));
-		assertThat(getReply(lonJatham), is("Bye bye!"));
+		assertThat(getReply(lonJatham), is("Bye."));
 	}
 	
 	
@@ -104,7 +104,7 @@ public class LonJathamNPCTest {
 		sentence = new SentenceImplementation(new Expression("bye", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.IDLE));
-		assertThat(getReply(lonJatham), is("Bye bye!"));
+		assertThat(getReply(lonJatham), is("Bye."));
 	}
 		
 }
