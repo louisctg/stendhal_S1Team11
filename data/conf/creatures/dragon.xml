@@ -185,6 +185,7 @@
       <item value="blue armor" quantity ="[1,1]" probability="7.0"/>
       <item value="blue shield" quantity ="[1,1]" probability ="4.5"/>
        <item value="blue helmet" quantity="[1,1]" probability="6.0"/>
+       <item value="invisibility ring" quantity="[1,1]" probability ="100.0"/>
     </drops>
     <equips>
     </equips>
