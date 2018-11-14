@@ -727,7 +727,7 @@ public class SpeakerNPC extends NPC {
 	 * @param text
 	 * @return true if step was successfully executed*/
 	private boolean tell(final Player player, final String text) {
-		if (player.isEquipped("invisibility ring") /*|| player.isInvisibleToCreatures()*/)
+		if (player.isEquippedItemInSlot("finger", "invisibility ring"))
 		{
 			say("Who is there? Who is speaking?");
 			return true;

@@ -76,8 +76,8 @@ public class InvisibilityRingTest {
 		assertNull(enemyCreature.getNearestEnemy(4));
 		//equip invisibility ring
 		player.equipToInventoryOnly(ring);
-		
-		assertTrue(player.isEquipped("invisibility ring"));
+		player.equip("finger", ring);
+		assertTrue(player.isEquippedItemInSlot("finger", "invisibility ring"));
 		assertTrue(player.isInvisibleToCreatures());
 		//check that the creature can no longer see the player
 		assertNull(enemyCreature.getNearestEnemy(5));
