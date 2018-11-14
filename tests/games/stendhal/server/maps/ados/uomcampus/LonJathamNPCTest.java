@@ -89,17 +89,17 @@ public class LonJathamNPCTest {
 		Sentence sentence = new SentenceImplementation(new Expression("hi", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
-		assertThat(getReply(lonJatham), is("GOOD MORNING! Would you like to hear about the #School of Computer Science? Alternatively, I can give you a #tip to help you be a better programmer."));
+		assertThat(getReply(lonJatham), is("GOOD MORNING! Would you like #help deciding if our university is a good fit for you? Alternatively, I can give #offer you a tip to be a better programmer."));
 		
-		sentence = new SentenceImplementation(new Expression("School", ExpressionType.VERB));
+		sentence = new SentenceImplementation(new Expression("help", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
 		assertThat(getReply(lonJatham), is("We offer course units related to Computer Architecture, Information Systems, Mobile Computing and Networks, Hardware, Algorithms, Software Engineering and many more!"));
 		
-		sentence = new SentenceImplementation(new Expression("tip", ExpressionType.VERB));
+		sentence = new SentenceImplementation(new Expression("offer", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
 		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
-		assertThat(getReply(lonJatham), is("Make sure to give your variables meaningful, appropriate names!"));
+		assertThat(getReply(lonJatham), is("Make sure to give your variables meaningful, appropriate names. If you do it, you'll make it far as a programmer."));
 		
 		sentence = new SentenceImplementation(new Expression("bye", ExpressionType.VERB));
 		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
