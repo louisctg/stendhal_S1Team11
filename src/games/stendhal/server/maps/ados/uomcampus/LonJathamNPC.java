@@ -1,3 +1,4 @@
+/*
 package games.stendhal.server.maps.ados.uomcampus;
 
 import java.util.HashMap;
@@ -21,7 +22,7 @@ public class LonJathamNPC implements ZoneConfigurator {
 		 * @param	zone		The zone to be configured.
 		 * @param	attributes	Configuration attributes.
 		 */
-		@Override
+/*		@Override
 		public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 			buildschool(zone);
 
@@ -31,3 +32,5 @@ public class LonJathamNPC implements ZoneConfigurator {
 			final SpeakerNPC LonJatham = new SpeakerNPC("Lon Jatham"); 
 		}
 }
+
+*/
