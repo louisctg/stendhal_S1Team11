@@ -3,11 +3,13 @@ package games.stendhal.server.entity.item;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertTrue;
+import static utilities.SpeakerNPCTestHelper.getReply;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
@@ -16,11 +18,16 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.common.constants.Nature;
+import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.core.engine.StendhalRPZone;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
+//import games.stendhal.server.entity.npc.ConversationPhrases;
+import games.stendhal.server.entity.npc.SpeakerNPC;
+import games.stendhal.server.entity.npc.fsm.Engine;
 import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.maps.MockStendlRPWorld;
+import games.stendhal.server.maps.nalwor.hell.CaptiveNPC;
 import marauroa.common.Log4J;
 import utilities.PlayerTestHelper;
 import utilities.RPClass.ItemTestHelper;
@@ -31,6 +38,11 @@ public class InvisibilityRingTest {
 		Log4J.init();
 		MockStendlRPWorld.get();
 		ItemTestHelper.generateRPClasses();
+		
+		final StendhalRPZone zone = new StendhalRPZone("admin_test");
+
+		new CaptiveNPC().configureZone(zone, null);
+
 
 	}
 	/**
@@ -75,9 +87,10 @@ public class InvisibilityRingTest {
 		assertSame(player, enemyCreature.getNearestEnemy(5));
 		assertNull(enemyCreature.getNearestEnemy(4));
 		//equip invisibility ring
-		player.equipToInventoryOnly(ring);
+		//player.equipToInventoryOnly(ring);
 		player.equip("finger", ring);
 		assertTrue(player.isEquippedItemInSlot("finger", "invisibility ring"));
+		ring.onEquipped(player, "finger");
 		assertTrue(player.isInvisibleToCreatures());
 		//check that the creature can no longer see the player
 		assertNull(enemyCreature.getNearestEnemy(5));
@@ -95,6 +108,48 @@ public class InvisibilityRingTest {
 		assertSame(player, enemyCreature.getNearestEnemy(5));
 		
 	}
+	@Test
+	public void testNPCResponseWithoutInvisibilityRing()
+	{
+		//Testing for NPC response where invisibility ring is not equipped
+		
+		//get NPC tomi
+		SpeakerNPC npc = SingletonRepository.getNPCList().get("tomi");
+		
+		Engine en = npc.getEngine();
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		
+		//use engine to get the reply
+		en.step(player, "hi");
+		assertEquals("help!", getReply(npc));
+	
+
+	}
+	
+	@Test
+	public void testNPCResponseWithInvisibilityRing()
+	{
+		//Testing for NPC response where invisibility ring is equipped
+		final InvisibilityRing ring = new InvisibilityRing();
+		
+		//create NPC 'phil'
+		SpeakerNPC npc = new SpeakerNPC("phil");
+				
+		final Player player = PlayerTestHelper.createPlayer("bob");
+		
+		//equip invisibility ring for the player
+		player.equip("finger", ring);
+		ring.onEquipped(player, "finger");
+		
+		//tell hi to the npc
+		npc.listenTo(player, "hi");
+		
+		//check npc response
+		assertEquals("Who is there? Who is speaking?", getReply(npc));
+	
+		
+	}
+	
 		
 	private static List<RPEntity> enemies  = new LinkedList<RPEntity>();
 	private static class MockCreature extends Creature {

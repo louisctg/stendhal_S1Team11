@@ -24,7 +24,7 @@ public class InvisibilityRing extends SlotActivatedItem {
 	 * Create an InvisibilityRing.
 	 */
 	public InvisibilityRing() {
-		super("invisibilty ring", "ring", "invisibilty-ring", null);
+		super("invisibility ring", "ring", "invisibility-ring", null);
 		
 	}
 	@Override
@@ -45,15 +45,13 @@ public class InvisibilityRing extends SlotActivatedItem {
 				
 				player.setInvisible(true);
 				player.setVisibility(10);
-				player.sendPrivateText("You are invisible now, the players will see a shimmer in the air, and the creatures won't attack you!");
+			
 			}
 			else
 			{
 				player.setInvisible(false);
 				player.setVisibility(100);
-				player.sendPrivateText("You are no longer invisible!");
-	
-			}		
+			}	
 		}
 		
 		return super.onEquipped(equipper, slot);
@@ -72,7 +70,6 @@ public class InvisibilityRing extends SlotActivatedItem {
 			{
 				player.setInvisible(false);
 				player.setVisibility(100);
-				player.sendPrivateText("You are now visible");
 			}	
 		}
 	
