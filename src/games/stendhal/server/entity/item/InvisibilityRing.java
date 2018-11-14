@@ -57,41 +57,28 @@ public class InvisibilityRing extends SlotActivatedItem {
 		}
 		
 		return super.onEquipped(equipper, slot);
-<<<<<<< Upstream, based on branch 'COMP23311/EX2/invisibility-ring' of https://gitlab.cs.man.ac.uk/comp23311_2018/stendhal_S1Team11.git
 
-=======
->>>>>>> 2214dba Merged and solved merge conflicts
 	}
 	
 	@Override
 	public boolean onUnequipped() {
-<<<<<<< Upstream, based on branch 'COMP23311/EX2/invisibility-ring' of https://gitlab.cs.man.ac.uk/comp23311_2018/stendhal_S1Team11.git
 
-=======
-		//set player visible if the item is unequipped
->>>>>>> 2214dba Merged and solved merge conflicts
+		
 		if(this.getContainerOwner() instanceof Player)
 		{
-<<<<<<< Upstream, based on branch 'COMP23311/EX2/invisibility-ring' of https://gitlab.cs.man.ac.uk/comp23311_2018/stendhal_S1Team11.git
-		//set player visible if the item is unequipped
-=======
->>>>>>> 2214dba Merged and solved merge conflicts
-		Player player = (Player)getContainerOwner();
-		if (player != null)
-		{
-			player.setInvisible(false);
-			player.setVisibility(100);
-			player.sendPrivateText("You are now visible");
-		}	
+			//set player visible if the item is unequipped
+			Player player = (Player)getContainerOwner();
+			if (player != null)
+			{
+				player.setInvisible(false);
+				player.setVisibility(100);
+				player.sendPrivateText("You are now visible");
+			}	
 		}
-<<<<<<< Upstream, based on branch 'COMP23311/EX2/invisibility-ring' of https://gitlab.cs.man.ac.uk/comp23311_2018/stendhal_S1Team11.git
+	
 		return super.onUnequipped();
 
-=======
-		}		
-		return super.onUnequipped();
-		
->>>>>>> 2214dba Merged and solved merge conflicts
+
 	}
 	
 	@Override
