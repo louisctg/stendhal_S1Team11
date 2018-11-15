@@ -4039,7 +4039,7 @@ My fee:
     
     <!-- Portals -->
     <portal x="1" y="15" ref="in">
-      <destination zone="0_ados_city" ref="int_ados_house_69" />
+      <destination zone="0_ados_city" ref="house_69" />
     </portal>
     
     <!-- Interactive sounds -->
