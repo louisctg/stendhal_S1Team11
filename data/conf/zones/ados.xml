@@ -1702,8 +1702,6 @@ You should never dive with a cold or severe allergy because, you may not be able
     </portal>
   </zone>
   
-  
-<!-- ATTEMPTING TO ADD NEW PORTALS -->  
   <zone name="int_ados_uom_campus" file="interiors/ados/library.tmx">
     <!-- NPCs -->
  <configurator class-name="games.stendhal.server.maps.ados.uomcampus.LonJathamNPC" />
@@ -1790,7 +1788,6 @@ You should never dive with a cold or severe allergy because, you may not be able
     </portal>
   </zone>
   
-<!-- ATEMPTING TO ADD NEW PORTAL -->  
 
   <zone name="int_ados_tavern_0" file="interiors/ados/tavern_0.tmx">
     <!-- NPCs -->
@@ -4751,8 +4748,7 @@ Southeast: Docks
     <portal x="51" y="21" ref="library_entrance_right">
       <destination zone="int_ados_library" ref="entrance_right" />
     </portal>
-    
-<!-- NEW PORTALS -->    
+      
     <portal x="3" y="94" ref="uom_campus_entrance_left">
       <destination zone="int_ados_uom_campus" ref="uom_left" />
     </portal>
@@ -4761,7 +4757,6 @@ Southeast: Docks
       <destination zone="int_ados_uom_campus" ref="uom_right" />
     </portal>
     
-<!-- NEW PORTALS -->  
     
     <portal x="39" y="57" ref="sewing_entrance">
       <destination zone="int_ados_sewing_room" ref="sewing_entrance_right" />

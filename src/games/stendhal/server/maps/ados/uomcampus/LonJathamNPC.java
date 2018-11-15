@@ -24,6 +24,8 @@ import games.stendhal.server.entity.npc.SpeakerNPC;
 
 
 /**
+ * The interior for the Ados UoM campus was copied from that of the library.
+ * Credits for the library interior are as follows:
  * Ados Library (Inside / Level 0).
  *
  * @author hendrik
