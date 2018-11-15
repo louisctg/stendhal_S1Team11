@@ -44,16 +44,23 @@ public class WofolTeleportScrollTest {
 		home.add(player);
 		home.add(wofolScroll);
 		
-		//Check the player can't teleport as they haven't been there yet
-		wofolScroll.onUsed(player);
-		assertFalse(player.hasVisitedZone(wofol));
+		//Check the player is in 0_semos_city to start
 		assertEquals(player.getZone(), home);
 		
+		//Check the player can't teleport to -1_semos_mine_nw becauase they haven't been there yet
+		assertFalse(player.hasVisitedZone(wofol));
+		wofolScroll.onUsed(player);
+		assertEquals(player.getZone(), home);
+		
+		//Move player to -1_semos_mine_nw and back to 0_semos_city
+		//This which change the player stats to indicate they have been there
 		player.teleport(wofol, 0, 0, null, null);
 		player.teleport(home, 0, 0, null, null);
 		
-		//Check the player can teleport now and end up in wofol city
+		//Check that the player stats have changed
 		assertTrue(player.hasVisitedZone(wofol));
+		
+		//Check the player can teleport now and end up in wofol city
 		wofolScroll.onUsed(player);
 		assertEquals(player.getZone(), wofol);
 	}
