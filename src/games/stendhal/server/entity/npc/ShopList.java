@@ -206,7 +206,7 @@ public final class ShopList {
 		shops.add("sellstuff2", "dwarf cloak", 230);
 		
 		// adding wofol scroll to items he sells
-		//shops.add("sellstuff2", "wofol city scroll", 400);
+		shops.add("sellstuff2", "wofol city scroll", 400);
 
 		// cloaks shop
 		shops.add("buycloaks", "blue elf cloak", 300);
