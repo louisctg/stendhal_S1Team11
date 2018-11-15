@@ -699,6 +699,7 @@ public class Creature extends NPC {
 			if (enemy == this) {
 				continue;
 			}
+			//check if the enemy is a player and if it is invisible to the creatures 
 			if (enemy instanceof Player)
 			{
 				Player player = (Player)enemy;
@@ -757,16 +758,14 @@ public class Creature extends NPC {
 			if (playerOrFriend == this) {
 				continue;
 			}			
-			
+			//check if the playerOrFriend is a player and if it is invisible to the creatures 
 			if (playerOrFriend instanceof Player)
 			{
 				Player player = (Player)playerOrFriend;
 				if (player.isInvisibleToCreatures(this)) {
 					continue;
 				}
-			}
-			
-			
+			}			
 			
 			/*if (playerOrFriend.isInvisibleToCreatures()) {
 				continue;

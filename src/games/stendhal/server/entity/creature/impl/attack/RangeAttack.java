@@ -115,6 +115,7 @@ class RangeAttack implements AttackStrategy {
 		}
 
 		final RPEntity victim = creature.getAttackTarget();
+		//if the enemy is a player call isInvisibleToCreatures() with the with the creature parameter
 		if (victim instanceof Player)
 		{
 			Player player = (Player)victim;

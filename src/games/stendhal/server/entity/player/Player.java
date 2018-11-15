@@ -1009,6 +1009,7 @@ public class Player extends RPEntity implements UseListener {
 	 * @return <code>true</code> if invisible.
 	 */
 	public boolean isInvisibleToCreatures(Creature creature) {
+		//check if the creature is magical and player is wearing a ring. If magical return false else return has(INVISIBLE)
 		if ((creature.getDamageType() != Nature.CUT || creature.getRangedDamageType() != Nature.CUT) && this.isEquipped("invisibility ring"))
 		{
 			return false;

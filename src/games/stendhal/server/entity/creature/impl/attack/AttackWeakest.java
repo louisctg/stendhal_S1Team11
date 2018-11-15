@@ -70,6 +70,7 @@ public class AttackWeakest extends HandToHand {
 			if (!isPreferredTarget(enemy)) {
 				continue;
 			}
+			//if the enemy is a player call isInvisibleToCreatures() with the with the creature parameter
 			if (enemy instanceof Player)
 			{
 				Player player = (Player)enemy;
