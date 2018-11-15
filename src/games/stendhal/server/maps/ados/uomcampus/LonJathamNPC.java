@@ -41,10 +41,12 @@ public class LonJathamNPC implements ZoneConfigurator {
 	public void configureZone(final StendhalRPZone zone, final Map<String, String> attributes) {
 		buildCampus(zone);
 	}
-
+ 
+	//This method sets up the zone; meaining it generates Lon Jatham, sets up the path he walks in the room and establishes his conversation pattern.
 	private void buildCampus(final StendhalRPZone zone) {
 		final SpeakerNPC npc = new SpeakerNPC("Lon Jatham") {
 
+			//Method for setting Lon Jatham's walking path.
 			@Override
 			protected void createPath() {
 				final List<Node> nodes = new LinkedList<Node>();
@@ -55,6 +57,7 @@ public class LonJathamNPC implements ZoneConfigurator {
 				setPath(new FixedPath(nodes, true));
 			}
 
+			//Method for establishing Lon Jatham's responses.
 			@Override
 			protected void createDialog() {
 				addGreeting("GOOD MORNING! Would you like #help deciding if our university is a good fit for you? Alternatively, I can give #offer you a tip to be a better programmer.");

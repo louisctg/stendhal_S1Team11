@@ -45,33 +45,7 @@ public class LonJathamNPCTest {
 		assertThat(lonJatham.getName(), is("Lon Jatham"));
 		assertThat(lonJatham.getDescription(), is("You see a lecturer with matching glasses and shirt."));
 	}
-	
-	/**
-	 * Tests for hiandBye.
-	 */
-	@Test
-	public void testHiandBye() {
-		SingletonRepository.getRPWorld();
-		final LonJathamNPC lonjathamConfigurator = new LonJathamNPC();
-		final StendhalRPZone zone = new StendhalRPZone("testzone");
-		lonjathamConfigurator.configureZone(zone, null);
-		final SpeakerNPC lonJatham = (SpeakerNPC) zone.getNPCList().get(0);
-		assertThat(lonJatham.getName(), is("Lon Jatham"));
-		final Engine engine = lonJatham.getEngine();
-		engine.setCurrentState(ConversationStates.IDLE);
-
-		Sentence sentence = new SentenceImplementation(new Expression("hi", ExpressionType.VERB));
-		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
-		assertThat(engine.getCurrentState(), is(ConversationStates.ATTENDING));
-		assertThat(getReply(lonJatham), is("GOOD MORNING! Would you like #help deciding if our university is a good fit for you? Alternatively, I can give #offer you a tip to be a better programmer."));
 		
-		sentence = new SentenceImplementation(new Expression("bye", ExpressionType.VERB));
-		engine.step(PlayerTestHelper.createPlayer("bob"), sentence);
-		assertThat(engine.getCurrentState(), is(ConversationStates.IDLE));
-		assertThat(getReply(lonJatham), is("Bye."));
-	}
-	
-	
 	/**
 	 * Tests for conversation.
 	 */
