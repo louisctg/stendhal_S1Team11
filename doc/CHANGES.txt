@@ -1,5 +1,17 @@
 Changelog
 ---------
+1.29uom
+*features*
+- Lon Jatham NPC and a University of Manchester Campus in Ados were added, where Lon Jatham tells players about the university and offers Java advice.
+- Wofol City scroll was added with which you can teleport to the entrance of the Wofol City, this scroll can be bought from Wrvil in Wofol city.
+- Invisibility Ring object was added to the game. It makes the player slightly visible for other players and makes it invisible for NPCs and non magical creatures.
+
+*world*
+- new Lon Jatham NPC 
+- new UoM campus building in Ados
+- new invisibility ring object
+- new Wofol Scroll object
+
 1.28uom
 *bugfixes*
 - fixed the soup quest bug which awarded karma for listing ingredients individually

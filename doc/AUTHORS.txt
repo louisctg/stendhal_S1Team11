@@ -202,13 +202,19 @@ Notable contributors:
   · NPCs
  - Khesim Reid
    · Fixed the soup quest bug
+   · Added Lon Jatham at the University of Manchester campus in Ados feature
  - Mark Paveszka
    · Fixed the straw carts bug
+   · Added the invisibility ring feature
  - Evgeny Serebrenny
    · Fixed the Ados librarian bug
+   · Added the invisibility ring feature
  - Louis Thurston-Gibson
    · Fixed the teleporting hut bug
+   · Added the Wofol Scroll feature
  - Cristian Lopez Cano
    · Fixed the museum item quest bug
+   · Added Lon Jatham at the University of Manchester campus in Ados feature
  - Zygimantas Koncius
    · Fixed the mage gnome bug
+   · Added the Wofol Scroll feature
