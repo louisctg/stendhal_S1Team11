@@ -1702,6 +1702,93 @@ You should never dive with a cold or severe allergy because, you may not be able
     </portal>
   </zone>
   
+  <zone name="int_ados_uom_campus" file="interiors/ados/library.tmx">
+    <!-- NPCs -->
+ <configurator class-name="games.stendhal.server.maps.ados.uomcampus.LonJathamNPC" />
+    
+    <entity x="4" y="27">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">
+FISHING SPOTS IN FAIUMONI
+The best spot to fish for cod is in 
+Ados, as this species lives in the sea.
+Trout live in rivers. There is 
+an excellent fishing spot near Fado.
+Perch reside in rivers and lakes, too. Brave 
+fishermen tell of big catches in the
+area where the elves dwell.
+Mackerel can only be fished at the 
+open sea.
+More exotic fish are found on the 
+island Athor.
+In a mountain lake near Ados is a spot
+where char fish are very easy to find.
+In Semos there is a lake which is rich 
+in roaches.
+      </attribute>
+      <attribute name="class">book_blue</attribute>
+    </entity>
+    
+    <entity x="28" y="4">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign"/>
+      <attribute name="text">
+THE DIVER'S HANDBOOK by N Moe
+Decompression Sickness - When nitrogen bubbles block blood flow in your body after a dive.
+It's not pleasant.
+Did you know that only 21 precent of the air we breath is oxygen?
+Most scuba diving injuries caused by fish and aquatic animals happen because they are afraid of you.
+You should never dive with a cold or severe allergy because, you may not be able to equalize pressure.
+      </attribute>
+      <attribute name="class">transparent</attribute>
+    </entity>
+    
+    <entity x="13" y="6">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">...Beauty is nothing other than the promise of happiness...</attribute>
+      <attribute name="class">book_blue</attribute>
+    </entity>
+    
+    <entity x="16" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Sign" />
+      <attribute name="text">...One can acquire everything in solitude - except character...</attribute>
+      <attribute name="class">book_red</attribute>
+    </entity>
+    
+    <entity x="4" y="6">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You glance at the statue. It shows a beautiful mermaid, sitting on a rock.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">2</attribute>
+      <attribute name="height">2</attribute>
+    </entity> 
+    
+    <entity x="14" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You see a book called 'Le Rouge et le Noir'.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity> 
+    
+    <entity x="12" y="5">
+      <implementation class-name="games.stendhal.server.entity.mapstuff.sign.Description" />
+      <attribute name="text">You see a book called 'The Charterhouse of Parma'.</attribute>
+      <attribute name="class">transparent</attribute>
+      <attribute name="width">1</attribute>
+      <attribute name="height">1</attribute>
+    </entity> 
+    
+    <!-- Portals -->
+    <portal x="8" y="30" ref="uom_left">
+      <destination zone="0_ados_city" ref="uom_campus_entrance_left" />
+    </portal>
+    
+    <portal x="21" y="30" ref="uom_right">
+      <destination zone="0_ados_city" ref="uom_campus_entrance_right"/>
+    </portal>
+  </zone>
+  
+
   <zone name="int_ados_tavern_0" file="interiors/ados/tavern_0.tmx">
     <!-- NPCs -->
     <configurator class-name="games.stendhal.server.maps.ados.tavern.BarMaidNPC" />
@@ -3940,9 +4027,9 @@ My fee:
     
   </zone>
   
-  <zone name="int_ados_house_69" file="interiors/ados/house_69.tmx" accessible="false">
-    <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />
-    <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
+  <zone name="int_ados_house_69" file="interiors/ados/house_69.tmx" accessible="false">  
+     <configurator class-name="games.stendhal.server.core.config.zone.NoTeleportIn" />  
+     <configurator class-name="games.stendhal.server.entity.mapstuff.chest.StoredChestConfigurator">
       <parameter name="x">9</parameter>
       <parameter name="y">10</parameter>
     </configurator>
@@ -4640,10 +4727,10 @@ Southeast: Docks
     
     <portal x="50" y="60" ref="house_69">
       <destination zone="int_ados_house_69" ref="in" />
-      <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal">
-        <parameter name="doorId">ados house 69</parameter>
-        <parameter name="rejected">The door is locked.</parameter>
-      </implementation>
+        <implementation class-name="games.stendhal.server.entity.mapstuff.portal.HousePortal"> 
+         <parameter name="doorId">ados house 69</parameter>
+        <parameter name="accepted">The door is locked.</parameter>  
+      </implementation> 
     </portal>
     
     <portal x="22" y="113" ref="house_70">
@@ -4661,6 +4748,15 @@ Southeast: Docks
     <portal x="51" y="21" ref="library_entrance_right">
       <destination zone="int_ados_library" ref="entrance_right" />
     </portal>
+      
+    <portal x="3" y="94" ref="uom_campus_entrance_left">
+      <destination zone="int_ados_uom_campus" ref="uom_left" />
+    </portal>
+    
+    <portal x="10" y="94" ref="uom_campus_entrance_right">
+      <destination zone="int_ados_uom_campus" ref="uom_right" />
+    </portal>
+    
     
     <portal x="39" y="57" ref="sewing_entrance">
       <destination zone="int_ados_sewing_room" ref="sewing_entrance_right" />
