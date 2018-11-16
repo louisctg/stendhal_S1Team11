@@ -17,6 +17,7 @@ import games.stendhal.server.core.engine.SingletonRepository;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.player.Player;
 
 class RangeAttack implements AttackStrategy {
 	/** Maximum range at which the archer will consider a target valid, squared. */
@@ -114,9 +115,19 @@ class RangeAttack implements AttackStrategy {
 		}
 
 		final RPEntity victim = creature.getAttackTarget();
-		if (victim.isInvisibleToCreatures()) {
-			return false;
+		//if the enemy is a player call isInvisibleToCreatures() with the with the creature parameter
+		if (victim instanceof Player)
+		{
+			Player player = (Player)victim;
+			if (player.isInvisibleToCreatures(creature)) {
+				return false;
+			}
+		} else {
+			if (victim.isInvisibleToCreatures()) {
+				return false;
+			}
 		}
+		
 		if (!victim.getZone().equals(creature.getZone())) {
 			return false;
 		}

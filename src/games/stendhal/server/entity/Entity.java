@@ -27,6 +27,7 @@ import games.stendhal.common.ItemTools;
 import games.stendhal.common.constants.Events;
 import games.stendhal.common.grammar.Grammar;
 import games.stendhal.server.core.engine.StendhalRPZone;
+import games.stendhal.server.entity.player.Player;
 import games.stendhal.server.entity.slot.EntitySlot;
 import games.stendhal.server.entity.slot.SlotNameInList;
 import games.stendhal.server.entity.slot.Slots;
@@ -700,7 +701,20 @@ public abstract class Entity extends RPObject implements Killer {
 	 *            The visibility (0-100).
 	 */
 	public final void setVisibility(final int visibility) {
-		put("visibility", visibility);
+		if(this instanceof Player)
+		{			
+			Player player = (Player) this;
+			if (player.isEquippedItemInSlot("finger", "invisibility ring"))
+			{
+				put("visibility", 10);
+			} else {
+				put("visibility", visibility);
+			}
+			
+		} else {
+			put("visibility", visibility);
+		}
+		
 	}
 
 	/**

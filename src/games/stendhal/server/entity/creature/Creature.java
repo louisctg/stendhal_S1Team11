@@ -699,11 +699,17 @@ public class Creature extends NPC {
 			if (enemy == this) {
 				continue;
 			}
-
-			if (enemy.isInvisibleToCreatures()) {
-				continue;
+			//check if the enemy is a player and if it is invisible to the creatures 
+			if (enemy instanceof Player)
+			{
+				Player player = (Player)enemy;
+				if (player.isInvisibleToCreatures(this)) {
+					continue;
+				}
 			}
-
+			/*if (player.isInvisibleToCreatures()) {
+				continue;
+			}*/
 			final double squaredDistance = this.squaredDistance(enemy);
 			if (squaredDistance <= (range * range)) {
 				distances.put(enemy, squaredDistance);
@@ -751,11 +757,19 @@ public class Creature extends NPC {
 		for (final RPEntity playerOrFriend : enemyList) {
 			if (playerOrFriend == this) {
 				continue;
-			}
-
-			if (playerOrFriend.isInvisibleToCreatures()) {
+			}			
+			//check if the playerOrFriend is a player and if it is invisible to the creatures 
+			if (playerOrFriend instanceof Player)
+			{
+				Player player = (Player)playerOrFriend;
+				if (player.isInvisibleToCreatures(this)) {
+					continue;
+				}
+			}			
+			
+			/*if (playerOrFriend.isInvisibleToCreatures()) {
 				continue;
-			}
+			}*/
 
 			if (playerOrFriend.getZone() == getZone()) {
 				final int fx = playerOrFriend.getX();
@@ -1032,12 +1046,12 @@ public class Creature extends NPC {
 	}
 
 	@Override
-	protected Nature getDamageType() {
+	public Nature getDamageType() {
 		return damageType;
 	}
 
 	@Override
-	protected Nature getRangedDamageType() {
+	public Nature getRangedDamageType() {
 		return rangedDamageType;
 	}
 

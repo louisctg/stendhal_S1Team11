@@ -17,6 +17,7 @@ import java.util.List;
 import games.stendhal.server.entity.RPEntity;
 import games.stendhal.server.entity.creature.AttackableCreature;
 import games.stendhal.server.entity.creature.Creature;
+import games.stendhal.server.entity.player.Player;
 
 /**
  * A profile for creature that always tries to kill the weakest enemy first.
@@ -69,18 +70,35 @@ public class AttackWeakest extends HandToHand {
 			if (!isPreferredTarget(enemy)) {
 				continue;
 			}
-
-			if (creature.getAttackStrategy().canAttackNow(creature, enemy)
-					&& !enemy.isInvisibleToCreatures()) {
-				/*
-				 * Use level as an approximation of the strength. Prefer keeping
-				 * the current target if the enemies are equally strong.
-				 */
-				if (enemy.getLevel() < level) {
-					target = enemy;
-					level = enemy.getLevel();
+			//if the enemy is a player call isInvisibleToCreatures() with the with the creature parameter
+			if (enemy instanceof Player)
+			{
+				Player player = (Player)enemy;
+				if (creature.getAttackStrategy().canAttackNow(creature, enemy)
+						&& !player.isInvisibleToCreatures(creature)) {
+					/*
+					 * Use level as an approximation of the strength. Prefer keeping
+					 * the current target if the enemies are equally strong.
+					 */
+					if (enemy.getLevel() < level) {
+						target = enemy;
+						level = enemy.getLevel();
+					}
+				}
+			} else {
+				if (creature.getAttackStrategy().canAttackNow(creature, enemy)
+						&& !enemy.isInvisibleToCreatures()) {
+					/*
+					 * Use level as an approximation of the strength. Prefer keeping
+					 * the current target if the enemies are equally strong.
+					 */
+					if (enemy.getLevel() < level) {
+						target = enemy;
+						level = enemy.getLevel();
+					}
 				}
 			}
+			
 		}
 
 		if (target != null) {
