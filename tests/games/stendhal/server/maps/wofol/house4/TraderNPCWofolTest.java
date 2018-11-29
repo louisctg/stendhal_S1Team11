@@ -1,4 +1,4 @@
-package games.stendhal.server.maps.Wofol.house4;
+package games.stendhal.server.maps.wofol.house4;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
