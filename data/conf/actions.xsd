@@ -16,14 +16,11 @@
 
 
 	<xsd:complexType name="ActionType">
-		<xsd:attribute name="name" type="xsd:string" />
-		<xsd:attribute name="action_type" type="xsd:string"/>
-		
-		
-		
-		
-		
-		
+		<sequence>
+			<element name="implementation" type="Q4:implementation"></element>
+		</sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required />
+		<xsd:attribute name="action_type" type="xsd:string" use="required/>	
 		<xsd:attribute name="put_parameter1" type="xsd:string" use="optional" />
 		<xsd:attribute name="put_parameter2" type="xsd:string" use="optional" />
 		<xsd:attribute name="put_parameter3" type="xsd:string" use="optional" />
@@ -44,5 +41,8 @@
 	</xsd:complexType>
 
 
+	<complexType name="implementation">
+		<attribute name="class-name" type="string"></attribute>
+	</complexType>
 	
 </xsd:schema>
