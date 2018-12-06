@@ -2,8 +2,8 @@
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../actions.xsd ">
   
-  <action name="[action_name]" type="[action-type]" put_parameter1 ="[target]" >
-  	<implementation class-name=[class_name]/>
+  <action name="[action_name]" type="[action-type]" put_parameter1 = "[target]">
+  		<implementation class-name=[class_name]/>	
   </action>
   	
   <!-- EXPLANATION

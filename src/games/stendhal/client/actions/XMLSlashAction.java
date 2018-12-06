@@ -12,6 +12,8 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+import java.util.List;
+
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
@@ -24,10 +26,19 @@ public class XMLSlashAction implements SlashAction {
 	
 	private String type;
 	
-	public XMLSlashAction(String name, String type)
+	private List<String> optionalParameters;
+	
+	private int maxParameters;
+	
+	private int minParameters;
+	
+	public XMLSlashAction(String name, String type, List<String> optionalParameters, int maxParameters, int minParameters)
 	{
 		this.name = name;
 		this.type = type;
+		this.optionalParameters = optionalParameters;
+		this.maxParameters = maxParameters;
+		this.minParameters = minParameters;
 	}
 	/**
 	 * Execute a chat command.
@@ -41,12 +52,28 @@ public class XMLSlashAction implements SlashAction {
 	 */
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
-		final RPAction invisible = new RPAction();
+		final RPAction action = new RPAction();
 
-		invisible.put("type", "invisible");
+		action.put("type", type);
+		//for loop
+		/* loop from 0 to length of op
+		 * 	if index == length of params
+		 * 		put remainder
+		 * 	else 
+		 * 		put param[i]
+		 */
+		
+		for(int i =0; i <= params.length; i++ )
+		{
+			if(i == params.length)
+				action.put(optionalParameters.get(i), remainder);
+			else
+				action.put(optionalParameters.get(i), params[i]);
+		}
+		
+		ClientSingletonRepository.getClientFramework().send(action);
 
-		ClientSingletonRepository.getClientFramework().send(invisible);
-
+		
 		return true;
 	}
 
@@ -57,7 +84,7 @@ public class XMLSlashAction implements SlashAction {
 	 */
 	@Override
 	public int getMaximumParameters() {
-		return 0;
+		return maxParameters;
 	}
 
 	/**
@@ -67,6 +94,6 @@ public class XMLSlashAction implements SlashAction {
 	 */
 	@Override
 	public int getMinimumParameters() {
-		return 0;
+		return minParameters;
 	}
 }
