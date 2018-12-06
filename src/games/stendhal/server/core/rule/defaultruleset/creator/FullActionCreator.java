@@ -32,6 +32,6 @@ public class FullActionCreator extends AbstractActionCreator {
 	@Override
 	protected XMLSlashAction createObject() throws IllegalAccessException,
 			InstantiationException, InvocationTargetException {
-		return (XMLSlashAction) construct.newInstance(new Object[] { this.defaultAction.getActionName(), this.defaultAction.getActionType()});
+		return (XMLSlashAction) construct.newInstance(new Object[] { this.defaultAction.getActionName(), this.defaultAction.getType()});
 	}
 }

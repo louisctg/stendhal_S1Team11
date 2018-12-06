@@ -13,13 +13,17 @@
 package games.stendhal.server.core.rule.defaultruleset;
 
 import java.lang.reflect.Constructor;
+import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Map;
+
 
 import games.stendhal.client.actions.XMLSlashAction;
 import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
 import games.stendhal.server.core.rule.defaultruleset.creator.DefaultActionCreator;
 import games.stendhal.server.core.rule.defaultruleset.creator.FullActionCreator;
+
 
 
 /**
@@ -38,15 +42,16 @@ public class DefaultAction {
 	private String name;
 	
 	private String type;
-
+	
+	private int maximumParameters;//
+	private int minimumParameters;//
 
 	private Class< ? > implementation = null;
 	
-	private List<String> optionalFields = null;
+	private List<String> putAction = null;
 
 	
-	public DefaultAction(final String name, final String type) {
-		this.type = type;
+	public DefaultAction(final String name) {
 		this.name = name;
 		
 	}
@@ -156,6 +161,33 @@ public class DefaultAction {
 	}
 */
 
+	
+	
+	 
+	/*MAXIMUM*/
+	public int getMaximumParameters()
+	{
+		return maximumParameters;
+	}	
+	
+	public void setMaximumParameters(int param)
+	{
+		this.maximumParameters = param;
+	}
+	
+	/*MINIMUM*/
+	public int getMinimumParameters()
+	{
+		return minimumParameters;
+	}	
+	
+	public void setMinimumParameters(int param)
+	{
+		this.minimumParameters = param;
+	}	
+	
+	
+	/*NAME*/
 	public String getActionName() {
 		return name;
 	}
@@ -163,30 +195,33 @@ public class DefaultAction {
 	public void setActionName(final String val) {
 		name = val;
 	}
-
-	public String getActionType() {
+	
+	/*TYPE*/
+	public String getType() {
 		return type;
 	}
 
-	public void setActionType(final String val) {
+	public void setType(final String val) {
 		type = val;
 	}
 	
-	public void setOptionalFields()
-	{
-		
-	}
+	/*PUTACTIONS*/
+	public void initializeActionsList(List<String> res) {
+		putAction = new ArrayList<String>();
+
+		for (int i=0;i<res.size();i++) 
+		{
+			putAction.add(res.get(i));
+		}
+	}	
 	
-	public List<String> getOptionalFields()
-	{
-		return optionalFields;
-	}
+	
 	
 	public String toXML() {
 		final StringBuilder os = new StringBuilder();
 		
 		//TODO: Create putparameter list with a for loop
-		os.append("  <action name=\"" + name + "\" type=\"" +type+ "\">\n");
+		os.append("  <action name=\"" + name +  "\">\n");
 		
 		os.append("    <implementation class-name=\""
 				+ implementation.getCanonicalName() + "\"/>");

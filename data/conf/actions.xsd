@@ -1,19 +1,55 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
+	xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
+	xmlns:Q4="stendhal">
+
+	<element name="actions" type="Q4:ActionsType"></element>
+
+	<complexType name="ActionsType">
+		<sequence>
+			<element name="action" type="Q4:ActionType" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	
+	<complexType name="ActionType">
+		<sequence>
+			<element name="implementation" type="Q4:implementation" ></element>
+			<element name="MaximumParameters" type="int" ></element>
+			<element name="MinimumParameters" type="int" ></element>
+			<element name="type" type="string" minOccurs="0" maxOccurs="1" ></element>
+			<element name="putAction" type="string" minOccurs="0" maxOccurs="unbounded" ></element>
+		</sequence>
+		<attribute name="name" type="string" use="required"></attribute>
+	</complexType>
+	
+	
+	<complexType name="implementation">
+		<attribute name="class-name" type="string"></attribute>
+	</complexType>	
+	
+</schema>
 
 
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	targetNamespace="stendhal" xmlns:tns="http://www.example.org/creatures"
-	elementFormDefault="qualified" xmlns:Q4="stendhal">
 
-	<xsd:element name="actions" type="Q4:ActionsType"></xsd:element>
 
-	<xsd:complexType name="ActionsType">
-		<xsd:sequence>
-			<xsd:element name="action" type="Q4:ActionType"
-				minOccurs="0" maxOccurs="unbounded" />
-		</xsd:sequence>
-	</xsd:complexType>
 
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+	<complexType name="implementation">
+		<attribute name="class-name" type="string"></attribute>
+	</complexType>
 
 	<xsd:complexType name="ActionType">
 		<sequence>
@@ -40,9 +76,4 @@
 		<xsd:attribute name="put_parameter17" type="xsd:string" use="optional" />
 	</xsd:complexType>
 
-
-	<complexType name="implementation">
-		<attribute name="class-name" type="string"></attribute>
-	</complexType>
-	
-</xsd:schema>
+-->
