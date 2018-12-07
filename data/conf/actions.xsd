@@ -1,5 +1,5 @@
 <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
-	xmlns:tns="http://www.example.org/zones" elementFormDefault="qualified"
+	xmlns:tns="http://www.example.org/actions" elementFormDefault="qualified"
 	xmlns:Q4="stendhal">
 
 	<element name="actions" type="Q4:ActionsType"></element>
