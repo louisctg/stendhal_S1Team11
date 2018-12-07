@@ -2,14 +2,22 @@
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../actions.xsd ">
   
-  <action name="[action_name]" type="[action-type]" put_parameter1 ="[target]" >
-  	<implementation class-name=[class_name]/>
+  <action name="[action_name]">
+  	<implementation class-name=[class_name]
+  	<MaximumParameters>[number]</MaximumParameters>
+  	<MinimumParameters>[number]</MinimumParameters>
+  	<type>[type]</type>
+  	<putAction>[action_param]</putAction>
+  	
   </action>
   	
   <!-- EXPLANATION
-  	the action tag has 2 compulsory fields namely name, and type. Action types can be invisible, addbuddy, etc. 
-  	Action name is free to choose but I recommend to use the current file names.
-  	put_parameter1 - putparameter17 are optional fields. These fields can contain the additional action parameter names, like target, etc.
+  	the action tag has 1 compulsory fields namely name. Action name is free to choose but I recommend to use the current file names.
+  	implementation field will correspond to the generic or subclass
+  	Maximum parameters is the max number of parameters SlashAction passes
+  	Minimum parameters is the min number of parameters SlashAction passes (usually 0)
+  	Action type is the type: can be invisible, addbuddy, etc. 
+  	putAction are optional fields. These fields can contain the additional action parameter names, like target, etc.
   	The actual parameter values will come from the SlashAction interface
    -->
 
