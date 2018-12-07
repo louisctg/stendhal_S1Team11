@@ -124,42 +124,30 @@ public class DefaultAction {
 	 *
 	 * @return An item, or <code>null</code> on error.
 	 */
-	/*
-	public Item getItem() {
+	
+	public XMLSlashAction getAction() {
 
 		/*
 		 * Just in case - Really should generate fatal error up front (in
-		 * ItemXMLLoader).
+		 * ActionsXMLLoader). */
 		 
 		if (creator == null) {
 			return null;
 		}
-		final Item item = creator.create();
-		if (item != null) {
-			item.setEquipableSlots(slots);
-			item.setDescription(description);
-			if (damageType != null) {
-				item.setDamageType(damageType);
-			}
-			item.setSusceptibilities(susceptibilities);
+		final XMLSlashAction action = creator.create();
+		if (action != null) {
+		//HERE WE DEPEND ON CRISTIAN AND KHESIM
+			action.setActionList(putAction);
+			action.setType(type);
+			action.setName(name);
+			action.setMinimumParameters(minimumParameters);
+			action.setMaximumParameters(maximumParameters);
 
-			/* Set a list of status resistances for StatusResistantItem. 
-			if ((this.resistances != null) && (!this.resistances.isEmpty())) {
-				item.initializeStatusResistancesList(resistances);
-			}
-
-			/* Set a list of active slots for SlotActivatedItem. 
-			if ((this.activeSlotsList != null)
-					&& (!this.activeSlotsList.isEmpty())) {
-				item.initializeActiveSlotsList(this.activeSlotsList);
-			}
-
-			item.setUseBehavior(useBehavior);
 		}
 
-		return item;
+		return action;
 	}
-*/
+
 
 	
 	
@@ -216,15 +204,30 @@ public class DefaultAction {
 	}	
 	
 	
+	public List<String> getActionList()
+	{
+		return putAction;
+	}
+	
 	
 	public String toXML() {
 		final StringBuilder os = new StringBuilder();
 		
-		//TODO: Create putparameter list with a for loop
+	
 		os.append("  <action name=\"" + name +  "\">\n");
 		
 		os.append("    <implementation class-name=\""
-				+ implementation.getCanonicalName() + "\"/>");
+				+ implementation.getCanonicalName() + "\"/>\n");
+		
+		os.append("    <MaximumParameters>"+maximumParameters +"</MaximumParameters>\n");
+		
+		os.append("    <MinimumParameters>"+minimumParameters +"</MinimumParameters>\n");
+		
+		os.append("    <type>"+type +"</type>\n");
+		
+		for (final String putparam : putAction) {
+			os.append("    	<putAction name=\"" + putparam + "\"/>\n");
+		}
 		
 
 		os.append("  </action>\n");

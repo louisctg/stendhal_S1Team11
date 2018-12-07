@@ -27,6 +27,8 @@
 		<attribute name="class-name" type="string"></attribute>
 	</complexType>	
 	
+	
+	
 </schema>
 
 
