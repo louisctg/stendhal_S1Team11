@@ -15,6 +15,7 @@ package games.stendhal.client.actions;
 import java.util.List;
 
 import games.stendhal.client.ClientSingletonRepository;
+import games.stendhal.common.StringHelper;
 import marauroa.common.game.RPAction;
 
 /**
@@ -66,7 +67,7 @@ public class XMLSlashAction implements SlashAction {
 		for(int i =0; i <= params.length; i++ )
 		{
 			if(i == params.length)
-				action.put(optionalParameters.get(i), remainder);
+				action.put(optionalParameters.get(i), StringHelper.unquote(remainder));
 			else
 				action.put(optionalParameters.get(i), params[i]);
 		}

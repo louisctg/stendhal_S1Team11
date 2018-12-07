@@ -3,12 +3,26 @@
     xsi:schemaLocation="stendhal ../actions.xsd ">
   
 
-  <action name="[action_name]">
-  	<implementation class-name="[class_name]"/>
+  <action name="invisible action">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>0</MaximumParameters>
   	<MinimumParameters>0</MinimumParameters>
-  	<type>[type]</type>
-  	<putAction>[action_param]</putAction>
+  	<type>invisible</type>
+  </action>
+  
+  <action name="teleport to action">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>1</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>teleportto</type>
+  	<putAction>target</putAction>
+  </action>
+  
+  <action name="echo action">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>2</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>echo</type>
   </action>
   	
   <!-- EXPLANATION
@@ -19,6 +33,8 @@
   	Action type is the type: can be invisible, addbuddy, etc. 
   	putAction are optional fields. These fields can contain the additional action parameter names, like target, etc.
   	The actual parameter values will come from the SlashAction interface
+  	
+  	<putAction>[action_param]</putAction>
    -->
 
 </actions>

@@ -20,11 +20,13 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 
+import games.stendhal.client.actions.XMLSlashAction;
 import games.stendhal.common.parser.ExpressionType;
 import games.stendhal.common.parser.WordList;
 import games.stendhal.server.core.config.CreatureGroupsXMLLoader;
 import games.stendhal.server.core.config.ItemGroupsXMLLoader;
 import games.stendhal.server.core.config.SpellGroupsXMLLoader;
+import games.stendhal.server.core.config.ActionGroupsXMLLoader;
 import games.stendhal.server.core.rule.EntityManager;
 import games.stendhal.server.entity.Entity;
 import games.stendhal.server.entity.creature.Creature;
@@ -46,12 +48,18 @@ public class DefaultEntityManager implements EntityManager {
 
 	/** maps the item names to the actual item enums. */
 	private final Map<String, DefaultItem> classToItem;
+	
+	/** maps the item names to the actual item enums. */
+	private final Map<String, DefaultAction> classToAction;
 
 	/** lists all creatures that are being used at least once. */
 	private final Map<String, Creature> createdCreature;
 
 	/** lists all items that are being used at least once . */
 	private final Map<String, Item> createdItem;
+	
+	/** lists all items that are being used at least once . */
+	private final Map<String, XMLSlashAction> createdAction;
 
 	/** lists all spell that are being used at least once . */
 	private final Map<String, Spell> createdSpell;
@@ -71,9 +79,12 @@ public class DefaultEntityManager implements EntityManager {
 		createdSpell = new HashMap<String, Spell>();
 		classToItem = new HashMap<String, DefaultItem>();
 		nameToSpell = new HashMap<String, DefaultSpell>();
+		classToAction = new HashMap<String, DefaultAction>();
+		createdAction = new HashMap<String, XMLSlashAction>();
 		buildItemTables();
 		buildCreatureTables();
 		buildSpellTables();
+		buildActionTables();
 	}
 
 	/**
@@ -90,6 +101,22 @@ public class DefaultEntityManager implements EntityManager {
 			LOGGER.error("spells.xml could not be loaded", e);
 		}
 	}
+	
+	/**
+	 * builds the action tables
+	 */
+	private void buildActionTables() {
+		try {
+			final ActionGroupsXMLLoader loader = new ActionGroupsXMLLoader(new URI("/data/conf/actions.xml"));
+			List<DefaultAction> loadedDefaultActions = loader.load();
+			for (DefaultAction defaultAction : loadedDefaultActions) {
+				addAction(defaultAction);
+			}
+		} catch (Exception e) {
+			LOGGER.error("actions.xml could not be loaded", e);
+		}
+	}
+		
 
 	/**
 	 * Build the items tables
@@ -165,6 +192,20 @@ public class DefaultEntityManager implements EntityManager {
 
 		return true;
 	}
+	
+	@Override
+	public boolean addAction(final DefaultAction action) {
+		final String clazz = action.getActionName();
+
+		if (classToItem.containsKey(clazz)) {
+			LOGGER.warn("Repeated item name: " + clazz);
+			return false;
+		}
+
+		classToAction.put(clazz, action);
+
+		return true; 
+	}
 
 	@Override
 	public boolean addCreature(final DefaultCreature creature) {
@@ -209,6 +250,15 @@ public class DefaultEntityManager implements EntityManager {
 		return createdItem.values();
 	}
 
+	/**
+	 * @return a list of all Items that are instantiated.
+	 */
+	@Override
+	public Collection<XMLSlashAction> getXMLSlashActions() {
+		return createdAction.values();
+	}
+
+	
 	/**
 	 * returns the entity or <code>null</code> if the id is unknown.
 	 *
@@ -333,6 +383,17 @@ public class DefaultEntityManager implements EntityManager {
 
 		return classToItem.containsKey(clazz);
 	}
+	
+	/** @param clazz
+	 * @return true if the Entity is an action. */
+	@Override
+	public boolean isXMLSlashAction(final String clazz) {
+		if (clazz == null) {
+			throw new IllegalArgumentException("entity class is null");
+		}
+
+		return classToAction.containsKey(clazz);
+	}
 
 	/**
 	 * @param clazz
@@ -354,6 +415,31 @@ public class DefaultEntityManager implements EntityManager {
 				createdItem.put(clazz, item.getItem());
 			}
 			return item.getItem();
+		}
+
+		return null;
+	}
+	
+	/**
+	 * @param clazz
+	 * @return the item or <code>null</code> if the clazz is unknown.
+	 *
+	 * @throws NullPointerException
+	 *             if clazz is <code>null</code>
+	 */
+	@Override
+	public XMLSlashAction getXMLSlashAction(final String clazz) {
+		if (clazz == null) {
+			throw new IllegalArgumentException("entity class is null");
+		}
+
+		// Lookup the clazz in the item table
+		final DefaultAction action = classToAction.get(clazz);
+		if (action != null) {
+			if (createdAction.get(clazz) == null) {
+				createdAction.put(clazz, action.getAction());
+			}
+			return action.getAction();
 		}
 
 		return null;
@@ -393,6 +479,11 @@ public class DefaultEntityManager implements EntityManager {
 	@Override
 	public Collection<DefaultItem> getDefaultItems() {
 		return classToItem.values();
+	}
+	
+	@Override
+	public Collection<DefaultAction> getDefaultActions() {
+		return classToAction.values();
 	}
 
 	public Collection<String> getConfiguredItems() {
