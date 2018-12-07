@@ -2,13 +2,13 @@
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../actions.xsd ">
   
+
   <action name="[action_name]">
-  	<implementation class-name=[class_name]
-  	<MaximumParameters>[number]</MaximumParameters>
-  	<MinimumParameters>[number]</MinimumParameters>
+  	<implementation class-name="[class_name]"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
   	<type>[type]</type>
   	<putAction>[action_param]</putAction>
-  	
   </action>
   	
   <!-- EXPLANATION
