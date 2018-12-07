@@ -67,7 +67,7 @@ public class SlashActionRepository {
 
 		actions.put("ignore", new IgnoreAction());
 		actions.put("inspect", new InspectAction());
-		actions.put("invisible", new InvisibleAction());
+	//	actions.put("invisible", new InvisibleAction());
 
 		actions.put("jail", new JailAction());
 
@@ -98,7 +98,7 @@ public class SlashActionRepository {
 		actions.put("storemessage", new StoreMessageAction());
 		actions.put("postmessage", new StoreMessageAction());
 
-		actions.put("summonat", new SummonAtAction());
+//		actions.put("summonat", new SummonAtAction());
 		actions.put("summon", new SummonAction());
 		actions.put("supportanswer", supporta);
 		actions.put("supporta", supporta);
@@ -106,7 +106,7 @@ public class SlashActionRepository {
 
 		actions.put("takescreenshot", new ScreenshotAction());
 		actions.put("teleport", new TeleportAction());
-		actions.put("teleportto", new TeleportToAction());
+//		actions.put("teleportto", new TeleportToAction());
 		actions.put("tellall", new TellAllAction());
 		actions.put("tell", msg);
 
