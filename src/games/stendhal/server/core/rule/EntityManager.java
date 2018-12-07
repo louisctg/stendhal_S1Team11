@@ -14,8 +14,6 @@ package games.stendhal.server.core.rule;
 
 import java.util.Collection;
 
-import games.stendhal.client.actions.XMLSlashAction;
-import games.stendhal.server.core.rule.defaultruleset.DefaultAction;
 import games.stendhal.server.core.rule.defaultruleset.DefaultCreature;
 import games.stendhal.server.core.rule.defaultruleset.DefaultItem;
 import games.stendhal.server.core.rule.defaultruleset.DefaultSpell;
@@ -36,7 +34,7 @@ public interface EntityManager {
 
 	boolean addSpell(DefaultSpell spell);
 	
-	boolean addAction(DefaultAction action);
+	
 
 	/**
 	 * @return a list of all Creatures that are used at least once.
@@ -61,23 +59,7 @@ public interface EntityManager {
 	 * @return list of default items
 	 */
 	Collection<DefaultItem> getDefaultItems();
-	
-	
-	/**
-	 * gets a list of all configured creatures
-	 *
-	 * @return list of default creatures
-	 */
-	Collection<XMLSlashAction> getXMLSlashActions();
-
-	/**
-	 * gets a list of all configured items
-	 *
-	 * @return list of default items
-	 */
-	Collection<DefaultAction> getDefaultActions();
-	
-	
+		
 	
 
 	/**
@@ -154,16 +136,7 @@ public interface EntityManager {
 	 */
 	boolean isItem(String clazz);
 	
-	/**
-	 * Return true if the Entity is an XMLSlashAction.
-	 *
-	 * @param clazz
-	 *            the XMLSlashAction class, must not be <code>null</code>
-	 * @return true if it is an XMLSlashAction, false otherwise
-	 *
-	 */
-	boolean isXMLSlashAction(String clazz);
-
+	
 	/**
 	 * Returns the item or <code>null</code> if the clazz is unknown.
 	 *
@@ -183,7 +156,7 @@ public interface EntityManager {
 	 * @return the action or <code>null</code>
 	 *
 	 */
-	XMLSlashAction getXMLSlashAction(String clazz);
+	
 
 	/**
 	 * Retrieves a Spell or null if the spell is unknown.

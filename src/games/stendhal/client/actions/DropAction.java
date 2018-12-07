@@ -23,7 +23,7 @@ import marauroa.common.game.RPAction;
 /**
  * Drop a player item.
  */
-class DropAction implements SlashAction {
+class DropAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.

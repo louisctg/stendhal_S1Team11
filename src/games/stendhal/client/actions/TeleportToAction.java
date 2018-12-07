@@ -12,45 +12,15 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
-import java.util.List;
-
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.common.StringHelper;
-
 import marauroa.common.game.RPAction;
 
 /**
- * Toggle between invisibility.
+ * Teleport player to another player's location.
  */
-public class XMLSlashAction implements SlashAction {
+class TeleportToAction implements SlashAction {
 
-	private String name;
-	
-	private String type;
-	
-	private List<String> optionalParameters;
-	
-	private int maxParameters;
-	
-	private int minParameters;
-	
-	public XMLSlashAction()
-	{
-		
-		
-	}
-	
-	
-	
-	
-	public XMLSlashAction(String name, String type, List<String> optionalParameters, int maxParameters, int minParameters)
-	{
-		this.name = name;
-		this.type = type;
-		this.optionalParameters = optionalParameters;
-		this.maxParameters = maxParameters;
-		this.minParameters = minParameters;
-	}
 	/**
 	 * Execute a chat command.
 	 *
@@ -63,31 +33,13 @@ public class XMLSlashAction implements SlashAction {
 	 */
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
-		final RPAction action = new RPAction();
+		final RPAction teleport = new RPAction();
 
-		action.put("type", type);
-		//for loop
-		/* loop from 0 to length of op
-		 * 	if index == length of params
-		 * 		put remainder
-		 * 	else 
-		 * 		put param[i]
-		 */
-		if(optionalParameters != null && !optionalParameters.isEmpty())
-		{
-			for(int i =0; i <= params.length; i++ )
-			{
-				if(i == params.length)
-					action.put(optionalParameters.get(i), StringHelper.unquote(remainder));
-				else
-					action.put(optionalParameters.get(i), params[i]);
-			}
-		}
-		
-		
-		ClientSingletonRepository.getClientFramework().send(action);
+		teleport.put("type", "teleportto");
+		teleport.put("target", StringHelper.unquote(remainder));
 
-		
+		ClientSingletonRepository.getClientFramework().send(teleport);
+
 		return true;
 	}
 
@@ -98,7 +50,7 @@ public class XMLSlashAction implements SlashAction {
 	 */
 	@Override
 	public int getMaximumParameters() {
-		return maxParameters;
+		return 0;
 	}
 
 	/**
@@ -108,35 +60,6 @@ public class XMLSlashAction implements SlashAction {
 	 */
 	@Override
 	public int getMinimumParameters() {
-		return minParameters;
+		return 0;
 	}
-	
-	
-
-	
-	public void setActionList(List<String> list)
-	{
-		this.optionalParameters = list;
-	}
-	
-	public void setType(String type)
-	{
-		this.type = type;
-	}
-	
-	public void setName(String name)
-	{
-		this.name = name;
-	}
-	
-	public void setMinimumParameters(int num)
-	{
-		this.minParameters = num;
-	}
-	
-	public void setMaximumParameters(int num)
-	{
-		this.maxParameters = num;
-	}
-
 }

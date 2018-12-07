@@ -10,19 +10,17 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.rule.defaultruleset;
+package games.stendhal.client.actions;
 
-import java.lang.reflect.Constructor;
+
 import java.util.ArrayList;
 
 import java.util.List;
-import java.util.Map;
 
 
 import games.stendhal.client.actions.XMLSlashAction;
-import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
-import games.stendhal.server.core.rule.defaultruleset.creator.DefaultActionCreator;
-import games.stendhal.server.core.rule.defaultruleset.creator.FullActionCreator;
+//import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
+
 
 
 
@@ -35,7 +33,7 @@ import games.stendhal.server.core.rule.defaultruleset.creator.FullActionCreator;
 public class DefaultAction {
 
 	/** Implementation creator. */
-	private AbstractCreator<XMLSlashAction> creator;
+	//private AbstractCreator<XMLSlashAction> creator;
 
 
 	/** items type. */
@@ -51,8 +49,8 @@ public class DefaultAction {
 	private List<String> putAction = null;
 
 	
-	public DefaultAction(final String name) {
-		this.name = name;
+	public DefaultAction() {
+		
 		
 	}
 
@@ -60,7 +58,7 @@ public class DefaultAction {
 
 	public void setImplementation(final Class< ? > implementation) {
 		this.implementation = implementation;
-		creator = buildCreator(implementation);
+
 	}
 
 	/**
@@ -73,57 +71,7 @@ public class DefaultAction {
 		return implementation;
 	}
 
-	/**
-	 * Build a creator for the class. It uses the following constructor search
-	 * order:<br>
-	 *
-	 * <ul>
-	 * <li><em>Class</em>(<em>name</em>, <em>clazz</em>,
-	 * <em>subclazz</em>, <em>attributes</em>)
-	 * <li><em>Class</em>(<em>attributes</em>)
-	 * <li><em>Class</em>()
-	 * </ul>
-	 *
-	 * @param implementation
-	 *            The implementation class.
-	 *
-	 * @return A creator, or <code>null</code> if none found.
-	 */
-	protected AbstractCreator<XMLSlashAction> buildCreator(final Class< ? > implementation) {
-		Constructor< ? > construct;
-
-		/*
-		 * <Class>(name, clazz, subclazz, attributes)
-		 */
-		try {
-			construct = implementation.getConstructor(new Class[] {
-					String.class, String.class, String.class, Map.class });
-
-			return new FullActionCreator(this, construct);
-		} catch (final NoSuchMethodException ex) {
-			// ignore and continue
-		}
-
-
-		/*
-		 * <Class>()
-		 */
-		try {
-			construct = implementation.getConstructor(new Class[] {});
-
-			return new DefaultActionCreator(this, construct);
-		} catch (final NoSuchMethodException ex) {
-			// ignore and continue
-		}
-
-		return null;
-	}
-
-	/**
-	 * Returns an item-instance.
-	 *
-	 * @return An item, or <code>null</code> on error.
-	 */
+	
 	
 	public XMLSlashAction getAction() {
 
@@ -131,11 +79,11 @@ public class DefaultAction {
 		 * Just in case - Really should generate fatal error up front (in
 		 * ActionsXMLLoader). */
 		 
-		if (creator == null) {
+		/*if (creator == null) {
 			return null;
-		}
-		final XMLSlashAction action = creator.create();
-		if (action != null) {
+		}*/
+		final XMLSlashAction action = new XMLSlashAction();
+		//if (action != null) {
 		//HERE WE DEPEND ON CRISTIAN AND KHESIM
 			action.setActionList(putAction);
 			action.setType(type);
@@ -143,7 +91,7 @@ public class DefaultAction {
 			action.setMinimumParameters(minimumParameters);
 			action.setMaximumParameters(maximumParameters);
 
-		}
+		//}
 
 		return action;
 	}
