@@ -13,13 +13,16 @@
 package games.stendhal.client.actions;
 
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 import java.util.List;
 
-
 import games.stendhal.client.actions.XMLSlashAction;
-//import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
+import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
+
+import games.stendhal.server.core.rule.defaultruleset.creator.FullActionCreator;
+
 
 
 
@@ -33,7 +36,7 @@ import games.stendhal.client.actions.XMLSlashAction;
 public class DefaultAction {
 
 	/** Implementation creator. */
-	//private AbstractCreator<XMLSlashAction> creator;
+	private AbstractCreator<XMLSlashAction> creator;
 
 
 	/** items type. */
@@ -58,7 +61,7 @@ public class DefaultAction {
 
 	public void setImplementation(final Class< ? > implementation) {
 		this.implementation = implementation;
-
+		creator = buildCreator(implementation);
 	}
 
 	/**
@@ -73,25 +76,44 @@ public class DefaultAction {
 
 	
 	
+	protected AbstractCreator<XMLSlashAction> buildCreator(final Class< ? > implementation) {
+		Constructor< ? > construct;
+
+		/*
+		 * <Class>()
+		 */
+		try {
+			construct = implementation.getConstructor(new Class[] {});
+
+			return new FullActionCreator(this, construct);
+		} catch (final NoSuchMethodException ex) {
+			// ignore and continue
+		}
+		
+
+		return null;
+	}
+	
+	
+	
+	
 	public XMLSlashAction getAction() {
 
 		/*
 		 * Just in case - Really should generate fatal error up front (in
 		 * ActionsXMLLoader). */
 		 
-		/*if (creator == null) {
+		if (creator == null) {
 			return null;
-		}*/
-		final XMLSlashAction action = new XMLSlashAction();
-		//if (action != null) {
-		//HERE WE DEPEND ON CRISTIAN AND KHESIM
+		}
+		final XMLSlashAction action = creator.create();
+		if (action != null) {
 			action.setActionList(putAction);
 			action.setType(type);
 			action.setName(name);
 			action.setMinimumParameters(minimumParameters);
 			action.setMaximumParameters(maximumParameters);
-
-		//}
+		}
 
 		return action;
 	}

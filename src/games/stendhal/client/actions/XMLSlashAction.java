@@ -111,8 +111,19 @@ public class XMLSlashAction implements SlashAction {
 		return minParameters;
 	}
 	
+	public List<String> getActionList()
+	{
+		return optionalParameters;
+	}
 	
-
+	public String getType() {
+		return type;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
 	
 	public void setActionList(List<String> list)
 	{
