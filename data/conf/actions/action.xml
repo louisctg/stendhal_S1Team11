@@ -18,12 +18,39 @@
   	<putAction>target</putAction>
   </action>
   
-  <action name="echo action">
+   <action name="jail action">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>2</MaximumParameters>
-  	<MinimumParameters>0</MinimumParameters>
-  	<type>echo</type>
+  	<MinimumParameters>2</MinimumParameters>
+  	<type>jail</type>
+  	<putAction>target</putAction>
+  	<putAction>minutes</putAction>
+  	<putAction>reason</putAction>
   </action>
+  
+  <action name="mute action">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>mute</type>
+  </action>
+  
+  <action name="who action">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>who</type>
+  </action>
+  
+  <action name="where action">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>where</type>
+  	<putAction>target</putAction>
+  </action>
+  
+
   	
   <!-- EXPLANATION
   	the action tag has 1 compulsory fields namely name. Action name is free to choose but I recommend to use the current file names.
@@ -34,7 +61,14 @@
   	putAction are optional fields. These fields can contain the additional action parameter names, like target, etc.
   	The actual parameter values will come from the SlashAction interface
   	
-  	<putAction>[action_param]</putAction>
+  	
+  	  <action name="echo action">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>2</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>echo</type>
+  </action>
+ 
    -->
 
 </actions>
