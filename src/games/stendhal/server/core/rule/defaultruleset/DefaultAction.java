@@ -124,43 +124,30 @@ public class DefaultAction {
 	 *
 	 * @return An item, or <code>null</code> on error.
 	 */
-	/*
+	
 	public XMLSlashAction getAction() {
 
 		/*
 		 * Just in case - Really should generate fatal error up front (in
-		 * ActionsXMLLoader).
+		 * ActionsXMLLoader). */
 		 
 		if (creator == null) {
 			return null;
 		}
 		final XMLSlashAction action = creator.create();
 		if (action != null) {
-		HERE WE DEPEND ON CRISTIAN AND KHESIM
-			item.setEquipableSlots(slots);
-			item.setDescription(description);
-			if (damageType != null) {
-				item.setDamageType(damageType);
-			}
-			item.setSusceptibilities(susceptibilities);
+		//HERE WE DEPEND ON CRISTIAN AND KHESIM
+			action.setActionList(putAction);
+			action.setType(type);
+			action.setName(name);
+			action.setMinimumParameters(minimumParameters);
+			action.setMaximumParameters(maximumParameters);
 
-			/* Set a list of status resistances for StatusResistantItem. 
-			if ((this.resistances != null) && (!this.resistances.isEmpty())) {
-				item.initializeStatusResistancesList(resistances);
-			}
-
-			/* Set a list of active slots for SlotActivatedItem. 
-			if ((this.activeSlotsList != null)
-					&& (!this.activeSlotsList.isEmpty())) {
-				item.initializeActiveSlotsList(this.activeSlotsList);
-			}
-
-			item.setUseBehavior(useBehavior);
 		}
 
 		return action;
 	}
-*/
+
 
 	
 	
