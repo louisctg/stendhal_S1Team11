@@ -17,10 +17,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.After;
 import org.junit.Test;
 
 import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.User;
 import games.stendhal.common.Constants;
 import marauroa.common.game.RPAction;
@@ -67,6 +69,11 @@ public class DropActionTest {
 		rpo.setID(new ID(id, ZONE_NAME));
 
 		return rpo;
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+		StendhalClient.resetClient();
 	}
 
 	/**

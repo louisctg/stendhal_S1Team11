@@ -13,31 +13,41 @@
 package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.MockClientUI;
 
-public class XMLSlashActionTest {
+/**
+ * Test the DropAction class.
+ *
+ * @author Louis Thurston-Gibson
+ */
+public class SoundActionTest {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	/**
+	 * Test for execute.
+	 */
+	@Test
+	public void testSwitchingMute() {
+		final MockClientUI clientUI = new MockClientUI();
+		final SoundAction action = new SoundAction();
+		
+		assertTrue(action.execute(null, null));
+
+		assertEquals(clientUI.getEventBuffer(), "This command is outdated. Please use \"/volume\" for changing the volume and \"/mute\" for muting all audio");
+		
 	}
-
-	@After
-	public void tearDown() throws Exception {
-		StendhalClient.resetClient();
-	}
-
+	
 	/**
 	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final XMLSlashAction action = new XMLSlashAction("testAction", "test",null,5,1);
+		final SoundAction action = new SoundAction();
 		assertThat(action.getMaximumParameters(), is(5));
 	}
 
@@ -46,17 +56,8 @@ public class XMLSlashActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final XMLSlashAction action = new XMLSlashAction("testAction", "test",null,5,1);
-		assertThat(action.getMinimumParameters(), is(1));
-	}
-	
-	/**
-	 * Tests for setters.
-	 */
-	@Test
-	public void testSeters() {
-		final XMLSlashAction action = new XMLSlashAction("testAction", "test",null,5,1);
-		action.setType("test2");
+		final SoundAction action = new SoundAction();
+		assertThat(action.getMinimumParameters(), is(0));
 	}
 
 }

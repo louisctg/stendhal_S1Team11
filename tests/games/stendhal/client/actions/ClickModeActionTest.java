@@ -13,32 +13,46 @@
 package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.MockClientUI;
 
-public class XMLSlashActionTest {
+/**
+ * Test the Click class.
+ *
+ * @author Louis Thurston-Gibson
+ */
+public class ClickModeActionTest {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	/**
+	 * Tests for null parameter given the volume action.
+	 */
+	@Test
+	public void testSwitchingClick() {
+		final MockClientUI clientUI = new MockClientUI();
+		final ClickModeAction action = new ClickModeAction();
+		
+		assertTrue(action.execute(new String[]{null}, null));
+
+		assertEquals(clientUI.getEventBuffer(), "Click mode is now set to double click.");
+		
+		assertTrue(action.execute(new String[]{null}, null));
+		
+		// EventBuffer accumulates and doesn't flush so responses are concatenated
+		assertEquals(clientUI.getEventBuffer(), "Click mode is now set to double click.\nClick mode is now set to single click.");
 	}
-
-	@After
-	public void tearDown() throws Exception {
-		StendhalClient.resetClient();
-	}
-
+	
 	/**
 	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final XMLSlashAction action = new XMLSlashAction("testAction", "test",null,5,1);
-		assertThat(action.getMaximumParameters(), is(5));
+		final ClickModeAction action = new ClickModeAction();
+		assertThat(action.getMaximumParameters(), is(0));
 	}
 
 	/**
@@ -46,17 +60,8 @@ public class XMLSlashActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final XMLSlashAction action = new XMLSlashAction("testAction", "test",null,5,1);
-		assertThat(action.getMinimumParameters(), is(1));
-	}
-	
-	/**
-	 * Tests for setters.
-	 */
-	@Test
-	public void testSeters() {
-		final XMLSlashAction action = new XMLSlashAction("testAction", "test",null,5,1);
-		action.setType("test2");
+		final ClickModeAction action = new ClickModeAction();
+		assertThat(action.getMinimumParameters(), is(0));
 	}
 
 }

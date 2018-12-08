@@ -13,32 +13,46 @@
 package games.stendhal.client.actions;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.After;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import games.stendhal.client.StendhalClient;
+import games.stendhal.client.MockClientUI;
 
-public class XMLSlashActionTest {
+/**
+ * Test the MuteAction class.
+ *
+ * @author Louis Thurston-Gibson
+ */
+public class MuteActionTest {
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
+	/**
+	 * Tests for null parameter given the volume action.
+	 */
+	@Test
+	public void testSwitchingMute() {
+		final MockClientUI clientUI = new MockClientUI();
+		final MuteAction action = new MuteAction();
+		
+		assertTrue(action.execute(new String[]{null}, null));
+
+		assertEquals(clientUI.getEventBuffer(), "Sounds are now off.");
+		
+		assertTrue(action.execute(new String[]{null}, null));
+		
+		// EventBuffer accumulates and doesn't flush so responses are concatenated
+		assertEquals(clientUI.getEventBuffer(), "Sounds are now off.\nSounds are now on.");
 	}
-
-	@After
-	public void tearDown() throws Exception {
-		StendhalClient.resetClient();
-	}
-
+	
 	/**
 	 * Tests for getMaximumParameters.
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final XMLSlashAction action = new XMLSlashAction("testAction", "test",null,5,1);
-		assertThat(action.getMaximumParameters(), is(5));
+		final MuteAction action = new MuteAction();
+		assertThat(action.getMaximumParameters(), is(0));
 	}
 
 	/**
@@ -46,17 +60,8 @@ public class XMLSlashActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final XMLSlashAction action = new XMLSlashAction("testAction", "test",null,5,1);
-		assertThat(action.getMinimumParameters(), is(1));
-	}
-	
-	/**
-	 * Tests for setters.
-	 */
-	@Test
-	public void testSeters() {
-		final XMLSlashAction action = new XMLSlashAction("testAction", "test",null,5,1);
-		action.setType("test2");
+		final MuteAction action = new MuteAction();
+		assertThat(action.getMinimumParameters(), is(0));
 	}
 
 }
