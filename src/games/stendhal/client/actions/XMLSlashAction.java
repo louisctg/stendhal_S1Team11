@@ -16,6 +16,7 @@ import java.util.List;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.common.StringHelper;
+
 import marauroa.common.game.RPAction;
 
 /**
@@ -32,6 +33,15 @@ public class XMLSlashAction implements SlashAction {
 	private int maxParameters;
 	
 	private int minParameters;
+	
+	public XMLSlashAction()
+	{
+		
+		
+	}
+	
+	
+	
 	
 	public XMLSlashAction(String name, String type, List<String> optionalParameters, int maxParameters, int minParameters)
 	{
@@ -63,14 +73,17 @@ public class XMLSlashAction implements SlashAction {
 		 * 	else 
 		 * 		put param[i]
 		 */
-		
-		for(int i =0; i <= params.length; i++ )
+		if(optionalParameters != null && !optionalParameters.isEmpty())
 		{
-			if(i == params.length)
-				action.put(optionalParameters.get(i), StringHelper.unquote(remainder));
-			else
-				action.put(optionalParameters.get(i), params[i]);
+			for(int i =0; i <= params.length; i++ )
+			{
+				if(i == params.length)
+					action.put(optionalParameters.get(i), StringHelper.unquote(remainder));
+				else
+					action.put(optionalParameters.get(i), params[i]);
+			}
 		}
+		
 		
 		ClientSingletonRepository.getClientFramework().send(action);
 
@@ -98,8 +111,19 @@ public class XMLSlashAction implements SlashAction {
 		return minParameters;
 	}
 	
+	public List<String> getActionList()
+	{
+		return optionalParameters;
+	}
 	
-
+	public String getType() {
+		return type;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
 	
 	public void setActionList(List<String> list)
 	{

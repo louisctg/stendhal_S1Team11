@@ -12,9 +12,14 @@
  ***************************************************************************/
 package games.stendhal.client.actions;
 
+
+import java.net.URI;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+
+
 
 /**
  * Manages Slash Action Objects.
@@ -23,16 +28,23 @@ public class SlashActionRepository {
 
 	/** Set of client supported Actions. */
 	private static HashMap<String, SlashAction> actions = new HashMap<String, SlashAction>();
-
+	
+	private static HashMap<String, SlashAction> XMLActions = new HashMap<String, SlashAction>();
+	
 	/**
 	 * Registers the available Action.
 	 */
 	public static void register() {
+		
+		
 		final SlashAction msg = new MessageAction();
 		final SlashAction supporta = new SupportAnswerAction();
 		final SlashAction who = new WhoAction();
 		final SlashAction help = new HelpAction();
 		final GroupMessageAction groupMessage = new GroupMessageAction();
+		
+		loadXML();
+		
 
 		actions.put("/", new RemessageAction());
 		actions.put("add", new AddBuddyAction());
@@ -54,6 +66,8 @@ public class SlashActionRepository {
 		actions.put("config", new ConfigAction());
 
 		actions.put("drop", new DropAction());
+		
+		actions.put("echo", XMLActions.get("echo action"));
 
 		actions.put("cast", new CastSpellAction());
 
@@ -67,7 +81,8 @@ public class SlashActionRepository {
 
 		actions.put("ignore", new IgnoreAction());
 		actions.put("inspect", new InspectAction());
-	//	actions.put("invisible", new InvisibleAction());
+		actions.put("invisible", XMLActions.get("invisible action"));
+		
 
 		actions.put("jail", new JailAction());
 
@@ -98,7 +113,7 @@ public class SlashActionRepository {
 		actions.put("storemessage", new StoreMessageAction());
 		actions.put("postmessage", new StoreMessageAction());
 
-//		actions.put("summonat", new SummonAtAction());
+	//	actions.put("summonat", new SummonAtAction());
 		actions.put("summon", new SummonAction());
 		actions.put("supportanswer", supporta);
 		actions.put("supporta", supporta);
@@ -106,7 +121,7 @@ public class SlashActionRepository {
 
 		actions.put("takescreenshot", new ScreenshotAction());
 		actions.put("teleport", new TeleportAction());
-//		actions.put("teleportto", new TeleportToAction());
+		actions.put("teleportto", new TeleportToAction());
 		actions.put("tellall", new TellAllAction());
 		actions.put("tell", msg);
 
@@ -124,6 +139,26 @@ public class SlashActionRepository {
 		actions.put("challenge", new CreateChallengeAction());
 		actions.put("accept", new AcceptChallengeAction());
 	}
+	
+	//LOAD
+	
+	private static void loadXML()
+	{
+		try {
+			final ActionGroupsXMLLoader loader = new ActionGroupsXMLLoader(new URI("/data/conf/actions.xml"));
+			List<DefaultAction> loadedDefaultActions = loader.load();
+			for (DefaultAction defaultAction : loadedDefaultActions) {
+				
+				XMLSlashAction temp = defaultAction.getAction();
+				XMLActions.put(defaultAction.getActionName(),temp);
+				
+				
+			}
+		} catch (Exception e) {
+			System.out.println("ERROR OCCURED: "+ e);
+		}
+	}
+	
 
 	/**
 	 * Gets the Action object for the specified Action name.

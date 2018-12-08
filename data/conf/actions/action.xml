@@ -4,12 +4,12 @@
   
 
   <action name="invisible action">
-  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<implementation class-name="games.stendhal.client.actions.InvisibleAction"/>
   	<MaximumParameters>0</MaximumParameters>
   	<MinimumParameters>0</MinimumParameters>
   	<type>invisible</type>
   </action>
-  
+ 
   <action name="teleport to action">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>1</MaximumParameters>
