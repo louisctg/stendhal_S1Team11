@@ -31,7 +31,7 @@ public class SlashActionRepositoryTest {
 	public void testGet() {
 		assertThat(SlashActionRepository.get("alter").toString(), containsString("AlterAction"));
 		assertThat(SlashActionRepository.get("/").toString(), containsString("RemessageAction"));
-		assertThat(SlashActionRepository.get("add").toString(), containsString("AddBuddyAction"));
+		assertThat(SlashActionRepository.get("addbuddy").toString(), containsString("AddBuddyAction"));
 		assertThat(SlashActionRepository.get("adminlevel").toString(), containsString("AdminLevelAction"));
 		assertThat(SlashActionRepository.get("alter").toString(), containsString("AlterAction"));
 		assertThat(SlashActionRepository.get("altercreature").toString(), containsString("AlterCreatureAction"));
@@ -45,13 +45,13 @@ public class SlashActionRepositoryTest {
 		assertThat(SlashActionRepository.get("help").toString(), containsString("HelpAction"));
 		assertThat(SlashActionRepository.get("ignore").toString(), containsString("IgnoreAction"));
 		assertThat(SlashActionRepository.get("inspect").toString(), containsString("InspectAction"));
-		assertThat(SlashActionRepository.get("invisible").toString(), containsString("InvisibleAction"));
+		//assertThat(SlashActionRepository.get("invisible").toString(), containsString("InvisibleAction"));
 		assertThat(SlashActionRepository.get("jail").toString(), containsString("JailAction"));
 		assertThat(SlashActionRepository.get("msg").toString(), containsString("MessageAction"));
 		assertThat(SlashActionRepository.get("quit").toString(), containsString("QuitAction"));
-		assertThat(SlashActionRepository.get("remove").toString(), containsString("RemoveBuddyAction"));
+		assertThat(SlashActionRepository.get("removebuddy").toString(), containsString("RemoveBuddyAction"));
 		assertThat(SlashActionRepository.get("sound").toString(), containsString("SoundAction"));
-		assertThat(SlashActionRepository.get("summonat").toString(), containsString("SummonAtAction"));
+		//assertThat(SlashActionRepository.get("summonat").toString(), containsString("SummonAtAction"));
 		assertThat(SlashActionRepository.get("summon").toString(), containsString("SummonAction"));
 		assertThat(SlashActionRepository.get("supportanswer").toString(), containsString("SupportAnswerAction"));
 		assertThat(SlashActionRepository.get("supporta").toString(), containsString("SupportAnswerAction"));
