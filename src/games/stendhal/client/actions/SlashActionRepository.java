@@ -46,7 +46,7 @@ public class SlashActionRepository {
 		
 		
 
-		actions.put("/", new RemessageAction());
+		actions.put("/", XMLActions.get("RemessageAction"));
 		actions.put("addbuddy", XMLActions.get("AddBuddyAction"));
 		actions.put("adminlevel", XMLActions.get("AdminLevelAction"));
 		actions.put("adminnote", XMLActions.get("AdminNoteAction"));
@@ -54,25 +54,25 @@ public class SlashActionRepository {
 		actions.put("altercreature", XMLActions.get("AlterCreatureAction"));
 		actions.put("alterquest", XMLActions.get("AlterQuestAction"));
 		actions.put("answer", XMLActions.get("AnswerAction"));
-		actions.put("atlas", new AtlasBrowserLaunchCommand());
+		actions.put("atlas", XMLActions.get("AtlasBrowserLaunchCommand"));
 		actions.put("away", XMLActions.get("AwayAction"));
 
 		actions.put("ban", XMLActions.get("BanAction"));
 
-		actions.put("clear", new ClearChatLogAction());
-		actions.put("clickmode", new ClickModeAction());
-		actions.put("clientinfo", new ClientInfoAction());
+		actions.put("clear", XMLActions.get("ClearChatLogAction"));
+		actions.put("clickmode", XMLActions.get("ClickModeAction"));
+		actions.put("clientinfo", XMLActions.get("ClientInfoAction"));
 		actions.put("commands", help);
-		actions.put("config", new ConfigAction());
+		actions.put("config", XMLActions.get("ConfigAction"));
 
-		actions.put("drop", new DropAction());
+		actions.put("drop", XMLActions.get("DropAction"));
 		
 		//actions.put("echo", XMLActions.get("EchoAction"));
 
-		actions.put("cast", new CastSpellAction());
+		actions.put("cast", XMLActions.get("CastSpellAction"));
 
 		actions.put("gag", XMLActions.get("GagAction"));
-		actions.put("gmhelp", new GMHelpAction());
+		actions.put("gmhelp", XMLActions.get("GMHelpAction"));
 		actions.put("group", new GroupManagementAction(groupMessage));
 		actions.put("groupmessage", groupMessage);
 		actions.put("grumpy", XMLActions.get("GrumpyAction"));

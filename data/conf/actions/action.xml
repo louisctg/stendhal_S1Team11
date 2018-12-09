@@ -19,7 +19,13 @@
   	<putAction param-name="newlevel"></putAction>
   </action>
   
-   <action name="RemoveBuddyAction">
+  <action name="AtlasBrowserLaunchCommand">
+  	<implementation class-name="games.stendhal.client.actions.AtlasBrowserLaunchCommandXML"/>
+  	<MaximumParameters param-num="0"></MaximumParameters>
+  	<MinimumParameters param-num="0"></MinimumParameters>
+  </action>
+  
+  <action name="RemoveBuddyAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters param-num="1"></MaximumParameters>
   	<MinimumParameters param-num="1"></MinimumParameters>
@@ -99,6 +105,48 @@
   	<putAction>reason</putAction>
   </action>
   
+  <action name="CastSpellAction">
+  	<implementation class-name="games.stendhal.client.actions.CastSpellActionXML"/>
+  	<MaximumParameters param-num="2"></MaximumParameters>
+  	<MinimumParameters param-num="2"></MinimumParameters>
+  	<type type-name="cast_spell"></type>
+  	<putAction>target</putAction>
+  	<putAction>baseitem</putAction>
+  	<putAction>baseslot</putAction>
+  </action>
+  
+  <action name="ClearChatLogAction">
+  	<implementation class-name="games.stendhal.client.actions.ClearChatLogActionXML"/>
+  	<MaximumParameters param-num="0"></MaximumParameters>
+  	<MinimumParameters param-num="0"></MinimumParameters>
+  </action>
+  
+  <action name="ClickModeAction">
+  	<implementation class-name="games.stendhal.client.actions.ClickModeActionXML"/>
+  	<MaximumParameters param-num="0"></MaximumParameters>
+  	<MinimumParameters param-num="0"></MinimumParameters>
+  </action>
+  
+  <action name="ClientInfoAction">
+  	<implementation class-name="games.stendhal.client.actions.ClientInfoActionXML"/>
+  	<MaximumParameters param-num="0"></MaximumParameters>
+  	<MinimumParameters param-num="0"></MinimumParameters>
+  	<type type-name="support"></type>
+  	<putAction param-name="text"></putAction>
+  </action>
+  
+  <action name="ConfigAction">
+  	<implementation class-name="games.stendhal.client.actions.ConfigActionXML"/>
+  	<MaximumParameters param-num="1"></MaximumParameters>
+  	<MinimumParameters param-num="1"></MinimumParameters>
+  </action>
+  
+  <action name="DropAction">
+  	<implementation class-name="games.stendhal.client.actions.DropActionXML"/>
+  	<MaximumParameters param-num="1"></MaximumParameters>
+  	<MinimumParameters param-num="1"></MinimumParameters>
+  </action>
+  
   <action name="GagAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>2</MaximumParameters>
@@ -107,6 +155,12 @@
   	<putAction>target</putAction>
   	<putAction>minutes</putAction>
   	<putAction>reason</putAction>
+  </action>
+  
+  <action name="GMHelpAction">
+  	<implementation class-name="games.stendhal.client.actions.GMHelpActionXML"/>
+  	<MaximumParameters param-num="1"></MaximumParameters>
+  	<MinimumParameters param-num="0"></MinimumParameters>
   </action>
   
   <action name="GrumpyAction">
@@ -175,6 +229,15 @@
   	<MaximumParameters>0</MaximumParameters>
   	<MinimumParameters>0</MinimumParameters>
   	<type>mute</type>
+  </action>
+  
+  <action name="RemessageAction">
+  	<implementation class-name="games.stendhal.client.actions.RemessageActionXML"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>tell</type>
+  	<putAction>target</putAction>
+  	<putAction>text</putAction>
   </action>
   
 

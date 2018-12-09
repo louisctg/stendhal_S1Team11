@@ -39,7 +39,6 @@ public class HelpActionXML extends XMLSlashAction {
 	
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
-		System.out.println("hi");
 		final String[] lines = {
 				"For a detailed reference, visit #https://stendhalgame.org/wiki/Stendhal_Manual",
 				"Here are the most-used commands:",
