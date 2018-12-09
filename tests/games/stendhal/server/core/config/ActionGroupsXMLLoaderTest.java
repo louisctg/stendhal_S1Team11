@@ -10,7 +10,9 @@ import java.util.List;
 import org.junit.Test;
 import org.xml.sax.SAXException;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultAction;
+import games.stendhal.client.actions.ActionGroupsXMLLoader;
+import games.stendhal.client.actions.DefaultAction;
+
 
 public class ActionGroupsXMLLoaderTest {
 	@Test
