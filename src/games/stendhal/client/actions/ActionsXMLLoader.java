@@ -108,7 +108,7 @@ public final class ActionsXMLLoader extends DefaultHandler {
 			implementation = null;
 			putAction = new ArrayList<String>();
 		} else if (qName.equals("type")) {
-			type = attrs.getValue("type");
+			type = attrs.getValue("type-name");
 		} else if (qName.equals("implementation")) {
 
 			final String className = attrs.getValue("class-name");
@@ -119,11 +119,11 @@ public final class ActionsXMLLoader extends DefaultHandler {
 				LOGGER.error("Unable to load class: " + className);
 			}
 		} else if (qName.equals("MaximumParameters")) {
-			maximumParameters = Integer.parseInt(attrs.getValue("MaximumParameters"));
+			maximumParameters = Integer.parseInt(attrs.getValue("param-num"));
 		} else if (qName.equals("MinimumParameters")) {
-			minimumParameters = Integer.parseInt(attrs.getValue("MinimumParameters"));
+			minimumParameters = Integer.parseInt(attrs.getValue("param-num"));
 		} else if (qName.equals("putAction")) {
-			putAction.add(attrs.getValue("putAction"));
+			putAction.add(attrs.getValue("param-name"));
 		}	
 	}
 
