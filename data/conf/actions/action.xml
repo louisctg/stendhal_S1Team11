@@ -303,7 +303,7 @@
   </action>  
   
   <action name="WhereAction">
-  	<implementation class-name="games.stendhal.client.actions.WhereActionXMl"/>
+  	<implementation class-name="games.stendhal.client.actions.WhereActionXML"/>
   	<MaximumParameters param-num="0"></MaximumParameters>
   	<MinimumParameters param-num="0"></MinimumParameters>
   	<type type-name="where"></type>
