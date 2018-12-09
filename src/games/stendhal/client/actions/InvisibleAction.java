@@ -1,9 +1,9 @@
 package games.stendhal.client.actions;
-/*
+
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.common.StringHelper;
 import marauroa.common.game.RPAction;
-*/
+
 public class InvisibleAction extends XMLSlashAction
 {
 	public InvisibleAction()
@@ -13,7 +13,7 @@ public class InvisibleAction extends XMLSlashAction
 	
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
-		/*final RPAction action = new RPAction();
+		final RPAction action = new RPAction();
 
 		action.put("type", this.getType());	
 		
@@ -29,7 +29,7 @@ public class InvisibleAction extends XMLSlashAction
 		}
 		
 		
-		ClientSingletonRepository.getClientFramework().send(action);		*/
+		ClientSingletonRepository.getClientFramework().send(action);
 		
 		return true;
 	}

@@ -2,23 +2,126 @@
 <actions xmlns="stendhal" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="stendhal ../actions.xsd ">
   
-
-  <action name="invisible action">
-  	<implementation class-name="games.stendhal.client.actions.InvisibleAction"/>
-  	<MaximumParameters>0</MaximumParameters>
-  	<MinimumParameters>0</MinimumParameters>
-  	<type>invisible</type>
-  </action>
- 
-  <action name="teleport to action">
+  <action name="AddBuddyAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>1</MaximumParameters>
   	<MinimumParameters>1</MinimumParameters>
-  	<type>teleportto</type>
+  	<type>addbuddy</type>
   	<putAction>target</putAction>
   </action>
   
-   <action name="jail action">
+  <action name="AdminLevelAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>2</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>adminlevel</type>
+  	<putAction>target</putAction>
+  	<putAction>newlevel</putAction>
+  </action>
+  
+  <action name="AdminNoteAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>1</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>adminnote</type>
+  	<putAction>target</putAction>
+  	<putAction>note</putAction>
+  </action>
+  
+  <action name="AlterAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>3</MaximumParameters>
+  	<MinimumParameters>3</MinimumParameters>
+  	<type>alter</type>
+  	<putAction>target</putAction>
+  	<putAction>stat</putAction>
+  	<putAction>mode</putAction>
+  	<putAction>value</putAction>
+  </action>
+  
+  <action name="AlterCreatureAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>2</MaximumParameters>
+  	<MinimumParameters>2</MinimumParameters>
+  	<type>altercreature</type>
+  	<putAction>target</putAction>
+  	<putAction>text</putAction>
+  </action>
+  
+  <action name="AlterQuestAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>3</MaximumParameters>
+  	<MinimumParameters>2</MinimumParameters>
+  	<type>alterquest</type>
+  	<putAction>target</putAction>
+  	<putAction>name</putAction>
+  	<putAction>state</putAction>
+  </action>
+  
+  <action name="AnswerAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>answer</type>
+  	<putAction>text</putAction>
+  </action>
+  
+  <action name="AwayAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>answer</type>
+  	<putAction>message</putAction>
+  </action>
+  
+  <action name="BanAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>2</MaximumParameters>
+  	<MinimumParameters>2</MinimumParameters>
+  	<type>ban</type>
+  	<putAction>target</putAction>
+  	<putAction>hours</putAction>
+  	<putAction>reason</putAction>
+  </action>
+  
+  <action name="GagAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>2</MaximumParameters>
+  	<MinimumParameters>2</MinimumParameters>
+  	<type>gag</type>
+  	<putAction>target</putAction>
+  	<putAction>minutes</putAction>
+  	<putAction>reason</putAction>
+  </action>
+  
+  <action name="GrumpyAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>grumpy</type>
+  	<putAction>reason</putAction>
+  </action>
+  
+  <action name="IgnoreAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>2</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>ignore</type>
+  	<putAction>list</putAction>
+  	<putAction>target</putAction>
+  	<putAction>duration</putAction>
+  	<putAction>reason</putAction>
+  </action> 
+  
+  <action name="InspectAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>1</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>inspect</type>
+  	<putAction>target</putAction>
+  </action>
+  
+  <action name="JailAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>2</MaximumParameters>
   	<MinimumParameters>2</MinimumParameters>
@@ -28,26 +131,119 @@
   	<putAction>reason</putAction>
   </action>
   
-  <action name="mute action">
+  <action name="ListProducersAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>listproducers</type>
+  </action>
+  
+  <action name="EmoteAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>emote</type>
+  	<putAction>text</putAction>
+  </action>
+  
+  <action name="MessageAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>1</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>tell</type>
+  	<putAction>target</putAction>
+  	<putAction>text</putAction>
+  </action>
+  
+  <action name="MuteAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>0</MaximumParameters>
   	<MinimumParameters>0</MinimumParameters>
   	<type>mute</type>
   </action>
   
-  <action name="who action">
+  <action name="RemoveBuddyAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>1</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>removebuddy</type>
+  	<putAction>target</putAction>
+  </action>
+  
+  <action name="SentenceAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>0</MaximumParameters>
   	<MinimumParameters>0</MinimumParameters>
-  	<type>who</type>
+  	<type>sentence</type>
+  	<putAction>value</putAction>
+  </action>
+
+  <action name="StoreMessageAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>1</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>storemessage</type>
+  	<putAction>target</putAction>
+  	<putAction>text</putAction>
+  </action>
+
+  <action name="SupportAnswerAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>1</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>supportanswer</type>
+  	<putAction>target</putAction>
+  	<putAction>text</putAction>
   </action>
   
-  <action name="where action">
+  <action name="SupportAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>support</type>
+  	<putAction>text</putAction>
+  </action>  
+  
+  <action name="TeleportAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>4</MaximumParameters>
+  	<MinimumParameters>4</MinimumParameters>
+  	<type>teleport</type>
+  	<putAction>target</putAction>
+  	<putAction>zone</putAction>
+  	<putAction>x</putAction>
+  	<putAction>y</putAction>
+  </action> 
+  
+  <action name="TeleportToAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>1</MaximumParameters>
+  	<MinimumParameters>1</MinimumParameters>
+  	<type>teleportto</type>
+  	<putAction>target</putAction>
+  </action> 
+
+  <action name="TellAllAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>tellall</type>
+  	<putAction>text</putAction>
+  </action>  
+  
+  <action name="WhereAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>0</MaximumParameters>
   	<MinimumParameters>0</MinimumParameters>
   	<type>where</type>
   	<putAction>target</putAction>
+  </action>
+  
+  <action name="WhoAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters>0</MaximumParameters>
+  	<MinimumParameters>0</MinimumParameters>
+  	<type>who</type>
   </action>
   
 
