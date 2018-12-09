@@ -67,7 +67,7 @@ public class AtlasBrowserLaunchCommandTest {
 	@Test
 	public void testExecuteWithUser() {
 		final MockClientUI clientUI = new MockClientUI();
-		final AtlasBrowserLaunchCommand action = new AtlasBrowserLaunchCommand();
+		final AtlasBrowserLaunchCommandXML action = new AtlasBrowserLaunchCommandXML();
 		
 		createPlayer();
 		
@@ -81,7 +81,7 @@ public class AtlasBrowserLaunchCommandTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AtlasBrowserLaunchCommand action = new AtlasBrowserLaunchCommand();
+		final AtlasBrowserLaunchCommandXML action = new AtlasBrowserLaunchCommandXML();
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -90,7 +90,7 @@ public class AtlasBrowserLaunchCommandTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AtlasBrowserLaunchCommand action = new AtlasBrowserLaunchCommand();
+		final AtlasBrowserLaunchCommandXML action = new AtlasBrowserLaunchCommandXML();
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 }

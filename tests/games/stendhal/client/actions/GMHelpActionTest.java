@@ -30,7 +30,7 @@ import games.stendhal.common.messages.SupportMessageTemplatesFactory;
 
 
 /**
- * Test the DropAction class.
+ * Test the GMHelpActionXML class.
  *
  * @author Louis Thurston-Gibson
  */
@@ -41,7 +41,7 @@ public class GMHelpActionTest {
 	@Test
 	public void testNullExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final GMHelpAction action = new GMHelpAction();
+		final GMHelpActionXML action = new GMHelpActionXML();
 		
 		assertTrue(action.execute(new String[]{null}, null));
 		
@@ -105,7 +105,7 @@ public class GMHelpActionTest {
 	@Test
 	public void testAlterExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final GMHelpAction action = new GMHelpAction();
+		final GMHelpActionXML action = new GMHelpActionXML();
 		
 		assertTrue(action.execute(new String[]{"alter"}, null));
 		
@@ -128,7 +128,7 @@ public class GMHelpActionTest {
 	@Test
 	public void testScriptExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final GMHelpAction action = new GMHelpAction();
+		final GMHelpActionXML action = new GMHelpActionXML();
 		
 		assertTrue(action.execute(new String[]{"script"}, null));
 		
@@ -167,7 +167,7 @@ public class GMHelpActionTest {
 	 */
 	@Test
 	public void testFalseExecute() {
-		final GMHelpAction action = new GMHelpAction();		
+		final GMHelpActionXML action = new GMHelpActionXML();		
 		assertFalse(action.execute(new String[]{"alter","second_param"}, null));
 		assertFalse(action.execute(new String[]{"wrong_param"}, null));
 	}
@@ -178,7 +178,7 @@ public class GMHelpActionTest {
 	@Test
 	public void testSuportExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final GMHelpAction action = new GMHelpAction();
+		final GMHelpActionXML action = new GMHelpActionXML();
 		
 		assertTrue(action.execute(new String[]{"support"}, null));
 		List<String> testLines = new LinkedList<String>();
@@ -197,7 +197,7 @@ public class GMHelpActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final GMHelpAction action = new GMHelpAction();
+		final GMHelpActionXML action = new GMHelpActionXML();
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
@@ -206,7 +206,7 @@ public class GMHelpActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final GMHelpAction action = new GMHelpAction();
+		final GMHelpActionXML action = new GMHelpActionXML();
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

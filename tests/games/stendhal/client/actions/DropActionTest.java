@@ -30,7 +30,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
 /**
- * Test the DropAction class.
+ * Test the DropActionXMLXML class.
  *
  * @author Martin Fuchs
  */
@@ -82,7 +82,7 @@ public class DropActionTest {
 	@Test
 	public void testNoMoney() {
 		final MockClientUI clientUI = new MockClientUI();
-		final DropAction action = new DropAction();
+		final DropActionXML action = new DropActionXML();
 
 		createPlayer();
 
@@ -97,7 +97,7 @@ public class DropActionTest {
 	@Test
 	public void testInvalidAmount() {
 		final MockClientUI clientUI = new MockClientUI();
-		final DropAction action = new DropAction();
+		final DropActionXML action = new DropActionXML();
 
 		createPlayer();
 
@@ -134,7 +134,7 @@ public class DropActionTest {
 		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
 		// issue "/drop money"
-		final DropAction action = new DropAction();
+		final DropActionXML action = new DropActionXML();
 		assertTrue(action.execute(new String[]{"money"}, ""));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -167,7 +167,7 @@ public class DropActionTest {
 		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
 		// issue "/drop 50 money"
-		final DropAction action = new DropAction();
+		final DropActionXML action = new DropActionXML();
 		assertTrue(action.execute(new String[]{"50"}, "money"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -200,7 +200,7 @@ public class DropActionTest {
 		player.getSlot("bag").addPreservingId(createItem("silver sword", SILVER_SWORD_ID, 1));
 
 		// issue "/drop money"
-		final DropAction action = new DropAction();
+		final DropActionXML action = new DropActionXML();
 		assertTrue(action.execute(new String[]{"silver"}, "sword"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -210,7 +210,7 @@ public class DropActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final DropAction action = new DropAction();
+		final DropActionXML action = new DropActionXML();
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
@@ -219,7 +219,7 @@ public class DropActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final DropAction action = new DropAction();
+		final DropActionXML action = new DropActionXML();
 		assertThat(action.getMinimumParameters(), is(1));
 	}
 
