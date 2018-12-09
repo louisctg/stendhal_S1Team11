@@ -17,6 +17,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.MockClientUI;
@@ -27,13 +28,19 @@ import games.stendhal.client.MockClientUI;
  * @author Louis Thurston-Gibson
  */
 public class HelpActionTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	  SlashActionRepository.register();
+	}
+	
 	/**
 	 * Tests for null parameter given the volume action.
 	 */
 	@Test
 	public void testExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final HelpAction action = new HelpAction();
+		final HelpActionXML action = (HelpActionXML) SlashActionRepository.get("help");
 		
 		assertTrue(action.execute(new String[]{null}, null));
 		
@@ -103,7 +110,7 @@ public class HelpActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final HelpAction action = new HelpAction();
+		final HelpActionXML action = (HelpActionXML) SlashActionRepository.get("help");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -112,7 +119,7 @@ public class HelpActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final HelpAction action = new HelpAction();
+		final HelpActionXML action = (HelpActionXML) SlashActionRepository.get("help");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

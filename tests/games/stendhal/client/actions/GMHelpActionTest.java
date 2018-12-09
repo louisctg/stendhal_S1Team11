@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.MockClientUI;
@@ -35,13 +36,19 @@ import games.stendhal.common.messages.SupportMessageTemplatesFactory;
  * @author Louis Thurston-Gibson
  */
 public class GMHelpActionTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	  SlashActionRepository.register();
+	}
+	
 	/**
 	 * Tests for null parameter given the volume action.
 	 */
 	@Test
 	public void testNullExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final GMHelpActionXML action = new GMHelpActionXML();
+		final GMHelpActionXML action = (GMHelpActionXML) SlashActionRepository.get("gmhelp");
 		
 		assertTrue(action.execute(new String[]{null}, null));
 		
@@ -105,7 +112,7 @@ public class GMHelpActionTest {
 	@Test
 	public void testAlterExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final GMHelpActionXML action = new GMHelpActionXML();
+		final GMHelpActionXML action = (GMHelpActionXML) SlashActionRepository.get("gmhelp");
 		
 		assertTrue(action.execute(new String[]{"alter"}, null));
 		
@@ -128,7 +135,7 @@ public class GMHelpActionTest {
 	@Test
 	public void testScriptExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final GMHelpActionXML action = new GMHelpActionXML();
+		final GMHelpActionXML action = (GMHelpActionXML) SlashActionRepository.get("gmhelp");
 		
 		assertTrue(action.execute(new String[]{"script"}, null));
 		
@@ -167,7 +174,7 @@ public class GMHelpActionTest {
 	 */
 	@Test
 	public void testFalseExecute() {
-		final GMHelpActionXML action = new GMHelpActionXML();		
+		final GMHelpActionXML action = (GMHelpActionXML) SlashActionRepository.get("gmhelp");
 		assertFalse(action.execute(new String[]{"alter","second_param"}, null));
 		assertFalse(action.execute(new String[]{"wrong_param"}, null));
 	}
@@ -178,7 +185,7 @@ public class GMHelpActionTest {
 	@Test
 	public void testSuportExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final GMHelpActionXML action = new GMHelpActionXML();
+		final GMHelpActionXML action = (GMHelpActionXML) SlashActionRepository.get("gmhelp");
 		
 		assertTrue(action.execute(new String[]{"support"}, null));
 		List<String> testLines = new LinkedList<String>();
@@ -197,7 +204,7 @@ public class GMHelpActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final GMHelpActionXML action = new GMHelpActionXML();
+		final GMHelpActionXML action = (GMHelpActionXML) SlashActionRepository.get("gmhelp");
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
@@ -206,7 +213,7 @@ public class GMHelpActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final GMHelpActionXML action = new GMHelpActionXML();
+		final GMHelpActionXML action = (GMHelpActionXML) SlashActionRepository.get("gmhelp");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 
