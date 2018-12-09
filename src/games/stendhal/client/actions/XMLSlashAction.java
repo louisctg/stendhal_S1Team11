@@ -16,7 +16,7 @@ import java.util.List;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.common.StringHelper;
-
+import javafx.util.Pair;
 import marauroa.common.game.RPAction;
 
 /**
@@ -28,7 +28,7 @@ public class XMLSlashAction implements SlashAction {
 	
 	private String type;
 	
-	private List<String> optionalParameters;
+	private List<Pair<String, String>> optionalParameters;
 	
 	private int maxParameters;
 	
@@ -43,7 +43,7 @@ public class XMLSlashAction implements SlashAction {
 	
 	
 	
-	public XMLSlashAction(String name, String type, List<String> optionalParameters, int maxParameters, int minParameters)
+	public XMLSlashAction(String name, String type, List<Pair<String, String>> optionalParameters, int maxParameters, int minParameters)
 	{
 		this.name = name;
 		this.type = type;
@@ -64,7 +64,6 @@ public class XMLSlashAction implements SlashAction {
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction action = new RPAction();
-
 		if(this.type!=null)
 		{
 			action.put("type", type);
@@ -77,10 +76,14 @@ public class XMLSlashAction implements SlashAction {
 		{
 			for(int i =0; i < optionalParameters.size(); i++ )
 			{
-				if(i == params.length)
-					action.put(optionalParameters.get(i), StringHelper.unquote(remainder));
+				if(optionalParameters.get(i).getValue().equals("remainder"))
+				{
+					action.put(optionalParameters.get(i).getKey(), StringHelper.unquote(remainder));
+				}					
 				else
-					action.put(optionalParameters.get(i), params[i]);
+				{
+					action.put(optionalParameters.get(i).getKey(), params[i]);
+				}					
 			}
 						
 		}	
@@ -115,7 +118,7 @@ public class XMLSlashAction implements SlashAction {
 		return minParameters;
 	}
 	
-	public List<String> getActionList()
+	public List<Pair<String, String>> getActionList()
 	{
 		return optionalParameters;
 	}
@@ -129,7 +132,7 @@ public class XMLSlashAction implements SlashAction {
 	}
 	
 	
-	public void setActionList(List<String> list)
+	public void setActionList(List<Pair<String, String>> list)
 	{
 		this.optionalParameters = list;
 	}

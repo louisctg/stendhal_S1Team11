@@ -30,6 +30,8 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javafx.util.Pair;
+
 
 
 
@@ -49,7 +51,7 @@ public final class ActionsXMLLoader extends DefaultHandler {
 	//private String text;
 	private int maximumParameters;//
 	private int minimumParameters;//
-	private List<String> putAction;//
+	private List<Pair<String, String>> putAction;//
 	
 	private List<DefaultAction> list;
 
@@ -106,7 +108,7 @@ public final class ActionsXMLLoader extends DefaultHandler {
 			minimumParameters = 0;
 			type = "";
 			implementation = null;
-			putAction = new ArrayList<String>();
+			putAction = new ArrayList<Pair<String, String>>();
 		} else if (qName.equals("type")) {
 			type = attrs.getValue("type-name");
 		} else if (qName.equals("implementation")) {
@@ -123,7 +125,8 @@ public final class ActionsXMLLoader extends DefaultHandler {
 		} else if (qName.equals("MinimumParameters")) {
 			minimumParameters = Integer.parseInt(attrs.getValue("param-num"));
 		} else if (qName.equals("putAction")) {
-			putAction.add(attrs.getValue("param-name"));
+			Pair<String, String> pair = new Pair<String, String>(attrs.getValue("param-name"), attrs.getValue("remainder"));
+			putAction.add(pair);
 		}	
 	}
 

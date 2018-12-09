@@ -43,6 +43,7 @@
 	
 	<complexType name="putAction">
 		<attribute name="param-name" type="string"></attribute>
+		<attribute name="remainder" type="string"></attribute>
 	</complexType>
 	
 	

@@ -22,6 +22,7 @@ import games.stendhal.client.actions.XMLSlashAction;
 import games.stendhal.server.core.rule.defaultruleset.creator.AbstractCreator;
 
 import games.stendhal.server.core.rule.defaultruleset.creator.FullActionCreator;
+import javafx.util.Pair;
 
 
 
@@ -49,7 +50,7 @@ public class DefaultAction {
 
 	private Class< ? > implementation = null;
 	
-	private List<String> putAction = null;
+	private List<Pair<String, String>> putAction = null;
 
 	
 	public DefaultAction() {
@@ -164,8 +165,8 @@ public class DefaultAction {
 	}
 	
 	/*PUTACTIONS*/
-	public void initializeActionsList(List<String> res) {
-		putAction = new ArrayList<String>();
+	public void initializeActionsList(List<Pair<String, String>> res) {
+		putAction = new ArrayList<Pair<String, String>>();
 
 		for (int i=0;i<res.size();i++) 
 		{
@@ -174,7 +175,7 @@ public class DefaultAction {
 	}	
 	
 	
-	public List<String> getActionList()
+	public List<Pair<String, String>> getActionList()
 	{
 		return putAction;
 	}
@@ -195,8 +196,8 @@ public class DefaultAction {
 		
 		os.append("    <type>"+type +"</type>\n");
 		
-		for (final String putparam : putAction) {
-			os.append("    	<putAction name=\"" + putparam + "\"/>\n");
+		for (final Pair<String, String> putparam : putAction) {
+			os.append("    	<putAction name=\"" + putparam.getKey() + "\"/>\n");
 		}
 		
 
