@@ -69,7 +69,8 @@ public class XMLSlashAction implements SlashAction {
 		{
 			action.put("type", type);
 		}
-		
+		if (hasInvalidArguments(params,remainder))
+			return false;
 			// Cases to handle proper format according to action.
 			
 		if(optionalParameters != null && !optionalParameters.isEmpty())
