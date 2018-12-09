@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 
 import games.stendhal.client.IGameScreen;
-import games.stendhal.client.actions.CastSpellAction;
+import games.stendhal.client.actions.SlashActionRepository;
 import games.stendhal.client.gui.GroundContainer;
 import games.stendhal.client.gui.j2d.entity.EntityView;
 import games.stendhal.client.gui.styled.cursor.StendhalCursor;
@@ -47,7 +47,8 @@ public class SpellCastingGroundContainerMouseState extends
 		// when target found construct and execute spellcasting action
 		if(target != null) {
 			String[] params = {String.valueOf(spell.getID().getObjectID()), String.valueOf(target.getEntity().getID().getObjectID())};
-			new CastSpellAction().execute(params, null);
+			SlashActionRepository.register();
+			SlashActionRepository.get("cast").execute(params, null);
 			this.switchState();
 		}
 		return true;
