@@ -18,6 +18,21 @@
   	<putAction param-name="target"></putAction>
   	<putAction param-name="newlevel"></putAction>
   </action>
+  
+   <action name="RemoveBuddyAction">
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<MaximumParameters param-num="1"></MaximumParameters>
+  	<MinimumParameters param-num="1"></MinimumParameters>
+  	<type type-name="removebuddy"></type>
+  	<putAction param-name="target"></putAction>
+  </action>
+  
+  <action name="HelpAction">
+  	<implementation class-name="games.stendhal.client.actions.HelpActionXML"/>
+  	<MaximumParameters param-num="0"></MaximumParameters>
+  	<MinimumParameters param-num="0"></MinimumParameters>
+  </action>
+  
  <!--  
   <action name="AdminNoteAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
@@ -162,14 +177,7 @@
   	<type>mute</type>
   </action>
   
-  <action name="RemoveBuddyAction">
-  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
-  	<MaximumParameters>1</MaximumParameters>
-  	<MinimumParameters>1</MinimumParameters>
-  	<type>removebuddy</type>
-  	<putAction>target</putAction>
-  </action>
-  
+
   <action name="SentenceAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>0</MaximumParameters>

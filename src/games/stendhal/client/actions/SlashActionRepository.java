@@ -36,18 +36,18 @@ public class SlashActionRepository {
 	 */
 	public static void register() {
 		
-		
+		loadXML();
 		final SlashAction msg = XMLActions.get("MessageAction");
 		final SlashAction supporta = XMLActions.get("SupportAnswerAction");
 		final SlashAction who = XMLActions.get("WhoAction");
-		final SlashAction help = new HelpAction();
+		final SlashAction help = XMLActions.get("HelpAction");
 		final GroupMessageAction groupMessage = new GroupMessageAction();
 		
-		loadXML();
+		
 		
 
 		actions.put("/", new RemessageAction());
-		actions.put("add", XMLActions.get("AddBuddyAction"));
+		actions.put("addbuddy", XMLActions.get("AddBuddyAction"));
 		actions.put("adminlevel", XMLActions.get("AdminLevelAction"));
 		actions.put("adminnote", XMLActions.get("AdminNoteAction"));
 		actions.put("alter", XMLActions.get("AlterAction"));
@@ -77,7 +77,7 @@ public class SlashActionRepository {
 		actions.put("groupmessage", groupMessage);
 		actions.put("grumpy", XMLActions.get("GrumpyAction"));
 
-		actions.put("help", help);
+		actions.put("help", XMLActions.get("HelpAction"));
 
 		actions.put("ignore", XMLActions.get("IgnoreAction"));
 		actions.put("inspect", XMLActions.get("InspectAction"));
@@ -100,7 +100,7 @@ public class SlashActionRepository {
 
 		actions.put("quit", new QuitAction());
 
-		actions.put("remove", XMLActions.get("RemoveBuddyAction"));
+		actions.put("removebuddy", XMLActions.get("RemoveBuddyAction"));
 
 		actions.put("sentence", XMLActions.get("SentenceAction"));
 		actions.put("status", XMLActions.get("SentenceAction")); // Alias for /sentence

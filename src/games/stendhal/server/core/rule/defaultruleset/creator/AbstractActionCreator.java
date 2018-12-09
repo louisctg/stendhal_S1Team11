@@ -22,7 +22,7 @@ import games.stendhal.client.actions.XMLSlashAction;
 /**
  * Base item creator (using a constructor).
  */
-abstract class AbstractActionCreator extends AbstractCreator<XMLSlashAction>{
+public abstract class AbstractActionCreator extends AbstractCreator<XMLSlashAction>{
 
 	static final Logger logger = Logger.getLogger(AbstractItemCreator.class);
 

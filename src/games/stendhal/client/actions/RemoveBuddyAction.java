@@ -33,7 +33,6 @@ class RemoveBuddyAction implements SlashAction {
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction remove = new RPAction();
-
 		remove.put("type", "removebuddy");
 		remove.put("target", params[0]);
 
