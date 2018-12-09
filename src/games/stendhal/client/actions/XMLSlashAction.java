@@ -163,5 +163,11 @@ public class XMLSlashAction implements SlashAction {
 	private boolean hasInvalidArguments(final String[] params, final String remainder) {
 		return (params == null) || (remainder == null) || (params.length < getMinimumParameters());
 	}
+	
+	@Override
+	public String toString()
+	{
+		return getName();
+	}
 
 }
