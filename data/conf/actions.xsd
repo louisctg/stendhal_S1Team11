@@ -14,10 +14,10 @@
 	<complexType name="ActionType">
 		<sequence>
 			<element name="implementation" type="Q4:implementation" ></element>
-			<element name="MaximumParameters" type="int" ></element>
-			<element name="MinimumParameters" type="int" ></element>
-			<element name="type" type="string" minOccurs="0" maxOccurs="1" ></element>
-			<element name="putAction" type="string" minOccurs="0" maxOccurs="unbounded" ></element>
+			<element name="MaximumParameters" type="Q4:MaximumParameters" ></element>
+			<element name="MinimumParameters" type="Q4:MinimumParameters" ></element>
+			<element name="type" type="Q4:type" minOccurs="0" maxOccurs="1" ></element>
+			<element name="putAction" type="Q4:putAction" minOccurs="0" maxOccurs="unbounded" ></element>
 		</sequence>
 		<attribute name="name" type="string" use="required"></attribute>
 	</complexType>
@@ -26,6 +26,24 @@
 	<complexType name="implementation">
 		<attribute name="class-name" type="string"></attribute>
 	</complexType>	
+	
+	<complexType name="MaximumParameters">
+		<attribute name="param-num" type="int"></attribute>
+	</complexType>
+	
+	
+	<complexType name="MinimumParameters">
+		<attribute name="param-num" type="int"></attribute>
+	</complexType>
+	
+	
+	<complexType name="type">
+		<attribute name="type-name" type="string"></attribute>
+	</complexType>
+	
+	<complexType name="putAction">
+		<attribute name="param-name" type="string"></attribute>
+	</complexType>
 	
 	
 	

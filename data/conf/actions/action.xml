@@ -4,21 +4,21 @@
   
   <action name="AddBuddyAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
-  	<MaximumParameters>1</MaximumParameters>
-  	<MinimumParameters>1</MinimumParameters>
-  	<type>addbuddy</type>
-  	<putAction>target</putAction>
+  	<MaximumParameters param-num="1"></MaximumParameters>
+  	<MinimumParameters param-num="1"></MinimumParameters>
+  	<type type-name="addbuddy"></type>
+  	<putAction param-name="target"></putAction>
   </action>
   
   <action name="AdminLevelAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
-  	<MaximumParameters>2</MaximumParameters>
-  	<MinimumParameters>1</MinimumParameters>
-  	<type>adminlevel</type>
-  	<putAction>target</putAction>
-  	<putAction>newlevel</putAction>
+  	<MaximumParameters param-num="2"></MaximumParameters>
+  	<MinimumParameters param-num="1"></MinimumParameters>
+  	<type type-name="adminlevel"></type>
+  	<putAction param-name="target"></putAction>
+  	<putAction param-name="newlevel"></putAction>
   </action>
-  
+ <!--  
   <action name="AdminNoteAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters>1</MaximumParameters>
@@ -76,9 +76,9 @@
   
   <action name="BanAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
-  	<MaximumParameters>2</MaximumParameters>
-  	<MinimumParameters>2</MinimumParameters>
-  	<type>ban</type>
+  	<MaximumParameters param-num=2></MaximumParameters>
+  	<MinimumParameters param-num=2></MinimumParameters>
+  	<type type-name="ban"></type>
   	<putAction>target</putAction>
   	<putAction>hours</putAction>
   	<putAction>reason</putAction>
@@ -248,7 +248,7 @@
   
 
   	
-  <!-- EXPLANATION
+   EXPLANATION
   	the action tag has 1 compulsory fields namely name. Action name is free to choose but I recommend to use the current file names.
   	implementation field will correspond to the generic or subclass
   	Maximum parameters is the max number of parameters SlashAction passes
