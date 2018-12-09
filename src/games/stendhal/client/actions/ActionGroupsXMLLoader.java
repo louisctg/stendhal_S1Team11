@@ -10,9 +10,10 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-package games.stendhal.server.core.config;
+package games.stendhal.client.actions;
 
 import java.io.IOException;
+
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,7 +22,9 @@ import org.apache.log4j.Logger;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultAction;
+import games.stendhal.server.core.config.GroupsXMLLoader;
+
+
 
 /**
  * Load and configure items via an XML configuration file.

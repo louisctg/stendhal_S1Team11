@@ -16,6 +16,7 @@ import java.util.List;
 
 import games.stendhal.client.ClientSingletonRepository;
 import games.stendhal.common.StringHelper;
+
 import marauroa.common.game.RPAction;
 
 /**
@@ -32,6 +33,15 @@ public class XMLSlashAction implements SlashAction {
 	private int maxParameters;
 	
 	private int minParameters;
+	
+	public XMLSlashAction()
+	{
+		
+		
+	}
+	
+	
+	
 	
 	public XMLSlashAction(String name, String type, List<String> optionalParameters, int maxParameters, int minParameters)
 	{
@@ -63,13 +73,175 @@ public class XMLSlashAction implements SlashAction {
 		 * 	else 
 		 * 		put param[i]
 		 */
-		
-		for(int i =0; i <= params.length; i++ )
+		if(optionalParameters != null && !optionalParameters.isEmpty())
 		{
-			if(i == params.length)
-				action.put(optionalParameters.get(i), StringHelper.unquote(remainder));
-			else
-				action.put(optionalParameters.get(i), params[i]);
+			for(int i =0; i <= params.length; i++ )
+			{
+				if(i == params.length)
+					action.put(optionalParameters.get(i), StringHelper.unquote(remainder));
+				else
+					action.put(optionalParameters.get(i), params[i]);
+			}
+		}
+		// Cases to handle proper format according to action.
+		switch(this.type) {
+			case "jail": {
+				if (remainder.length() == 0) {
+					return false;
+				}
+				action.put("target", params[0]);
+				action.put("minutes", params[1]);
+				action.put("reason", remainder);
+				}
+			case "where": {
+				action.put("target", StringHelper.unquote(remainder));
+			}
+			case "teleportto": {
+				action.put("target", StringHelper.unquote(remainder));
+			}
+			case "addbuddy": {
+				if (params == null) {
+					return false;
+				}
+				action.put("target", params[0]);
+			}
+			case "adminlevel": {
+				action.put("target", params[0]);
+
+				if ((params.length > 1) && (params[1] != null)) {
+					action.put("newlevel", params[1]);
+				}
+			}
+			case "adminnote": {
+				action.put("target", params[0]);
+				action.put("note", remainder);
+			}
+			case "alter": {
+				if (hasInvalidArguments(params, remainder)) {
+					return false;
+				}
+				action.put("target", params[0]);
+				action.put("stat", params[1]);
+				action.put("mode", params[2]);
+				action.put("value", remainder);
+			}
+			case "altercreature": {
+				if ((params == null) || (params.length < getMinimumParameters())) {
+					return false;
+				}
+				action.put("target", params[0]);
+				action.put("text", params[1]);
+			}
+			case "alterquest": {
+				if ((params == null) || (params.length < getMinimumParameters())) {
+					return false;
+				}
+				action.put("target", params[0]);
+				action.put("name", params[1]);
+				if ((params.length > 2) && (params[2] != null)) {
+					action.put("state", params[2]);
+				}
+			}
+			case "answer": {
+				if (!remainder.isEmpty()) {
+				action.put("text", remainder);
+				}
+			}
+			case "away": {
+				if (remainder.length() != 0) {
+					action.put("message", remainder);
+				}
+			}
+			case "ban": {
+				action.put("target", params[0]);
+				action.put("hours", params[1]);
+				action.put("reason", remainder);
+			}
+			case "gag": {
+				if (remainder.length() == 0) {
+					return false;
+				}
+				action.put("target", params[0]);
+				action.put("minutes", params[1]);
+				action.put("reason", remainder);
+			}
+			case "grumpy": {
+				if (remainder.length() != 0) {
+					action.put("reason", remainder);
+				}
+			}
+			case "ignore": {
+				if (params[0] == null) {
+					action.put("list", "1");
+				} else {
+					action.put("target", params[0]);
+					String duration = params[1];
+					if (duration != null) {
+						/*
+						 * Ignore "forever" values
+						 */
+						if (!duration.equals("*") || !duration.equals("-")) {
+						/*
+						 * Validate it's a number
+						 */
+							try {
+								Integer.parseInt(duration);
+							} catch (final NumberFormatException ex) {
+								return false;
+							}
+
+							action.put("duration", duration);
+						}
+					}
+
+					if (remainder.length() != 0) {
+						action.put("reason", remainder);
+					}
+				}
+			}
+			case "inspect": {
+				action.put("target", params[0]);
+			}
+			case "emote": {
+				action.put("text", remainder);
+			}
+			case "tell": {
+				String lastPlayerTell = params[0];
+
+				if (!remainder.isEmpty()) {
+					action.put("target", lastPlayerTell);
+					action.put("text", remainder);
+				}
+			}
+			case "removebuddy": {
+				action.put("target", params[0]);
+			}
+			case "sentence": {
+				if (params == null) {
+					return false;
+				}
+				action.put("value", remainder);
+			}
+			case "storemessage": {
+				action.put("target", params[0]);
+				action.put("text", remainder);
+			}
+			case "supportanswer": {
+				action.put("target", params[0]);
+				action.put("text", remainder);
+			}
+			case "support": {
+				action.put("text", remainder);
+			}
+			case "teleport": {
+				action.put("target", params[0]);
+				action.put("zone", params[1]);
+				action.put("x", params[2]);
+				action.put("y", params[3]);
+			}
+			case "tellall": {
+				action.put("text", remainder);
+			}
 		}
 		
 		ClientSingletonRepository.getClientFramework().send(action);
@@ -98,8 +270,19 @@ public class XMLSlashAction implements SlashAction {
 		return minParameters;
 	}
 	
+	public List<String> getActionList()
+	{
+		return optionalParameters;
+	}
 	
-
+	public String getType() {
+		return type;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
 	
 	public void setActionList(List<String> list)
 	{
@@ -124,6 +307,17 @@ public class XMLSlashAction implements SlashAction {
 	public void setMaximumParameters(int num)
 	{
 		this.maxParameters = num;
+	}
+	
+	/**
+	 * Checks whether the arguments passed are valid for execution.
+	 *
+	 * @param params to be evaluated
+	 * @param remainder to be evaluated
+	 * @return true if <code>params</code>.length too short or remainder is <code>null</code>
+	 */
+	private boolean hasInvalidArguments(final String[] params, final String remainder) {
+		return (params == null) || (remainder == null) || (params.length < getMinimumParameters());
 	}
 
 }

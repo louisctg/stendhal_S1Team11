@@ -15,8 +15,8 @@ package games.stendhal.server.core.rule.defaultruleset.creator;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
+import games.stendhal.client.actions.DefaultAction;
 import games.stendhal.client.actions.XMLSlashAction;
-import games.stendhal.server.core.rule.defaultruleset.DefaultAction;
 
 /**
  * Create an item class via the full arguments (<em>name, clazz,
@@ -32,7 +32,6 @@ public class FullActionCreator extends AbstractActionCreator {
 	@Override
 	protected XMLSlashAction createObject() throws IllegalAccessException,
 			InstantiationException, InvocationTargetException {
-		return (XMLSlashAction) construct.newInstance(new Object[] { this.defaultAction.getActionName(), this.defaultAction.getType(), 
-				 this.defaultAction.getActionList(), this.defaultAction.getMaximumParameters(), this.defaultAction.getMinimumParameters()});
+		return (XMLSlashAction) construct.newInstance(new Object[] {});
 	}
 }

@@ -16,15 +16,15 @@ import java.lang.reflect.Constructor;
 
 import org.apache.log4j.Logger;
 
-import games.stendhal.server.core.rule.defaultruleset.DefaultAction;
-import games.stendhal.client.actions.*;
+import games.stendhal.client.actions.DefaultAction;
+import games.stendhal.client.actions.XMLSlashAction;
 
 /**
  * Base item creator (using a constructor).
  */
 abstract class AbstractActionCreator extends AbstractCreator<XMLSlashAction>{
 
-	static final Logger logger = Logger.getLogger(AbstractActionCreator.class);
+	static final Logger logger = Logger.getLogger(AbstractItemCreator.class);
 
 	/**
 	 *
@@ -32,7 +32,7 @@ abstract class AbstractActionCreator extends AbstractCreator<XMLSlashAction>{
 	final DefaultAction defaultAction;
 
 	public AbstractActionCreator(DefaultAction defaultAction, final Constructor< ? > construct) {
-		super(construct, "Action");
+		super(construct, "XMLSlashAction");
 		this.defaultAction = defaultAction;
 	}
 }
