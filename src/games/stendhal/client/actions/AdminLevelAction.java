@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Displays or sets the admin level of a player.
  */
-class AdminLevelAction implements SlashAction {
+public class AdminLevelAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -30,6 +30,9 @@ class AdminLevelAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public AdminLevelAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if (params == null) {
@@ -47,25 +50,5 @@ class AdminLevelAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(adminlevel);
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 2;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 1;
 	}
 }

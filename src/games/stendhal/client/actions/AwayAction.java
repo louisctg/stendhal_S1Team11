@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Set/clear the player's away status.
  */
-class AwayAction implements SlashAction {
+public class AwayAction extends XMLSlashAction {
 
 	/**
 	 * Execute an away command.
@@ -30,6 +30,9 @@ class AwayAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
+	public AwayAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction action = new RPAction();
@@ -43,25 +46,5 @@ class AwayAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(action);
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

@@ -33,6 +33,8 @@ public interface EntityManager {
 	boolean addCreature(DefaultCreature creature);
 
 	boolean addSpell(DefaultSpell spell);
+	
+	
 
 	/**
 	 * @return a list of all Creatures that are used at least once.
@@ -57,6 +59,8 @@ public interface EntityManager {
 	 * @return list of default items
 	 */
 	Collection<DefaultItem> getDefaultItems();
+		
+	
 
 	/**
 	 * Returns the entity or <code>null</code> if the class is unknown.
@@ -131,7 +135,8 @@ public interface EntityManager {
 	 *
 	 */
 	boolean isItem(String clazz);
-
+	
+	
 	/**
 	 * Returns the item or <code>null</code> if the clazz is unknown.
 	 *
@@ -141,6 +146,17 @@ public interface EntityManager {
 	 *
 	 */
 	Item getItem(String clazz);
+	
+	
+	/**
+	 * Returns the action or <code>null</code> if the clazz is unknown.
+	 *
+	 * @param clazz
+	 *            the XMLSlashAction class, must not be <code>null</code>
+	 * @return the action or <code>null</code>
+	 *
+	 */
+	
 
 	/**
 	 * Retrieves a Spell or null if the spell is unknown.

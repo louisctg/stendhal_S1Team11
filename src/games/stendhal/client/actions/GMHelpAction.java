@@ -26,7 +26,7 @@ import games.stendhal.common.messages.SupportMessageTemplatesFactory;
 /**
  * Display command usage. Eventually replace this with ChatCommand.usage().
  */
-class GMHelpAction implements SlashAction {
+public class GMHelpAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -38,6 +38,9 @@ class GMHelpAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public GMHelpAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 	    List<String> lines;
@@ -148,25 +151,5 @@ class GMHelpAction implements SlashAction {
 			lines.add(template.getKey() + " - " + template.getValue());
 		}
 		return lines;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 1;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

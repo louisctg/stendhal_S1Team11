@@ -23,7 +23,7 @@ import marauroa.common.game.RPAction;
 /**
  * Drop a player item.
  */
-class DropAction implements SlashAction {
+public class DropAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -35,6 +35,9 @@ class DropAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
+	public DropAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		int quantity;
@@ -82,25 +85,5 @@ class DropAction implements SlashAction {
 		}
 		ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("You don't have any " + singularItemName));
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 1;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 1;
 	}
 }

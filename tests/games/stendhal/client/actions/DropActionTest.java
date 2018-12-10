@@ -17,10 +17,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.MockClientUI;
 import games.stendhal.client.MockStendhalClient;
+import games.stendhal.client.StendhalClient;
 import games.stendhal.client.entity.User;
 import games.stendhal.common.Constants;
 import marauroa.common.game.RPAction;
@@ -28,7 +31,7 @@ import marauroa.common.game.RPObject;
 import marauroa.common.game.RPObject.ID;
 
 /**
- * Test the DropAction class.
+ * Test the DropActionXMLXML class.
  *
  * @author Martin Fuchs
  */
@@ -68,6 +71,16 @@ public class DropActionTest {
 
 		return rpo;
 	}
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	  SlashActionRepository.register();
+	}
+	
+	@After
+	public void tearDown() throws Exception {
+		StendhalClient.resetClient();
+	}
 
 	/**
 	 * Tests for noMoney.
@@ -75,7 +88,7 @@ public class DropActionTest {
 	@Test
 	public void testNoMoney() {
 		final MockClientUI clientUI = new MockClientUI();
-		final DropAction action = new DropAction();
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 
 		createPlayer();
 
@@ -90,7 +103,7 @@ public class DropActionTest {
 	@Test
 	public void testInvalidAmount() {
 		final MockClientUI clientUI = new MockClientUI();
-		final DropAction action = new DropAction();
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 
 		createPlayer();
 
@@ -127,7 +140,7 @@ public class DropActionTest {
 		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
 		// issue "/drop money"
-		final DropAction action = new DropAction();
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertTrue(action.execute(new String[]{"money"}, ""));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -160,7 +173,7 @@ public class DropActionTest {
 		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
 		// issue "/drop 50 money"
-		final DropAction action = new DropAction();
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertTrue(action.execute(new String[]{"50"}, "money"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -193,7 +206,7 @@ public class DropActionTest {
 		player.getSlot("bag").addPreservingId(createItem("silver sword", SILVER_SWORD_ID, 1));
 
 		// issue "/drop money"
-		final DropAction action = new DropAction();
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertTrue(action.execute(new String[]{"silver"}, "sword"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -203,7 +216,7 @@ public class DropActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final DropAction action = new DropAction();
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
@@ -212,7 +225,7 @@ public class DropActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final DropAction action = new DropAction();
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertThat(action.getMinimumParameters(), is(1));
 	}
 

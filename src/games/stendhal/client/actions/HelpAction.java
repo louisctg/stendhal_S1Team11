@@ -19,7 +19,7 @@ import games.stendhal.common.NotificationType;
 /**
  * Display command usage. Eventually replace this with ChatCommand.usage().
  */
-class HelpAction implements SlashAction {
+public class HelpAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -30,7 +30,13 @@ class HelpAction implements SlashAction {
 	 *            Line content after parameters.
 	 *
 	 * @return <code>true</code> if was handled.
+	 * 
 	 */
+	
+	public HelpAction() {
+		super();
+	}
+	
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final String[] lines = {
@@ -95,25 +101,5 @@ class HelpAction implements SlashAction {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

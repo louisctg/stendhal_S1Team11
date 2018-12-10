@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Add a player to the ignore list.
  */
-class IgnoreAction implements SlashAction {
+public class IgnoreAction extends XMLSlashAction {
 
 	/**
 	 * Execute an ignore command.
@@ -30,6 +30,9 @@ class IgnoreAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
+	public IgnoreAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction action = new RPAction();
@@ -66,25 +69,5 @@ class IgnoreAction implements SlashAction {
 		}
 		ClientSingletonRepository.getClientFramework().send(action);
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 2;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

@@ -17,6 +17,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.MockStendhalClient;
@@ -24,6 +25,11 @@ import games.stendhal.client.StendhalClient;
 import marauroa.common.game.RPAction;
 
 public class AlterQuestActionTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
+	}
 
 	@After
 	public void tearDown() throws Exception {
@@ -45,7 +51,7 @@ public class AlterQuestActionTest {
 
 			}
 		};
-		final AlterQuestAction action = new AlterQuestAction();
+		final AlterQuestAction action = (AlterQuestAction) SlashActionRepository.get("alterquest");
 		assertFalse(action.execute(null, null));
 		assertFalse(action.execute(new String[] { "schnick" }, null));
 		assertTrue(action.execute(new String[] { "schnick", "schnack", "schnuck" }, null));

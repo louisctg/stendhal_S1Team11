@@ -11,8 +11,12 @@ import marauroa.common.game.RPAction;
  *
  * @author madmetzger
  */
-public class CastSpellAction implements SlashAction {
 
+public class CastSpellAction extends XMLSlashAction {
+
+	public CastSpellAction() {
+		super();
+	}
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		final RPAction action = new RPAction();
@@ -32,15 +36,4 @@ public class CastSpellAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(action);
 		return true;
 	}
-
-	@Override
-	public int getMaximumParameters() {
-		return 2;
-	}
-
-	@Override
-	public int getMinimumParameters() {
-		return 2;
-	}
-
 }

@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Send a message to the last player messaged.
  */
-class RemessageAction implements SlashAction {
+public class RemessageAction extends XMLSlashAction {
 	/**
 	 * Execute a chat command.
 	 *
@@ -29,6 +29,9 @@ class RemessageAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
+	public RemessageAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final MessageAction messageCommand = (MessageAction) SlashActionRepository.get("msg");
@@ -48,25 +51,5 @@ class RemessageAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(tell);
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

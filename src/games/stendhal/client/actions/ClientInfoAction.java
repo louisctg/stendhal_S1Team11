@@ -21,7 +21,7 @@ import marauroa.common.game.RPAction;
 /**
  * Send a support request message with client information.
  */
-class ClientInfoAction implements SlashAction {
+public class ClientInfoAction extends XMLSlashAction {
 	private boolean first = true;
 
 	/**
@@ -34,6 +34,9 @@ class ClientInfoAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
+	public ClientInfoAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction tell = new RPAction();
@@ -75,25 +78,5 @@ class ClientInfoAction implements SlashAction {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

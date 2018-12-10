@@ -31,7 +31,7 @@ import org.xml.sax.helpers.DefaultHandler;
 /**
  * Loads a list of files from an xml file.
  */
-class GroupsXMLLoader extends DefaultHandler {
+public class GroupsXMLLoader extends DefaultHandler {
 
 
 	private static final Logger logger = Logger.getLogger(GroupsXMLLoader.class);

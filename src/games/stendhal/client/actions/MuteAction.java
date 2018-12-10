@@ -21,7 +21,7 @@ import games.stendhal.client.sound.facade.Time;
 /**
  * mutes or umutes the sound
  */
-class MuteAction implements SlashAction {
+public class MuteAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -33,6 +33,9 @@ class MuteAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public MuteAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		boolean play = WtWindowManager.getInstance().getPropertyBoolean("sound.play", true);
@@ -45,25 +48,5 @@ class MuteAction implements SlashAction {
 			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Sounds are now off."));
 		}
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

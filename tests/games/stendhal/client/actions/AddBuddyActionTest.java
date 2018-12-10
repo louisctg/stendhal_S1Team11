@@ -30,6 +30,7 @@ public class AddBuddyActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
 	}
 
 	@After
@@ -49,7 +50,7 @@ public class AddBuddyActionTest {
 				assertEquals("schnick", action.get("target"));
 			}
 		};
-		final AddBuddyAction action = new AddBuddyAction();
+		final XMLSlashAction action = (XMLSlashAction) SlashActionRepository.get("addbuddy");
 		assertFalse(action.execute(null, null));
 		assertTrue(action.execute(new String []{"schnick"}, null));
 	}
@@ -59,7 +60,7 @@ public class AddBuddyActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AddBuddyAction action = new AddBuddyAction();
+		final XMLSlashAction action = (XMLSlashAction) SlashActionRepository.get("addbuddy");
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
@@ -68,7 +69,7 @@ public class AddBuddyActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AddBuddyAction action = new AddBuddyAction();
+		final XMLSlashAction action = (XMLSlashAction) SlashActionRepository.get("addbuddy");
 		assertThat(action.getMinimumParameters(), is(1));
 	}
 

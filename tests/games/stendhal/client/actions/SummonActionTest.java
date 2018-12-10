@@ -20,6 +20,7 @@ public class SummonActionTest {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
 		ClientFramework clientFramework = new ClientFramework() {
 
 			@Override
@@ -76,17 +77,20 @@ public class SummonActionTest {
 		new User();
 		assertNotNull(User.get());
 		String[] args = {"fishing rod"};
-		new SummonAction().execute(args, null);
+		final SummonAction action = (SummonAction) SlashActionRepository.get("summon");
+		action.execute(args, null);
 	}
 
 	@Test
 	public void testGetMaximumParameters() {
-		assertThat(new SummonAction().getMaximumParameters(), is(9));
+		final SummonAction action = (SummonAction) SlashActionRepository.get("summon");
+		assertThat(action.getMaximumParameters(), is(9));
 	}
 
 	@Test
 	public void testGetMinimumParameters() {
-		assertThat(new SummonAction().getMinimumParameters(), is(1));
+		final SummonAction action = (SummonAction) SlashActionRepository.get("summon");
+		assertThat(action.getMinimumParameters(), is(1));
 	}
 
 }

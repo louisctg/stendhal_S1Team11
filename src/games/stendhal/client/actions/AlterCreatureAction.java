@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Alter an entity's attributes.
  */
-class AlterCreatureAction implements SlashAction {
+public class AlterCreatureAction extends XMLSlashAction {
 
 	/**
 	 * Alters an entity's attributes.
@@ -30,6 +30,9 @@ class AlterCreatureAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public AlterCreatureAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if ((params == null) || (params.length < getMinimumParameters())) {
@@ -43,25 +46,5 @@ class AlterCreatureAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(alter);
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 2;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 2;
 	}
 }

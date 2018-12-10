@@ -3,8 +3,11 @@ package games.stendhal.client.actions;
 import games.stendhal.client.ClientSingletonRepository;
 import marauroa.common.game.RPAction;
 
-public class CreateChallengeAction implements SlashAction {
+public class CreateChallengeAction extends XMLSlashAction {
 
+	public CreateChallengeAction() {
+		super();
+	}
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		if(params == null) {
@@ -18,15 +21,4 @@ public class CreateChallengeAction implements SlashAction {
 
 		return true;
 	}
-
-	@Override
-	public int getMaximumParameters() {
-		return 1;
-	}
-
-	@Override
-	public int getMinimumParameters() {
-		return 1;
-	}
-
 }

@@ -21,7 +21,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
  *
  * @author hendrik
  */
-class ClickModeAction implements SlashAction {
+public class ClickModeAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -33,6 +33,9 @@ class ClickModeAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public ClickModeAction() {
+		super();
+	}
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		boolean doubleClick = WtWindowManager.getInstance().getPropertyBoolean("ui.doubleclick", false);
@@ -45,25 +48,4 @@ class ClickModeAction implements SlashAction {
 		}
 		return true;
 	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
-	}
-
 }

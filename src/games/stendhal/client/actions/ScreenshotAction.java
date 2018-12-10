@@ -32,7 +32,7 @@ import games.stendhal.common.NotificationType;
 /**
  * Take a screenshot, and save it in the game directory.
  */
-class ScreenshotAction implements SlashAction {
+public class ScreenshotAction extends XMLSlashAction {
 	/**
 	 * Execute save a screenshot command.
 	 *
@@ -43,6 +43,9 @@ class ScreenshotAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public ScreenshotAction() {
+		super();
+	}
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		ClientSingletonRepository.getUserInterface().addEventLine(new EventLine("", "Taking a screenshot...", NotificationType.CLIENT));
@@ -96,25 +99,5 @@ class ScreenshotAction implements SlashAction {
 	private String getFileName() {
 		String time = new SimpleDateFormat("-yyyy.MM.dd-HH.mm.ss").format(new Date());
 		return stendhal.getGameFolder() + stendhal.GAME_NAME.toLowerCase() + time + ".png";
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

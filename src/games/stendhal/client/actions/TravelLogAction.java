@@ -18,7 +18,10 @@ import marauroa.common.game.RPAction;
 /**
  * Request the travel (quest and producer) status.
  */
-class TravelLogAction implements SlashAction {
+public class TravelLogAction extends XMLSlashAction {
+	public TravelLogAction() {
+		super();
+	}
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		final RPAction action = new RPAction();
@@ -26,15 +29,5 @@ class TravelLogAction implements SlashAction {
 
 		ClientSingletonRepository.getClientFramework().send(action);
 		return true;
-	}
-
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

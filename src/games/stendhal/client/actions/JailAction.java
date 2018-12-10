@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Send a player to jail.
  */
-class JailAction implements SlashAction {
+public class JailAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -30,6 +30,9 @@ class JailAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public JailAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		/*

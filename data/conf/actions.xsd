@@ -1,0 +1,100 @@
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="stendhal"
+	xmlns:tns="http://www.example.org/actions" elementFormDefault="qualified"
+	xmlns:Q4="stendhal">
+
+	<element name="actions" type="Q4:ActionsType"></element>
+
+	<complexType name="ActionsType">
+		<sequence>
+			<element name="action" type="Q4:ActionType" minOccurs="0" maxOccurs="unbounded" />
+		</sequence>
+	</complexType>
+
+	
+	<complexType name="ActionType">
+		<sequence>
+			<element name="implementation" type="Q4:implementation" ></element>
+			<element name="MaximumParameters" type="Q4:MaximumParameters" ></element>
+			<element name="MinimumParameters" type="Q4:MinimumParameters" ></element>
+			<element name="type" type="Q4:type" minOccurs="0" maxOccurs="1" ></element>
+			<element name="putAction" type="Q4:putAction" minOccurs="0" maxOccurs="unbounded" ></element>
+		</sequence>
+		<attribute name="name" type="string" use="required"></attribute>
+	</complexType>
+	
+	
+	<complexType name="implementation">
+		<attribute name="class-name" type="string"></attribute>
+	</complexType>	
+	
+	<complexType name="MaximumParameters">
+		<attribute name="param-num" type="int"></attribute>
+	</complexType>
+	
+	
+	<complexType name="MinimumParameters">
+		<attribute name="param-num" type="int"></attribute>
+	</complexType>
+	
+	
+	<complexType name="type">
+		<attribute name="type-name" type="string"></attribute>
+	</complexType>
+	
+	<complexType name="putAction">
+		<attribute name="param-name" type="string"></attribute>
+		<attribute name="remainder" type="string"></attribute>
+	</complexType>
+	
+	
+	
+</schema>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+	<complexType name="implementation">
+		<attribute name="class-name" type="string"></attribute>
+	</complexType>
+
+	<xsd:complexType name="ActionType">
+		<sequence>
+			<element name="implementation" type="Q4:implementation"></element>
+		</sequence>
+		<xsd:attribute name="name" type="xsd:string" use="required />
+		<xsd:attribute name="action_type" type="xsd:string" use="required/>	
+		<xsd:attribute name="put_parameter1" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter2" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter3" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter4" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter5" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter6" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter7" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter8" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter9" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter10" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter11" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter12" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter13" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter14" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter15" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter16" type="xsd:string" use="optional" />
+		<xsd:attribute name="put_parameter17" type="xsd:string" use="optional" />
+	</xsd:complexType>
+
+-->

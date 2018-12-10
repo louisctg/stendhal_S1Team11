@@ -21,7 +21,7 @@ import games.stendhal.client.gui.wt.core.WtWindowManager;
  *
  * @author hendrik
  */
-class ConfigAction implements SlashAction {
+public class ConfigAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -33,6 +33,9 @@ class ConfigAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public ConfigAction() {
+		super();
+	}
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		String oldValue = WtWindowManager.getInstance().getProperty(params[0], "{undefined}");
@@ -47,25 +50,4 @@ class ConfigAction implements SlashAction {
 				"Changed configuration property " + params[0] + " from \"" + oldValue + "\" to \"" + remainder + "\"."));
 		return true;
 	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 1;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 1;
-	}
-
 }

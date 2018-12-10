@@ -23,7 +23,7 @@ import games.stendhal.common.NotificationType;
  *
  * @author hendrik
  */
-class AtlasBrowserLaunchCommand implements SlashAction{
+public class AtlasBrowserLaunchCommand extends XMLSlashAction{
 
 	/**
 	 * Opens the atlas URL at the current position
@@ -32,6 +32,9 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 	 * @param remainder ignored
 	 * @return <code>true</code>
 	 */
+	public AtlasBrowserLaunchCommand() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		StringBuilder url = new StringBuilder();
@@ -53,25 +56,4 @@ class AtlasBrowserLaunchCommand implements SlashAction{
 		BareBonesBrowserLaunch.openURL(urlString);
 		return true;
 	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
-	}
-
 }

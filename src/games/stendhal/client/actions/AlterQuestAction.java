@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * alters the server side state of a quest
  */
-class AlterQuestAction implements SlashAction {
+public class AlterQuestAction extends XMLSlashAction {
 
 	/**
 	 * Alters an entity's attributes.
@@ -30,6 +30,9 @@ class AlterQuestAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public AlterQuestAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if ((params == null) || (params.length < getMinimumParameters())) {
@@ -45,26 +48,4 @@ class AlterQuestAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(action);
 		return true;
 	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 3;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-
-		return 2;
-	}
-
 }

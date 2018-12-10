@@ -165,6 +165,7 @@ public class DefaultEntityManager implements EntityManager {
 
 		return true;
 	}
+	
 
 	@Override
 	public boolean addCreature(final DefaultCreature creature) {
@@ -209,6 +210,7 @@ public class DefaultEntityManager implements EntityManager {
 		return createdItem.values();
 	}
 
+	
 	/**
 	 * returns the entity or <code>null</code> if the id is unknown.
 	 *
@@ -333,6 +335,7 @@ public class DefaultEntityManager implements EntityManager {
 
 		return classToItem.containsKey(clazz);
 	}
+	
 
 	/**
 	 * @param clazz
@@ -358,6 +361,7 @@ public class DefaultEntityManager implements EntityManager {
 
 		return null;
 	}
+	
 
 	@Override
 	public Spell getSpell(String spell) {
@@ -394,6 +398,7 @@ public class DefaultEntityManager implements EntityManager {
 	public Collection<DefaultItem> getDefaultItems() {
 		return classToItem.values();
 	}
+	
 
 	public Collection<String> getConfiguredItems() {
 		return classToItem.keySet();

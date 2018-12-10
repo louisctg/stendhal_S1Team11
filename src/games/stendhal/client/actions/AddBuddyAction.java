@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Add a player to buddy list.
  */
-class AddBuddyAction implements SlashAction {
+public class AddBuddyAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -30,6 +30,9 @@ class AddBuddyAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
+	public AddBuddyAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if (params == null) {
@@ -43,25 +46,5 @@ class AddBuddyAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(add);
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 1;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 1;
 	}
 }

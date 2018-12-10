@@ -22,7 +22,7 @@ import games.stendhal.common.NotificationType;
  *
  * @author hendrik
  */
-class ProfileAction implements SlashAction{
+public class ProfileAction extends XMLSlashAction{
 
 	/**
 	 * Opens an URL with the browser
@@ -31,6 +31,9 @@ class ProfileAction implements SlashAction{
 	 * @param remainder ignored
 	 * @return <code>true</code>
 	 */
+	public ProfileAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		String url = "https://stendhalgame.org/character/";
@@ -52,25 +55,4 @@ class ProfileAction implements SlashAction{
 
 		return true;
 	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 1;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
-	}
-
 }
