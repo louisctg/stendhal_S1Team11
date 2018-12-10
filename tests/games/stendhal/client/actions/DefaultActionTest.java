@@ -48,13 +48,14 @@ public class DefaultActionTest {
 		// This will need to be changed if first action changes in action/actions.xml
 		final ActionGroupsXMLLoader loader = new ActionGroupsXMLLoader(new URI("/data/conf/actions.xml"));
 		List<DefaultAction> loadedDefaultActions = loader.load();
-		String addBuddyAction = "  <action name=\"AddBuddyAction\">\n" + 
-								"    <implementation class-name=\"games.stendhal.client.actions.XMLSlashAction\"/>\n" + 
+		String addBuddyAction = "  <action name=\"AcceptChallengeAction\">\n" + 
+								"    <implementation class-name=\"games.stendhal.client.actions.AcceptChallengeAction\"/>\n" + 
 								"    <MaximumParameters>1</MaximumParameters>\n" + 
 								"    <MinimumParameters>1</MinimumParameters>\n" + 
-								"    <type>addbuddy</type>\n" + 
+								"    <type>challenge</type>\n" + 
+								"    	<putAction name=\"action\"/>\n" + 
 								"    	<putAction name=\"target\"/>\n" + 
 								"  </action>\n";
-		assertEquals(loadedDefaultActions.get(0).toXML(),addBuddyAction);
+		assertEquals(addBuddyAction,loadedDefaultActions.get(0).toXML());
 	}
 }

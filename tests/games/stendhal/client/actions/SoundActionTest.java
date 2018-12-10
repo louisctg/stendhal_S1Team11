@@ -17,6 +17,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.MockClientUI;
@@ -28,13 +29,18 @@ import games.stendhal.client.MockClientUI;
  */
 public class SoundActionTest {
 
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
+	}
+	
 	/**
 	 * Test for execute.
 	 */
 	@Test
 	public void testSwitchingMute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final SoundAction action = new SoundAction();
+		final SoundAction action = (SoundAction) SlashActionRepository.get("sound");
 		
 		assertTrue(action.execute(null, null));
 
@@ -47,7 +53,7 @@ public class SoundActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final SoundAction action = new SoundAction();
+		final SoundAction action = (SoundAction) SlashActionRepository.get("sound");
 		assertThat(action.getMaximumParameters(), is(5));
 	}
 
@@ -56,7 +62,7 @@ public class SoundActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final SoundAction action = new SoundAction();
+		final SoundAction action = (SoundAction) SlashActionRepository.get("sound");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

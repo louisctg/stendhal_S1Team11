@@ -18,6 +18,7 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.After;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import games.stendhal.client.MockClientUI;
@@ -28,6 +29,12 @@ import games.stendhal.client.MockClientUI;
  * @author Louis Thurston-Gibson
  */
 public class VolumeActionTest {
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
+	}
+	
 	/**
 	 * Reset all values to original.
 	 * @throws Exception
@@ -35,7 +42,7 @@ public class VolumeActionTest {
 	@After
 	public void tearDown() throws Exception {
 		new MockClientUI();
-		final VolumeAction action = new VolumeAction();
+		final VolumeAction action = (VolumeAction) SlashActionRepository.get("volume");
 		
 		action.execute(new String[]{"master","100"}, null);
 		action.execute(new String[]{"gui","100"}, null);
@@ -51,7 +58,7 @@ public class VolumeActionTest {
 	@Test
 	public void testNullParamZero() {
 		final MockClientUI clientUI = new MockClientUI();
-		final VolumeAction action = new VolumeAction();
+		final VolumeAction action = (VolumeAction) SlashActionRepository.get("volume");
 		
 		assertTrue(action.execute(new String[]{null}, null));
 
@@ -73,7 +80,7 @@ public class VolumeActionTest {
 	@Test
 	public void testNoNumber() {
 		final MockClientUI clientUI = new MockClientUI();
-		final VolumeAction action = new VolumeAction();
+		final VolumeAction action = (VolumeAction) SlashActionRepository.get("volume");
 		
 		assertTrue(action.execute(new String[]{"master",null}, null));
 		String[] lines = clientUI.getEventBuffer().toString().split("\\n");
@@ -87,7 +94,7 @@ public class VolumeActionTest {
 	@Test
 	public void testChangeMultipleParamZero() {
 		final MockClientUI clientUI = new MockClientUI();
-		final VolumeAction action = new VolumeAction();
+		final VolumeAction action = (VolumeAction) SlashActionRepository.get("volume");
 		
 		assertTrue(action.execute(new String[]{"master","50"}, null));
 		assertTrue(action.execute(new String[]{"gui","73"}, null));
@@ -116,7 +123,7 @@ public class VolumeActionTest {
 	@Test
 	public void testNotANumber() {
 		final MockClientUI clientUI = new MockClientUI();
-		final VolumeAction action = new VolumeAction();
+		final VolumeAction action = (VolumeAction) SlashActionRepository.get("volume");
 		
 		assertTrue(action.execute(new String[]{"master","5..0"}, null));
 		String[] lines = clientUI.getEventBuffer().toString().split("\\n");
@@ -130,7 +137,7 @@ public class VolumeActionTest {
 	@Test
 	public void testWrongGroup() {
 		final MockClientUI clientUI = new MockClientUI();
-		final VolumeAction action = new VolumeAction();
+		final VolumeAction action = (VolumeAction) SlashActionRepository.get("volume");
 		
 		assertTrue(action.execute(new String[]{"wrong_groupname","50"}, null));
 		String[] lines = clientUI.getEventBuffer().toString().split("\\n");
@@ -144,7 +151,7 @@ public class VolumeActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final VolumeAction action = new VolumeAction();
+		final VolumeAction action = (VolumeAction) SlashActionRepository.get("volume");
 		assertThat(action.getMaximumParameters(), is(2));
 	}
 
@@ -153,7 +160,7 @@ public class VolumeActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final VolumeAction action = new VolumeAction();
+		final VolumeAction action = (VolumeAction) SlashActionRepository.get("volume");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

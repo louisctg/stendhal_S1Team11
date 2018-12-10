@@ -54,7 +54,9 @@ public class AtlasBrowserLaunchCommandTest {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		SlashActionRepository.register();
 	}
+	
 
 	@After
 	public void tearDown() throws Exception {
@@ -67,7 +69,7 @@ public class AtlasBrowserLaunchCommandTest {
 	@Test
 	public void testExecuteWithUser() {
 		final MockClientUI clientUI = new MockClientUI();
-		final AtlasBrowserLaunchCommandXML action = new AtlasBrowserLaunchCommandXML();
+		final AtlasBrowserLaunchCommand action = (AtlasBrowserLaunchCommand) SlashActionRepository.get("atlas");
 		
 		createPlayer();
 		
@@ -81,7 +83,7 @@ public class AtlasBrowserLaunchCommandTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final AtlasBrowserLaunchCommandXML action = new AtlasBrowserLaunchCommandXML();
+		final AtlasBrowserLaunchCommand action = (AtlasBrowserLaunchCommand) SlashActionRepository.get("atlas");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -90,7 +92,7 @@ public class AtlasBrowserLaunchCommandTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final AtlasBrowserLaunchCommandXML action = new AtlasBrowserLaunchCommandXML();
+		final AtlasBrowserLaunchCommand action = (AtlasBrowserLaunchCommand) SlashActionRepository.get("atlas");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 }
