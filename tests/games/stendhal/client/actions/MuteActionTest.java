@@ -38,12 +38,18 @@ public class MuteActionTest {
 		
 		assertTrue(action.execute(new String[]{null}, null));
 
-		assertEquals(clientUI.getEventBuffer(), "Sounds are now off.");
+		boolean possibility1 = clientUI.getEventBuffer() == "Sounds are now off.";
+		boolean possibility2 = clientUI.getEventBuffer() == "Sounds are now on.";
+		
+		assertTrue(possibility1 || possibility2);
 		
 		assertTrue(action.execute(new String[]{null}, null));
 		
 		// EventBuffer accumulates and doesn't flush so responses are concatenated
-		assertEquals(clientUI.getEventBuffer(), "Sounds are now off.\nSounds are now on.");
+		if (possibility1)
+		  assertEquals(clientUI.getEventBuffer(), "Sounds are now off.\nSounds are now on.");
+		else
+		  assertEquals(clientUI.getEventBuffer(), "Sounds are now on.\nSounds are now off.");
 	}
 	
 	/**
