@@ -68,18 +68,19 @@ public class XMLSlashAction implements SlashAction {
 		{
 			action.put("type", type);
 		}
-		if (hasInvalidArguments(params,remainder))
-			return false;
-			// Cases to handle proper format according to action.
 			
 		if(optionalParameters != null && !optionalParameters.isEmpty())
 		{
 			for(int i =0; i < optionalParameters.size(); i++ )
 			{
-				if(optionalParameters.get(i).getValue().equals("remainder"))
+				if(optionalParameters.get(i).getValue().equals("remainderString"))
 				{
 					action.put(optionalParameters.get(i).getKey(), StringHelper.unquote(remainder));
-				}					
+				}	
+				else if(optionalParameters.get(i).getValue().equals("remainder"))
+				{
+					action.put(optionalParameters.get(i).getKey(), remainder);
+				}
 				else
 				{
 					action.put(optionalParameters.get(i).getKey(), params[i]);

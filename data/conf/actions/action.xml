@@ -52,7 +52,7 @@
   	<MaximumParameters param-num="1"></MaximumParameters>
   	<MinimumParameters param-num="1"></MinimumParameters>
   	<type type-name="removebuddy"></type>
-  	<putAction param-name="target"></putAction>
+  	<putAction param-name="target" remainder=""></putAction>
   </action>
   
   <action name="HelpAction">
@@ -67,8 +67,8 @@
   	<MaximumParameters param-num="1"></MaximumParameters>
   	<MinimumParameters param-num="1"></MinimumParameters>
   	<type type-name="adminnote"></type>
-  	<putAction param-name="target"></putAction>
-  	<putAction param-name="note"></putAction>
+  	<putAction param-name="target" remainder=""></putAction>
+  	<putAction param-name="note" remainder="remainder"></putAction>
   </action>
   
   <action name="AlterAction">
@@ -179,7 +179,7 @@
   </action>
   
   <action name="GagAction">
-  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
+  	<implementation class-name="games.stendhal.client.actions.GagAction"/>
   	<MaximumParameters param-num="2"></MaximumParameters>
   	<MinimumParameters param-num="2"></MinimumParameters>
   	<type type-name="gag"></type>
@@ -202,14 +202,6 @@
   	<putAction param-name="reason"></putAction>
   </action>
   
-  <action name="GroupMessageAction">
-  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
-  	<MaximumParameters param-num="0"></MaximumParameters>
-  	<MinimumParameters param-num="0"></MinimumParameters>
-  	<type type-name="group_message"></type>
-  	<putAction param-name="text"></putAction>
-  </action>
-  
   <action name="IgnoreAction">
   	<implementation class-name="games.stendhal.client.actions.IgnoreAction"/>
   	<MaximumParameters param-num="2"></MaximumParameters>
@@ -226,7 +218,7 @@
   	<MaximumParameters param-num="1"></MaximumParameters>
   	<MinimumParameters param-num="1"></MinimumParameters>
   	<type type-name="inspect"></type>
-  	<putAction param-name="target"></putAction>
+  	<putAction param-name="target" remainder=""></putAction>
   </action>
   
   <action name="JailAction">
@@ -251,11 +243,11 @@
   	<MaximumParameters param-num="0"></MaximumParameters>
   	<MinimumParameters param-num="0"></MinimumParameters>
   	<type type-name="emote"></type>
-  	<putAction param-name="text"></putAction>
+  	<putAction param-name="text" remainder="remainder"></putAction>
   </action>
   
   <action name="InvisibleAction">
-  	<implementation class-name="games.stendhal.client.actions.SlashActionXML"/>
+  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
   	<MaximumParameters param-num="0"></MaximumParameters>
   	<MinimumParameters param-num="0"></MinimumParameters>
   	<type type-name="invisible"></type>
@@ -335,8 +327,8 @@
   	<MaximumParameters param-num="1"></MaximumParameters>
   	<MinimumParameters param-num="1"></MinimumParameters>
   	<type type-name="storemessage"></type>
-  	<putAction param-name="target"></putAction>
-  	<putAction param-name="text"></putAction>
+  	<putAction param-name="target" remainder=""></putAction>
+  	<putAction param-name="text" remainder="remainder"></putAction>
   </action>
 
   <action name="SummonAction">
@@ -351,8 +343,8 @@
   	<MaximumParameters param-num="1"></MaximumParameters>
   	<MinimumParameters param-num="1"></MinimumParameters>
   	<type type-name="supportanswer"></type>
-  	<putAction param-name="target"></putAction>
-  	<putAction param-name="text"></putAction>
+  	<putAction param-name="target" remainder=""></putAction>
+  	<putAction param-name="text" remainder="remainder"></putAction>
   </action>
   
   <action name="SupportAction">
@@ -360,7 +352,7 @@
   	<MaximumParameters param-num="0"></MaximumParameters>
   	<MinimumParameters param-num="0"></MinimumParameters>
   	<type type-name="support"></type>
-  	<putAction param-name="text"></putAction>
+  	<putAction param-name="text" remainder="remainder"></putAction>
   </action>  
   
   <action name="TeleportAction">
@@ -368,18 +360,18 @@
   	<MaximumParameters param-num="4"></MaximumParameters>
   	<MinimumParameters param-num="4"></MinimumParameters>
   	<type type-name="teleport"></type>
-  	<putAction param-name="target"></putAction>
-  	<putAction param-name="zone"></putAction>
-  	<putAction param-name="x"></putAction>
-  	<putAction param-name="y"></putAction>
+  	<putAction param-name="target" remainder=""></putAction>
+  	<putAction param-name="zone" remainder=""></putAction>
+  	<putAction param-name="x" remainder=""></putAction>
+  	<putAction param-name="y" remainder=""></putAction>
   </action> 
   
   <action name="TeleportToAction">
   	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
-  	<MaximumParameters param-num="1"></MaximumParameters>
-  	<MinimumParameters param-num="1"></MinimumParameters>
+  	<MaximumParameters param-num="0"></MaximumParameters>
+  	<MinimumParameters param-num="0"></MinimumParameters>
   	<type type-name="teleportto"></type>
-  	<putAction param-name="target"></putAction>
+  	<putAction param-name="target" remainder="remainderString"></putAction>
   </action> 
 
   <action name="TellAllAction">
@@ -387,7 +379,7 @@
   	<MaximumParameters param-num="0"></MaximumParameters>
   	<MinimumParameters param-num="0"></MinimumParameters>
   	<type type-name="tellall"></type>
-  	<putAction param-name="text"></putAction>
+  	<putAction param-name="text" remainder="remainder"></putAction>
   </action>  
   
    <action name="TravelLogAction">
@@ -407,7 +399,7 @@
   	<MaximumParameters param-num="0"></MaximumParameters>
   	<MinimumParameters param-num="0"></MinimumParameters>
   	<type type-name="where"></type>
-  	<putAction param-name="target"></putAction>
+  	<putAction param-name="target" remainder="remainderString"></putAction>
   </action>
   
   <action name="WhoAction">
