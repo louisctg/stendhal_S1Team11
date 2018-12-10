@@ -12,12 +12,11 @@ import marauroa.common.game.RPAction;
  * @author madmetzger
  */
 
-public class CastSpellActionXML extends XMLSlashAction {
+public class CastSpellAction extends XMLSlashAction {
 
-	public CastSpellActionXML() {
+	public CastSpellAction() {
 		super();
 	}
-	
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		final RPAction action = new RPAction();

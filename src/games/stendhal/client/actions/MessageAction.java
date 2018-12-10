@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Send a message to a player.
  */
-class MessageAction implements SlashAction {
+public class MessageAction extends XMLSlashAction {
 
 	private String lastPlayerTell;
 
@@ -32,6 +32,9 @@ class MessageAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
+	public MessageAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		lastPlayerTell = params[0];
@@ -49,27 +52,6 @@ class MessageAction implements SlashAction {
 
 		return false;
 	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 1;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 1;
-	}
-
 	/**
 	 * Gets the last player we have sent something using /tell.
 	 *

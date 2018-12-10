@@ -20,7 +20,7 @@ import games.stendhal.client.gui.settings.SettingsDialog;
 /**
  * Show the settings dialog
  */
-class SettingsAction implements SlashAction {
+public class SettingsAction extends XMLSlashAction {
 	private SettingsDialog dialog;
 
 	/**
@@ -33,6 +33,9 @@ class SettingsAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public SettingsAction() {
+		super();
+	}
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		if (dialog == null) {
@@ -48,25 +51,5 @@ class SettingsAction implements SlashAction {
 		dialog.toFront();
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

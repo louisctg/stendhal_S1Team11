@@ -26,7 +26,7 @@ import games.stendhal.common.messages.SupportMessageTemplatesFactory;
 /**
  * Display command usage. Eventually replace this with ChatCommand.usage().
  */
-public class GMHelpActionXML extends XMLSlashAction {
+public class GMHelpAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -38,7 +38,7 @@ public class GMHelpActionXML extends XMLSlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
-	public GMHelpActionXML() {
+	public GMHelpAction() {
 		super();
 	}
 	@Override

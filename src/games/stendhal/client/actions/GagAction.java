@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Gags a player.
  */
-class GagAction implements SlashAction {
+public class GagAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -30,6 +30,9 @@ class GagAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public GagAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		/*
@@ -49,25 +52,5 @@ class GagAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(action);
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 2;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 2;
 	}
 }

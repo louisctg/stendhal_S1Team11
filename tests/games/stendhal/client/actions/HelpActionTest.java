@@ -40,7 +40,7 @@ public class HelpActionTest {
 	@Test
 	public void testExecute() {
 		final MockClientUI clientUI = new MockClientUI();
-		final HelpActionXML action = (HelpActionXML) SlashActionRepository.get("help");
+		final HelpAction action = (HelpAction) SlashActionRepository.get("help");
 		
 		assertTrue(action.execute(new String[]{null}, null));
 		
@@ -110,7 +110,7 @@ public class HelpActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final HelpActionXML action = (HelpActionXML) SlashActionRepository.get("help");
+		final HelpAction action = (HelpAction) SlashActionRepository.get("help");
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -119,7 +119,7 @@ public class HelpActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final HelpActionXML action = (HelpActionXML) SlashActionRepository.get("help");
+		final HelpAction action = (HelpAction) SlashActionRepository.get("help");
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

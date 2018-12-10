@@ -23,7 +23,7 @@ import games.stendhal.common.NotificationType;
  *
  * @author hendrik
  */
-class AtlasBrowserLaunchCommandXML extends XMLSlashAction{
+public class AtlasBrowserLaunchCommand extends XMLSlashAction{
 
 	/**
 	 * Opens the atlas URL at the current position
@@ -32,6 +32,9 @@ class AtlasBrowserLaunchCommandXML extends XMLSlashAction{
 	 * @param remainder ignored
 	 * @return <code>true</code>
 	 */
+	public AtlasBrowserLaunchCommand() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		StringBuilder url = new StringBuilder();

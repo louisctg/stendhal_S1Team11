@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Writes the sentence that appears on Website.
  */
-class SentenceAction implements SlashAction {
+public class SentenceAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -30,6 +30,9 @@ class SentenceAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
+	public SentenceAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if (params == null) {
@@ -43,25 +46,5 @@ class SentenceAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(add);
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

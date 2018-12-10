@@ -18,7 +18,7 @@ import games.stendhal.client.gui.chatlog.StandardEventLine;
 /**
  * displays a help message about the new commands /mute and /volumne
  */
-class SoundAction implements SlashAction {
+public class SoundAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -30,29 +30,12 @@ class SoundAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public SoundAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		j2DClient.get().addEventLine(new StandardEventLine("This command is outdated. Please use \"/volume\" for changing the volume and \"/mute\" for muting all audio"));
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 5;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

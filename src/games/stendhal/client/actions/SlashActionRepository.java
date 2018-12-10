@@ -81,7 +81,7 @@ public class SlashActionRepository {
 
 		actions.put("ignore", XMLActions.get("IgnoreAction"));
 		actions.put("inspect", XMLActions.get("InspectAction"));
-		actions.put("invisible", new InvisibleAction());
+		actions.put("invisible", XMLActions.get("InvisibleAction"));
 		
 
 		actions.put("jail", XMLActions.get("JailAction"));
@@ -95,31 +95,31 @@ public class SlashActionRepository {
 		actions.put("names", who);
 
 		actions.put("p", groupMessage);
-		actions.put("profile", new ProfileAction());
-		actions.put("travellog", new TravelLogAction());
+		actions.put("profile", XMLActions.get("ProfileAction"));
+		actions.put("travellog", XMLActions.get("TravelLogAction"));
 
-		actions.put("quit", new QuitAction());
+		actions.put("quit", XMLActions.get("QuitAction"));
 
 		actions.put("removebuddy", XMLActions.get("RemoveBuddyAction"));
 
 		actions.put("sentence", XMLActions.get("SentenceAction"));
 		actions.put("status", XMLActions.get("SentenceAction")); // Alias for /sentence
-		actions.put("settings", new SettingsAction());
+		actions.put("settings", XMLActions.get("SettingsAction"));
 
-		actions.put("sound", new SoundAction());
-		actions.put("volume", new VolumeAction());
-		actions.put("vol", new VolumeAction());
+		actions.put("sound", XMLActions.get("SoundAction"));
+		actions.put("volume", XMLActions.get("VolumeAction"));
+		actions.put("vol", XMLActions.get("VolumeAction"));
 
 		actions.put("storemessage", XMLActions.get("StoreMessageAction"));
 		actions.put("postmessage", XMLActions.get("StoreMessageAction"));
 
 	//	actions.put("summonat", new SummonAtAction());
-		actions.put("summon", new SummonAction());
+		actions.put("summon", XMLActions.get("SummonAction"));
 		actions.put("supportanswer", supporta);
 		actions.put("supporta", supporta);
 		actions.put("support", XMLActions.get("SupportAction"));
 
-		actions.put("takescreenshot", new ScreenshotAction());
+		actions.put("takescreenshot", XMLActions.get("ScreenshotAction"));
 		actions.put("teleport", XMLActions.get("TeleportAction"));
 		actions.put("teleportto", XMLActions.get("TeleportToAction"));
 		actions.put("tellall", XMLActions.get("TellAllAction"));
@@ -131,13 +131,13 @@ public class SlashActionRepository {
 //		actions.put("wrap", new WrapAction());
 
 		/* Movement */
-		actions.put("walk", new AutoWalkAction());
-		actions.put("stopwalk", new AutoWalkStopAction());
-		actions.put("movecont", new MoveContinuousAction());
+		actions.put("walk", XMLActions.get("AutoWalkAction"));
+		actions.put("stopwalk", XMLActions.get("AutoWalkStopAction"));
+		actions.put("movecont", XMLActions.get("MoveContinuousAction"));
 
 		// PvP challenge actions
-		actions.put("challenge", new CreateChallengeAction());
-		actions.put("accept", new AcceptChallengeAction());
+		actions.put("challenge", XMLActions.get("CreateChallengeAction"));
+		actions.put("accept", XMLActions.get("AcceptChallengeAction"));
 	}
 	
 	//LOAD

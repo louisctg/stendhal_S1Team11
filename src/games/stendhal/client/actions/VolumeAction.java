@@ -24,7 +24,7 @@ import games.stendhal.common.math.Numeric;
 /**
  * Set sound characteristics.
  */
-class VolumeAction implements SlashAction {
+public class VolumeAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -36,6 +36,9 @@ class VolumeAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public VolumeAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if (params[0] == null) {
@@ -95,25 +98,5 @@ class VolumeAction implements SlashAction {
 		} catch (NumberFormatException exception) {
 			ClientSingletonRepository.getUserInterface().addEventLine(new HeaderLessEventLine(volumeString + " is not a valid number", NotificationType.ERROR));
 		}
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 2;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

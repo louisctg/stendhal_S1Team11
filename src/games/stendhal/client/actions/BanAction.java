@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Admin command to ban a player, either permanently or temporary.
  */
-class BanAction implements SlashAction {
+public class BanAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -30,6 +30,9 @@ class BanAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public BanAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		final RPAction action = new RPAction();
@@ -43,25 +46,4 @@ class BanAction implements SlashAction {
 
 		return true;
 	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 2;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 2;
-	}
-
 }

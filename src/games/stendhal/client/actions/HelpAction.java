@@ -19,7 +19,7 @@ import games.stendhal.common.NotificationType;
 /**
  * Display command usage. Eventually replace this with ChatCommand.usage().
  */
-public class HelpActionXML extends XMLSlashAction {
+public class HelpAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -33,7 +33,7 @@ public class HelpActionXML extends XMLSlashAction {
 	 * 
 	 */
 	
-	public HelpActionXML() {
+	public HelpAction() {
 		super();
 	}
 	

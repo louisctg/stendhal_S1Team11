@@ -30,7 +30,7 @@ import marauroa.common.game.RPAction;
  * @author
  * 		AntumDeluge
  */
-public class MoveContinuousAction implements SlashAction {
+public class MoveContinuousAction extends XMLSlashAction {
 
 	/**
 	 * Execute a command to toggle continuous movement.
@@ -42,6 +42,9 @@ public class MoveContinuousAction implements SlashAction {
 	 * @return
 	 * 		<code>true</code> if command was handled.
 	 */
+	public MoveContinuousAction() {
+		super();
+	}
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		WtWindowManager wm = WtWindowManager.getInstance();
@@ -102,27 +105,5 @@ public class MoveContinuousAction implements SlashAction {
 	 */
 	public boolean sendAction(final boolean enable) {
 		return sendAction(enable, true);
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return
-	 * 		Parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return
-	 * 		Parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

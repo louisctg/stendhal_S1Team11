@@ -34,7 +34,7 @@ public class ClickModeActionTest {
 	@Test
 	public void testSwitchingClick() {
 		final MockClientUI clientUI = new MockClientUI();
-		final ClickModeActionXML action = new ClickModeActionXML();
+		final ClickModeAction action = new ClickModeAction();
 		
 		assertTrue(action.execute(new String[]{null}, null));
 
@@ -51,7 +51,7 @@ public class ClickModeActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final ClickModeActionXML action = new ClickModeActionXML();
+		final ClickModeAction action = new ClickModeAction();
 		assertThat(action.getMaximumParameters(), is(0));
 	}
 
@@ -60,7 +60,7 @@ public class ClickModeActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final ClickModeActionXML action = new ClickModeActionXML();
+		final ClickModeAction action = new ClickModeAction();
 		assertThat(action.getMinimumParameters(), is(0));
 	}
 

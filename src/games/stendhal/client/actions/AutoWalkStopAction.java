@@ -26,7 +26,7 @@ import marauroa.common.game.RPAction;
  * @author
  *         AntumDeluge
  */
-public class AutoWalkStopAction implements SlashAction {
+public class AutoWalkStopAction extends XMLSlashAction {
 	/**
 	 * Execute a chat command.
 	 *
@@ -37,6 +37,9 @@ public class AutoWalkStopAction implements SlashAction {
 	 * @return
 	 *         <code>true</code> if command was handled.
 	 */
+	public AutoWalkStopAction() {
+		super();
+	}
 	@Override
 	public boolean execute(String[] params, String remainder) {
 		final RPAction stop = new RPAction();
@@ -48,27 +51,5 @@ public class AutoWalkStopAction implements SlashAction {
 		ClientSingletonRepository.getClientFramework().send(stop);
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return
-	 *         Parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return
-	 *         Parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

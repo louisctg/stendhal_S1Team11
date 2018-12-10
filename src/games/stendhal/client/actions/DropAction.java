@@ -23,7 +23,7 @@ import marauroa.common.game.RPAction;
 /**
  * Drop a player item.
  */
-public class DropActionXML extends XMLSlashAction {
+public class DropAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -35,7 +35,7 @@ public class DropActionXML extends XMLSlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
-	public DropActionXML() {
+	public DropAction() {
 		super();
 	}
 	@Override

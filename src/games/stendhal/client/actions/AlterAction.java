@@ -18,7 +18,7 @@ import marauroa.common.game.RPAction;
 /**
  * Alter an entity's attributes.
  */
-class AlterAction implements SlashAction {
+public class AlterAction extends XMLSlashAction {
 
 	/**
 	 * Executes a chat command.
@@ -30,6 +30,9 @@ class AlterAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public AlterAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		if (hasInvalidArguments(params, remainder)) {
@@ -56,25 +59,5 @@ class AlterAction implements SlashAction {
 	 */
 	private boolean hasInvalidArguments(final String[] params, final String remainder) {
 		return (params == null) || (remainder == null) || (params.length < getMinimumParameters());
-	}
-
-	/**
-	 * Gets the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 3;
-	}
-
-	/**
-	 * Gets the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 3;
 	}
 }

@@ -17,7 +17,7 @@ import games.stendhal.client.gui.j2DClient;
 /**
  * Quit the client.
  */
-class QuitAction implements SlashAction {
+public class QuitAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -29,6 +29,9 @@ class QuitAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public QuitAction() {
+		super();
+	}
 	@Override
 	public boolean execute(final String[] params, final String remainder) {
 		j2DClient client = j2DClient.get();
@@ -39,25 +42,5 @@ class QuitAction implements SlashAction {
 		}
 
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 0;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 0;
 	}
 }

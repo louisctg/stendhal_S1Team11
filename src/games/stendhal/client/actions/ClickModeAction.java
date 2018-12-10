@@ -13,12 +13,15 @@
 package games.stendhal.client.actions;
 
 import games.stendhal.client.ClientSingletonRepository;
-import marauroa.common.game.RPAction;
+import games.stendhal.client.gui.chatlog.StandardEventLine;
+import games.stendhal.client.gui.wt.core.WtWindowManager;
 
 /**
- * Teleport a player.
+ * switches between single click and double click
+ *
+ * @author hendrik
  */
-class TeleportAction implements SlashAction {
+public class ClickModeAction extends XMLSlashAction {
 
 	/**
 	 * Execute a chat command.
@@ -30,38 +33,19 @@ class TeleportAction implements SlashAction {
 	 *
 	 * @return <code>true</code> if was handled.
 	 */
+	public ClickModeAction() {
+		super();
+	}
 	@Override
-	public boolean execute(final String[] params, final String remainder) {
-		final RPAction teleport = new RPAction();
-
-		teleport.put("type", "teleport");
-		teleport.put("target", params[0]);
-		teleport.put("zone", params[1]);
-		teleport.put("x", params[2]);
-		teleport.put("y", params[3]);
-
-		ClientSingletonRepository.getClientFramework().send(teleport);
-
+	public boolean execute(String[] params, String remainder) {
+		boolean doubleClick = WtWindowManager.getInstance().getPropertyBoolean("ui.doubleclick", false);
+		doubleClick = !doubleClick;
+		WtWindowManager.getInstance().setProperty("ui.doubleclick", Boolean.toString(doubleClick));
+		if (doubleClick) {
+			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Click mode is now set to double click."));
+		} else {
+			ClientSingletonRepository.getUserInterface().addEventLine(new StandardEventLine("Click mode is now set to single click."));
+		}
 		return true;
-	}
-
-	/**
-	 * Get the maximum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMaximumParameters() {
-		return 4;
-	}
-
-	/**
-	 * Get the minimum number of formal parameters.
-	 *
-	 * @return The parameter count.
-	 */
-	@Override
-	public int getMinimumParameters() {
-		return 4;
 	}
 }

@@ -88,7 +88,7 @@ public class DropActionTest {
 	@Test
 	public void testNoMoney() {
 		final MockClientUI clientUI = new MockClientUI();
-		final DropActionXML action = (DropActionXML) SlashActionRepository.get("drop");
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 
 		createPlayer();
 
@@ -103,7 +103,7 @@ public class DropActionTest {
 	@Test
 	public void testInvalidAmount() {
 		final MockClientUI clientUI = new MockClientUI();
-		final DropActionXML action = (DropActionXML) SlashActionRepository.get("drop");
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 
 		createPlayer();
 
@@ -140,7 +140,7 @@ public class DropActionTest {
 		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
 		// issue "/drop money"
-		final DropActionXML action = (DropActionXML) SlashActionRepository.get("drop");
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertTrue(action.execute(new String[]{"money"}, ""));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -173,7 +173,7 @@ public class DropActionTest {
 		player.getSlot("bag").addPreservingId(createItem("money", MONEY_ID, 100));
 
 		// issue "/drop 50 money"
-		final DropActionXML action = (DropActionXML) SlashActionRepository.get("drop");
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertTrue(action.execute(new String[]{"50"}, "money"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -206,7 +206,7 @@ public class DropActionTest {
 		player.getSlot("bag").addPreservingId(createItem("silver sword", SILVER_SWORD_ID, 1));
 
 		// issue "/drop money"
-		final DropActionXML action = (DropActionXML) SlashActionRepository.get("drop");
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertTrue(action.execute(new String[]{"silver"}, "sword"));
 		assertEquals("", clientUI.getEventBuffer());
 	}
@@ -216,7 +216,7 @@ public class DropActionTest {
 	 */
 	@Test
 	public void testGetMaximumParameters() {
-		final DropActionXML action = (DropActionXML) SlashActionRepository.get("drop");
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertThat(action.getMaximumParameters(), is(1));
 	}
 
@@ -225,7 +225,7 @@ public class DropActionTest {
 	 */
 	@Test
 	public void testGetMinimumParameters() {
-		final DropActionXML action = (DropActionXML) SlashActionRepository.get("drop");
+		final DropAction action = (DropAction) SlashActionRepository.get("drop");
 		assertThat(action.getMinimumParameters(), is(1));
 	}
 

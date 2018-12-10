@@ -21,7 +21,7 @@ import marauroa.common.game.RPAction;
 /**
  * Send a support request message with client information.
  */
-public class ClientInfoActionXML extends XMLSlashAction {
+public class ClientInfoAction extends XMLSlashAction {
 	private boolean first = true;
 
 	/**
@@ -34,7 +34,7 @@ public class ClientInfoActionXML extends XMLSlashAction {
 	 *
 	 * @return <code>true</code> if command was handled.
 	 */
-	public ClientInfoActionXML() {
+	public ClientInfoAction() {
 		super();
 	}
 	@Override
