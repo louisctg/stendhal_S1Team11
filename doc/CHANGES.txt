@@ -1,5 +1,12 @@
 Changelog
 ---------
+1.30uom
+*client*
+ - Client actions are not loaded using an xml file using ActionGroupsXMLLoader
+ - Action class type have been reduced with the introduction of the class XMLSlashAction
+ - Tests have been added for more of the client action classes
+ - Test coverage has been improved for games.stendhal.client.actions
+
 1.29uom
 *features*
 - Lon Jatham NPC and a University of Manchester Campus in Ados were added, where Lon Jatham tells players about the university and offers Java advice.
