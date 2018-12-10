@@ -419,15 +419,7 @@
   	Action type is the type: can be invisible, addbuddy, etc. 
   	putAction are optional fields. These fields can contain the additional action parameter names, like target, etc.
   	The actual parameter values will come from the SlashAction interface
-  	
-  	
-  	  <action name="echo action">
-  	<implementation class-name="games.stendhal.client.actions.XMLSlashAction"/>
-  	<MaximumParameters>2</MaximumParameters>
-  	<MinimumParameters>0</MinimumParameters>
-  	<type>echo</type>
-  </action>
- 
+  	 
    -->
 
 </actions>

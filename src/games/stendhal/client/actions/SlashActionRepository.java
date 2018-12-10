@@ -67,8 +67,6 @@ public class SlashActionRepository {
 
 		actions.put("drop", XMLActions.get("DropAction"));
 		
-		//actions.put("echo", XMLActions.get("EchoAction"));
-
 		actions.put("cast", XMLActions.get("CastSpellAction"));
 
 		actions.put("gag", XMLActions.get("GagAction"));

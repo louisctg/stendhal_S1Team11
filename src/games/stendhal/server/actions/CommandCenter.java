@@ -51,7 +51,6 @@ import games.stendhal.server.actions.query.QuestListAction;
 import games.stendhal.server.actions.query.WhereAction;
 import games.stendhal.server.actions.query.WhoAction;
 import games.stendhal.server.actions.spell.CastSpellAction;
-import games.stendhal.server.actions.EchoAction;
 import games.stendhal.server.core.engine.Translate;
 import games.stendhal.server.entity.player.Player;
 import marauroa.common.game.RPAction;
@@ -126,7 +125,6 @@ public class CommandCenter {
 		SentenceAction.register();
 		StoreMessageAction.register();
 		StopAction.register();
-		EchoAction.register();
 		TradeAction.register();
 		UseAction.register();
 		AutoWalkAction.register();
